@@ -3,9 +3,9 @@
 /* ===== Global Variables ===== */
 :root {
     /* Dark color palette */
-    --bg-primary: #0a0e1a;
-    --bg-secondary: #0f1420;
-    --bg-tertiary: #141925;
+    --bg-primary: #000000;
+    --bg-secondary: #000000;
+    --bg-tertiary: #000000;
     --bg-card: rgba(20, 25, 37, 0.6);
     --bg-card-hover: rgba(20, 25, 37, 0.8);
     

@@ -138,14 +138,39 @@
 
 body {
   font-family: var(--font-family-sans);
-  background-color: #0b0f14; /* Force dark fallback behind WebGL */
-  color: var(--foreground);
+  background-color: #000000; /* Pure black background */
+  color: #ffffff; /* White text for contrast */
   line-height: var(--leading-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-html { background: #0b0f14; }
+html { background: #000000; /* Pure black background */ }
+
+/* Make sections transparent to show WebGL background */
+section, .hero-section, .work-section, .services-section, 
+.capabilities-section, .case-strip, .about-section, .cta-section,
+.client-marquee, footer, nav, .navbar {
+  background: transparent !important;
+  background-color: transparent !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* Remove any gradients */
+.hero-section::before,
+.hero-section::after,
+section::before,
+section::after {
+  display: none !important;
+}
+
+/* Ensure main content is above WebGL background */
+.main-content {
+  position: relative;
+  background: transparent;
+  z-index: 1;
+}
 
 /* Global ambient layer smoothing between sections */
 /* ambient canvas is behind; keep content transparent */
@@ -4991,7 +5016,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); letter-spacing: -0.005em; margin-bo
 /* AI Capabilities Showcase Section */
 .capabilities-section {
     padding: 6rem 0;
-    background: linear-gradient(to bottom, rgba(14, 20, 28, 0.5), rgba(14, 20, 28, 0.8));
+    background: #000000;
     position: relative;
     overflow: hidden;
 }

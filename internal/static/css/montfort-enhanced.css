@@ -2,7 +2,7 @@
 
 /* Dark gradient background with better contrast */
 body {
-    background: #0a0e1a;
+    background: #000000;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -13,7 +13,7 @@ body {
 .hero-section {
     position: relative;
     min-height: 100vh;
-    background: radial-gradient(ellipse at top, #1a2332 0%, #0a0e1a 100%);
+    background: #000000;
     display: flex;
     align-items: center;
     justify-content: center;
