@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Users/m/CRAFTAI_PRODUCTION/logs/.895c0783ef2b813c9bf4ab4fee3429acfb3782bf-audit.json",
+    "files": [
+        {
+            "date": 1754665346521,
+            "name": "/Users/m/CRAFTAI_PRODUCTION/logs/application-2025-08-08.log",
+            "hash": "5e598f5739333bf3b3fa4e69ea5cfdca741e7ecfcf025f10ee8521882528436f"
+        },
+        {
+            "date": 1754730079033,
+            "name": "/Users/m/CRAFTAI_PRODUCTION/logs/application-2025-08-09.log",
+            "hash": "f3a03bac2cd4469464463d96b1867a11173492ba95ed2bde605b151bd9441a8b"
+        }
+    ],
+    "hashType": "sha256"
+}

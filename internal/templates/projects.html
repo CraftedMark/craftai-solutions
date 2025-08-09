@@ -1,0 +1,907 @@
+{{define "content"}}
+<main class="main-content">
+    <!-- Projects Hero Section -->
+    <section class="hero-section minimal">
+        <div class="hero-gradient"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title"><span class="text-gradient">Featured</span> Projects</h1>
+                <p class="hero-description">Explore our portfolio of cutting-edge AI, automation, and iOS development projects.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="projects-grid-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Portfolio</h2>
+                <p class="section-subtitle">Innovative solutions built with cutting-edge technologies</p>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Crafted Project -->
+                <div class="project-card" data-category="production">
+                    <div class="card-glow"></div>
+                    <div class="project-card-inner">
+                        <div class="project-card-header">
+                            <div class="project-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                                </svg>
+                            </div>
+                            <div class="project-status">
+                                <span class="status-badge status-production">
+                                    <span class="status-dot"></span>
+                                    Production
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card-content">
+                            <h3 class="project-card-title">Crafted</h3>
+                            <p class="project-card-subtitle">Enterprise Production Management</p>
+                            <p class="project-card-description">
+                                A comprehensive iOS application for business production management featuring AI-powered voice commands, real-time PostgreSQL integration, and multi-user workflow management.
+                            </p>
+                            
+                            <div class="project-tech-stack">
+                                <span class="tech-tag">Swift 6</span>
+                                <span class="tech-tag">SwiftUI</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">AI Voice</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card-footer">
+                            <a href="/projects/crafted" class="btn btn-primary">
+                                <span>View Project</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mind Lattice AI Project -->
+                <div class="project-card" data-category="development">
+                    <div class="card-glow"></div>
+                    <div class="project-card-inner">
+                        <div class="project-card-header">
+                            <div class="project-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                </svg>
+                            </div>
+                            <div class="project-status">
+                                <span class="status-badge status-development">
+                                    <span class="status-dot"></span>
+                                    Development
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card-content">
+                            <h3 class="project-card-title">Mind Lattice AI</h3>
+                            <p class="project-card-subtitle">Voice-First Memory Augmentation</p>
+                            <p class="project-card-description">
+                                An innovative iOS memory augmentation application that transforms spoken thoughts into structured, actionable data with intelligent Memory Lattice connection discovery.
+                            </p>
+                            
+                            <div class="project-tech-stack">
+                                <span class="tech-tag">Swift 6</span>
+                                <span class="tech-tag">SwiftUI</span>
+                                <span class="tech-tag">Speech Framework</span>
+                                <span class="tech-tag">OpenAI</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card-footer">
+                            <a href="/projects/mindlattice" class="btn btn-primary">
+                                <span>View Project</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Agent Project -->
+                <div class="project-card" data-category="production">
+                    <div class="card-glow"></div>
+                    <div class="project-card-inner">
+                        <div class="project-card-header">
+                            <div class="project-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div class="project-status">
+                                <span class="status-badge status-production">
+                                    <span class="status-dot"></span>
+                                    Production Ready
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card-content">
+                            <h3 class="project-card-title">Email Agent</h3>
+                            <p class="project-card-subtitle">Intelligent Email Automation</p>
+                            <p class="project-card-description">
+                                Advanced Python-based email automation system that intelligently processes multiple email accounts to find receipts, orders, and detect spam with parallel processing.
+                            </p>
+                            
+                            <div class="project-tech-stack">
+                                <span class="tech-tag">Python 3.8+</span>
+                                <span class="tech-tag">IMAP</span>
+                                <span class="tech-tag">Parallel Processing</span>
+                                <span class="tech-tag">Pattern Matching</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card-footer">
+                            <a href="/projects/emailagent" class="btn btn-primary">
+                                <span>View Project</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CraftAI Dashboard Project -->
+                <div class="project-card" data-category="template">
+                    <div class="card-glow"></div>
+                    <div class="project-card-inner">
+                        <div class="project-card-header">
+                            <div class="project-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                </svg>
+                            </div>
+                            <div class="project-status">
+                                <span class="status-badge status-template">
+                                    <span class="status-dot"></span>
+                                    Template
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card-content">
+                            <h3 class="project-card-title">CraftAI Dashboard</h3>
+                            <p class="project-card-subtitle">Modern iOS Architecture Template</p>
+                            <p class="project-card-description">
+                                A cutting-edge iOS application template featuring workspace + SPM package architecture with AI assistant rules files and modern Swift 6+ development patterns.
+                            </p>
+                            
+                            <div class="project-tech-stack">
+                                <span class="tech-tag">Swift 6+</span>
+                                <span class="tech-tag">SwiftUI</span>
+                                <span class="tech-tag">SPM Architecture</span>
+                                <span class="tech-tag">AI Rules</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card-footer">
+                            <a href="/projects/craftaidashboard" class="btn btn-primary">
+                                <span>View Project</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="projects-cta-section">
+        <div class="cta-background">
+            <div class="cta-gradient"></div>
+            <div class="cta-patterns">
+                <div class="pattern-circle"></div>
+                <div class="pattern-circle"></div>
+                <div class="pattern-circle"></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                </div>
+                <h2>Ready to Start Your Project?</h2>
+                <p>Let's build something amazing together. Contact us to discuss your AI, automation, or iOS development needs.</p>
+                <div class="cta-actions">
+                    <a href="/contact" class="btn btn-primary btn-glow">
+                        <span>Start Your Project</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="/services" class="btn btn-secondary btn-glass">
+                        <span>Our Services</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<style>
+/* Modern CSS Variables for Enhanced Design */
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-hover: rgba(255, 255, 255, 0.12);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 16px 64px rgba(0, 0, 0, 0.12);
+    --shadow-glow: 0 0 32px rgba(59, 130, 246, 0.15);
+    --gradient-primary: linear-gradient(135deg, hsl(221 83% 53%) 0%, hsl(262 83% 58%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(262 83% 58%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(262 83% 58%) 0%, hsl(221 83% 53%) 100%);
+}
+
+/* Hero Section Styling */
+.projects-hero-section {
+    position: relative;
+    padding: 6rem 0 8rem;
+    background: linear-gradient(135deg, 
+        hsl(221 83% 53% / 0.03) 0%, 
+        hsl(262 83% 58% / 0.05) 50%,
+        hsl(142 76% 36% / 0.03) 100%);
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.floating-elements {
+    position: absolute;
+    inset: 0;
+}
+
+.floating-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    opacity: 0.1;
+    animation: float 20s infinite ease-in-out;
+    filter: blur(40px);
+}
+
+.circle-1 {
+    width: 300px;
+    height: 300px;
+    top: -150px;
+    left: -150px;
+    animation-delay: 0s;
+}
+
+.circle-2 {
+    width: 200px;
+    height: 200px;
+    top: 20%;
+    right: -100px;
+    animation-delay: -7s;
+}
+
+.circle-3 {
+    width: 250px;
+    height: 250px;
+    bottom: -125px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: -14s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+.projects-hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Enhanced Breadcrumb */
+.projects-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: hsl(var(--muted-foreground));
+    margin-bottom: 2rem;
+    justify-content: center;
+}
+
+.breadcrumb-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: hsl(var(--primary));
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+}
+
+.breadcrumb-link:hover {
+    background: var(--glass-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.breadcrumb-separator {
+    color: hsl(var(--muted-foreground));
+    opacity: 0.6;
+}
+
+.breadcrumb-current {
+    font-weight: 500;
+    color: hsl(var(--foreground));
+}
+
+/* Modern Title Design */
+.hero-title-container {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.projects-title {
+    font-size: 4rem;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+}
+
+.title-highlight {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+.title-main {
+    color: hsl(var(--foreground));
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+.title-underline {
+    height: 4px;
+    width: 120px;
+    background: var(--gradient-primary);
+    margin: 1rem auto 0;
+    border-radius: 2px;
+    animation: slideIn 1s ease-out;
+}
+
+@keyframes slideIn {
+    from { width: 0; }
+    to { width: 120px; }
+}
+
+.projects-description {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: hsl(var(--muted-foreground));
+    font-weight: 400;
+}
+
+/* Hero Stats */
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1.5rem 2rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    background: var(--glass-hover);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: hsl(var(--muted-foreground));
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+/* Projects Grid Section */
+.projects-grid-section {
+    padding: 6rem 0;
+    background: linear-gradient(to bottom, transparent, hsl(var(--muted) / 0.03));
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-subtitle {
+    font-size: 1.125rem;
+    color: hsl(var(--muted-foreground));
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Modern Project Cards with Glass Morphism */
+.project-card {
+    position: relative;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.card-glow {
+    position: absolute;
+    inset: -2px;
+    background: var(--gradient-primary);
+    border-radius: 24px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+    filter: blur(8px);
+}
+
+.project-card:hover .card-glow {
+    opacity: 0.6;
+}
+
+.project-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    background: var(--glass-hover);
+}
+
+.project-card-inner {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 24px;
+}
+
+.project-card-header {
+    padding: 2rem 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.project-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--gradient-primary);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .project-icon {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: var(--shadow-lg);
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.status-production {
+    background: rgba(34, 197, 94, 0.1);
+    color: rgb(34, 197, 94);
+    border-color: rgba(34, 197, 94, 0.2);
+}
+
+.status-production .status-dot {
+    background: rgb(34, 197, 94);
+}
+
+.status-development {
+    background: rgba(251, 191, 36, 0.1);
+    color: rgb(251, 191, 36);
+    border-color: rgba(251, 191, 36, 0.2);
+}
+
+.status-development .status-dot {
+    background: rgb(251, 191, 36);
+}
+
+.status-template {
+    background: rgba(168, 85, 247, 0.1);
+    color: rgb(168, 85, 247);
+    border-color: rgba(168, 85, 247, 0.2);
+}
+
+.status-template .status-dot {
+    background: rgb(168, 85, 247);
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.project-card-content {
+    padding: 1.5rem 2rem;
+    flex: 1;
+}
+
+.project-card-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: hsl(var(--foreground));
+    line-height: 1.2;
+}
+
+.project-card-subtitle {
+    font-size: 1rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 1rem 0;
+    font-weight: 600;
+}
+
+.project-card-description {
+    color: hsl(var(--muted-foreground));
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.project-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tech-tag {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    color: hsl(var(--muted-foreground));
+    border-radius: 8px;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.tech-tag:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    color: hsl(var(--foreground));
+}
+
+.project-card-footer {
+    padding: 0 2rem 2rem;
+}
+
+/* Enhanced Button Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.btn:hover::before {
+    transform: translateX(100%);
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+    background: var(--glass-bg);
+    color: hsl(var(--foreground));
+    border: 1px solid var(--glass-border);
+}
+
+.btn-secondary:hover {
+    background: var(--glass-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-glow {
+    box-shadow: var(--shadow-md), 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.btn-glass {
+    backdrop-filter: blur(20px);
+}
+
+/* CTA Section */
+.projects-cta-section {
+    position: relative;
+    padding: 6rem 0;
+    text-align: center;
+    overflow: hidden;
+}
+
+.cta-background {
+    position: absolute;
+    inset: 0;
+}
+
+.cta-gradient {
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-secondary);
+    opacity: 0.9;
+}
+
+.cta-patterns {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.pattern-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    animation: float 15s infinite ease-in-out;
+}
+
+.cta-patterns .pattern-circle:nth-child(1) {
+    width: 200px;
+    height: 200px;
+    top: -100px;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.cta-patterns .pattern-circle:nth-child(2) {
+    width: 150px;
+    height: 150px;
+    top: 20%;
+    right: 15%;
+    animation-delay: -5s;
+}
+
+.cta-patterns .pattern-circle:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    bottom: -50px;
+    left: 60%;
+    animation-delay: -10s;
+}
+
+.cta-content {
+    position: relative;
+    z-index: 1;
+    color: white;
+}
+
+.cta-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.cta-content p {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .projects-title {
+        font-size: 2.5rem;
+    }
+    
+    .title-main {
+        display: block;
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+    
+    .stat-item {
+        padding: 1rem 1.5rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .project-card-header {
+        padding: 1.5rem 1.5rem 0;
+    }
+    
+    .project-card-content {
+        padding: 1rem 1.5rem;
+    }
+    
+    .project-card-footer {
+        padding: 0 1.5rem 1.5rem;
+    }
+    
+    .cta-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .projects-hero-section {
+        padding: 4rem 0 6rem;
+    }
+    
+    .projects-title {
+        font-size: 2rem;
+    }
+    
+    .projects-description {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .cta-content h2 {
+        font-size: 2rem;
+    }
+}
+</style>
+{{end}}

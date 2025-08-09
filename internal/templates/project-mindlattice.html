@@ -1,0 +1,981 @@
+{{define "content"}}
+<main class="main-content">
+    <!-- Floating Background Elements -->
+    <div class="floating-background">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+    </div>
+
+    <!-- Project Hero Section -->
+    <section class="project-hero-section">
+        <div class="container">
+            <div class="project-hero-content">
+                <div class="enhanced-breadcrumb">
+                    <a href="/" class="breadcrumb-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a1 1 0 00-.293-.707L12 2.586a1 1 0 00-1.414 0L2.293 8.293A1 1 0 002 9v8a2 2 0 002 2z"/>
+                        </svg>
+                        Home
+                    </a>
+                    <span class="breadcrumb-separator">→</span>
+                    <a href="/projects" class="breadcrumb-link">Projects</a>
+                    <span class="breadcrumb-separator">→</span>
+                    <span class="breadcrumb-current">Mind Lattice AI</span>
+                </div>
+                
+                <div class="project-header">
+                    <div class="project-icon-container">
+                        <div class="project-icon-large">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                            </svg>
+                        </div>
+                        <div class="icon-glow"></div>
+                    </div>
+                    <div class="project-title-area">
+                        <h1 class="gradient-title">
+                            <span class="title-gradient">Mind Lattice</span>
+                            <span class="title-accent">AI</span>
+                        </h1>
+                        <p class="enhanced-subtitle">Voice-First Memory Augmentation</p>
+                        <div class="project-status">
+                            <span class="status-badge status-development">
+                                <span class="status-dot"></span>
+                                Development
+                            </span>
+                            <span class="tech-badge tech-ios">iOS App</span>
+                            <span class="tech-badge tech-ai">AI-Powered</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="enhanced-description">
+                    An innovative iOS memory augmentation application that transforms spoken thoughts into structured, 
+                    actionable data. Features voice-first design, AI enhancement, and an intelligent "Memory Lattice" 
+                    system that discovers and visualizes connections between captured memories for entrepreneurs and busy professionals.
+                </p>
+
+                <div class="enhanced-actions">
+                    <a href="#demo" class="btn btn-primary btn-glow">
+                        <span>View Demo</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                        </svg>
+                    </a>
+                    <a href="#features" class="btn btn-secondary btn-glass">
+                        <span>Explore Features</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section class="tech-stack-section">
+        <div class="container">
+            <h2 class="section-title">Technology Stack</h2>
+            
+            <div class="tech-grid">
+                <div class="tech-category">
+                    <h3>Frontend & Mobile</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">
+                            <span class="tech-name">Swift 6</span>
+                            <span class="tech-desc">Strict concurrency & modern features</span>
+                        </div>
+                        <div class="tech-item">
+                            <span class="tech-name">SwiftUI 6</span>
+                            <span class="tech-desc">Declarative UI with iOS 18+ features</span>
+                        </div>
+                        <div class="tech-item">
+                            <span class="tech-name">SwiftData</span>
+                            <span class="tech-desc">Modern data persistence</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3>AI & Speech</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">
+                            <span class="tech-name">Speech Framework</span>
+                            <span class="tech-desc">On-device speech recognition</span>
+                        </div>
+                        <div class="tech-item">
+                            <span class="tech-name">OpenAI GPT-4</span>
+                            <span class="tech-desc">Transcription enhancement</span>
+                        </div>
+                        <div class="tech-item">
+                            <span class="tech-name">OpenRouter</span>
+                            <span class="tech-desc">100+ LLM providers</span>
+                        </div>
+                        <div class="tech-item">
+                            <span class="tech-name">Ollama</span>
+                            <span class="tech-desc">Local LLM support</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3>iOS Ecosystem</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">
+                            <span class="tech-name">CloudKit</span>
+                            <span class="tech-desc">Cross-device synchronization</span>
+                        </div>
+                        <div class="tech-item">
+                            <span class="tech-name">EventKit</span>
+                            <span class="tech-desc">Calendar & Reminders integration</span>
+                        </div>
+                        <div class="tech-item">
+                            <span class="tech-name">Contacts</span>
+                            <span class="tech-desc">Contact management</span>
+                        </div>
+                        <div class="tech-item">
+                            <span class="tech-name">WidgetKit</span>
+                            <span class="tech-desc">Home screen widgets</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3>Advanced Features</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">
+                            <span class="tech-name">App Intents</span>
+                            <span class="tech-desc">Siri integration</span>
+                        </div>
+                        <div class="tech-item">
+                            <span class="tech-name">AVFoundation</span>
+                            <span class="tech-desc">Audio recording & processing</span>
+                        </div>
+                        <div class="tech-item">
+                            <span class="tech-name">Wake Word Detection</span>
+                            <span class="tech-desc">Custom "Hey Lattice" activation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <h2 class="section-title">Key Features</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                        </svg>
+                    </div>
+                    <h3>Voice-First Design</h3>
+                    <p>One-tap recording, widget access, and "Hey Lattice" wake word detection for seamless hands-free memory capture and voice commands.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3>Memory Lattice System</h3>
+                    <p>Intelligent connection discovery between notes using temporal, person, location, topic, and follow-up relationships with interactive visualization.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                    </div>
+                    <h3>AI Enhancement</h3>
+                    <p>Multiple LLM providers for enhanced transcription, action extraction, meeting summaries, and personalized suggestions based on user patterns.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3>iOS Ecosystem Integration</h3>
+                    <p>Automatic calendar event creation, reminders management, contact linking, and seamless sync across all your Apple devices.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
+                    </div>
+                    <h3>Smart Entity Extraction</h3>
+                    <p>Automatically identifies people, dates, locations, phone numbers, and email addresses from voice recordings with intelligent parsing.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </div>
+                    <h3>Privacy-First Architecture</h3>
+                    <p>On-device speech processing, local data storage with optional CloudKit sync, and user-controlled context learning with clear history options.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Overview -->
+    <section class="architecture-section">
+        <div class="container">
+            <h2 class="section-title">Architecture Overview</h2>
+            
+            <div class="arch-grid">
+                <div class="arch-layer">
+                    <h3>UI Layer</h3>
+                    <div class="arch-components">
+                        <span class="component">SwiftUI Views</span>
+                        <span class="component">Voice Interface</span>
+                        <span class="component">Memory Lattice Graph</span>
+                        <span class="component">Widgets & Shortcuts</span>
+                    </div>
+                </div>
+
+                <div class="arch-layer">
+                    <h3>Service Layer</h3>
+                    <div class="arch-components">
+                        <span class="component">Audio Recording</span>
+                        <span class="component">Speech Recognition</span>
+                        <span class="component">LLM Service</span>
+                        <span class="component">Wake Word Coordinator</span>
+                    </div>
+                </div>
+
+                <div class="arch-layer">
+                    <h3>Data Layer</h3>
+                    <div class="arch-components">
+                        <span class="component">SwiftData Models</span>
+                        <span class="component">CloudKit Sync</span>
+                        <span class="component">User Context</span>
+                        <span class="component">Memory Connections</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="demo-section" id="demo">
+        <div class="container">
+            <h2 class="section-title">See It In Action</h2>
+            
+            <div class="demo-grid">
+                <div class="demo-video">
+                    <div class="video-placeholder">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <p>Demo Video</p>
+                    </div>
+                </div>
+
+                <div class="demo-features">
+                    <h3>Demo Highlights</h3>
+                    <ul class="demo-list">
+                        <li>Voice-first memory capture</li>
+                        <li>"Hey Lattice" wake word activation</li>
+                        <li>AI-powered transcription enhancement</li>
+                        <li>Memory Lattice connection visualization</li>
+                        <li>Automatic calendar & reminder creation</li>
+                        <li>Multi-provider LLM integration</li>
+                        <li>iOS ecosystem synchronization</li>
+                    </ul>
+                    
+                    <div class="demo-actions">
+                        <a href="/contact" class="btn btn-primary">Request Demo</a>
+                        <a href="#features" class="btn btn-secondary">View Features</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="use-cases-section">
+        <div class="container">
+            <h2 class="section-title">Perfect For</h2>
+            
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <h3>Entrepreneurs</h3>
+                    <p>Capture business ideas, track meetings, and manage multiple projects with voice-driven efficiency and AI-powered insights.</p>
+                </div>
+                <div class="use-case-card">
+                    <h3>Sales Professionals</h3>
+                    <p>Record client conversations, track follow-ups, and manage customer relationships with intelligent connection discovery.</p>
+                </div>
+                <div class="use-case-card">
+                    <h3>Busy Parents</h3>
+                    <p>Manage family schedules, capture important reminders, and stay organized across multiple responsibilities hands-free.</p>
+                </div>
+                <div class="use-case-card">
+                    <h3>Knowledge Workers</h3>
+                    <p>Augment memory with structured note-taking, automatic task extraction, and intelligent information relationships.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Stats -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">iOS 18.0+</div>
+                    <div class="stat-label">Minimum Target</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100+</div>
+                    <div class="stat-label">LLM Models</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Connection Types</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">Production</div>
+                    <div class="stat-label">Ready</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="project-cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Augment Your Memory?</h2>
+                <p>We can build intelligent voice-first applications with AI integration and seamless iOS ecosystem connectivity.</p>
+                <div class="cta-actions">
+                    <a href="/contact" class="btn btn-primary">Start Your Project</a>
+                    <a href="/projects" class="btn btn-secondary">View More Projects</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<style>
+/* Modern CSS Variables for Mind Lattice AI */
+:root {
+    --mind-primary: hsl(262 83% 58%);
+    --mind-primary-light: hsl(262 83% 68%);
+    --mind-secondary: hsl(280 100% 70%);
+    --mind-accent: hsl(240 100% 80%);
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-hover: rgba(255, 255, 255, 0.12);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 16px 64px rgba(0, 0, 0, 0.12);
+    --shadow-glow: 0 0 32px rgba(168, 85, 247, 0.15);
+    --gradient-primary: linear-gradient(135deg, var(--mind-primary) 0%, var(--mind-secondary) 100%);
+}
+
+/* Floating Background Elements */
+.floating-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    opacity: 0.08;
+    animation: mindFloat 25s infinite ease-in-out;
+    filter: blur(60px);
+}
+
+.shape-1 {
+    width: 400px;
+    height: 400px;
+    top: -200px;
+    left: -200px;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 300px;
+    height: 300px;
+    top: 20%;
+    right: -150px;
+    animation-delay: -8s;
+}
+
+.shape-3 {
+    width: 350px;
+    height: 350px;
+    bottom: -175px;
+    left: 30%;
+    animation-delay: -16s;
+}
+
+.shape-4 {
+    width: 250px;
+    height: 250px;
+    top: 60%;
+    right: 20%;
+    animation-delay: -12s;
+}
+
+@keyframes mindFloat {
+    0%, 100% { 
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    25% { 
+        transform: translate(50px, -50px) scale(1.1) rotate(90deg);
+    }
+    50% { 
+        transform: translate(-30px, 30px) scale(0.9) rotate(180deg);
+    }
+    75% { 
+        transform: translate(40px, -20px) scale(1.05) rotate(270deg);
+    }
+}
+
+/* Enhanced Hero Section */
+.project-hero-section {
+    position: relative;
+    background: linear-gradient(135deg, 
+        rgba(168, 85, 247, 0.03) 0%, 
+        rgba(147, 51, 234, 0.05) 50%,
+        rgba(124, 58, 237, 0.03) 100%);
+    padding: 4rem 0 6rem;
+    overflow: hidden;
+}
+
+.project-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(147, 51, 234, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.project-hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Enhanced Breadcrumb */
+.enhanced-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    margin-bottom: 3rem;
+    justify-content: center;
+}
+
+.breadcrumb-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--mind-primary);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.breadcrumb-link:hover {
+    background: var(--glass-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.breadcrumb-separator {
+    color: hsl(var(--muted-foreground));
+    opacity: 0.6;
+    font-weight: 500;
+}
+
+.breadcrumb-current {
+    font-weight: 600;
+    color: hsl(var(--foreground));
+    padding: 0.5rem 0;
+}
+
+/* Enhanced Project Header */
+.project-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    justify-content: center;
+    text-align: center;
+}
+
+.project-icon-container {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.project-icon-large {
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-primary);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-glow {
+    position: absolute;
+    inset: -4px;
+    background: var(--gradient-primary);
+    border-radius: 24px;
+    opacity: 0;
+    filter: blur(20px);
+    transition: opacity 0.4s ease;
+    animation: mindPulse 3s infinite ease-in-out;
+}
+
+@keyframes mindPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+.project-icon-container:hover .icon-glow {
+    opacity: 0.8;
+}
+
+.project-icon-container:hover .project-icon-large {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+/* Gradient Title */
+.gradient-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 0 0 1rem 0;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.title-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+.title-accent {
+    color: hsl(var(--foreground));
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+
+.enhanced-subtitle {
+    font-size: 1.5rem;
+    color: hsl(var(--muted-foreground));
+    margin: 0 0 1.5rem 0;
+    font-weight: 500;
+}
+
+/* Enhanced Status Badges */
+.project-status {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: statusPulse 2s infinite;
+}
+
+.status-development {
+    background: rgba(251, 191, 36, 0.1);
+    color: rgb(251, 191, 36);
+    border-color: rgba(251, 191, 36, 0.2);
+}
+
+.status-development .status-dot {
+    background: rgb(251, 191, 36);
+}
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.2); }
+}
+
+.tech-badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+}
+
+.tech-ios {
+    background: rgba(59, 130, 246, 0.1);
+    color: rgb(59, 130, 246);
+    border-color: rgba(59, 130, 246, 0.2);
+}
+
+.tech-ai {
+    background: rgba(168, 85, 247, 0.1);
+    color: rgb(168, 85, 247);
+    border-color: rgba(168, 85, 247, 0.2);
+}
+
+.tech-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Enhanced Description */
+.enhanced-description {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    color: hsl(var(--muted-foreground));
+    text-align: center;
+    font-weight: 400;
+}
+
+/* Enhanced Action Buttons */
+.enhanced-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.btn:hover::before {
+    transform: translateX(100%);
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+.btn-secondary {
+    background: var(--glass-bg);
+    color: hsl(var(--foreground));
+    border: 1px solid var(--glass-border);
+}
+
+.btn-secondary:hover {
+    background: var(--glass-hover);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-glow {
+    box-shadow: var(--shadow-md), 0 0 24px rgba(168, 85, 247, 0.3);
+}
+
+.btn-glass {
+    backdrop-filter: blur(20px);
+}
+
+.tech-stack-section {
+    padding: 4rem 0;
+    background: hsl(var(--muted) / 0.3);
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.tech-category h3 {
+    margin-bottom: 1rem;
+    color: hsl(var(--primary));
+}
+
+.tech-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.tech-name {
+    font-weight: 600;
+    color: hsl(var(--foreground));
+}
+
+.tech-desc {
+    font-size: 0.875rem;
+    color: hsl(var(--muted-foreground));
+}
+
+.features-section {
+    padding: 4rem 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    padding: 2rem;
+    border: 1px solid hsl(var(--border));
+    border-radius: 12px;
+    background: hsl(var(--card));
+}
+
+.feature-icon {
+    width: 48px;
+    height: 48px;
+    background: hsl(var(--primary) / 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--primary));
+    margin-bottom: 1rem;
+}
+
+.architecture-section {
+    padding: 4rem 0;
+    background: hsl(var(--muted) / 0.3);
+}
+
+.arch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.arch-layer {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid hsl(var(--border));
+}
+
+.arch-components {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.component {
+    padding: 0.5rem 1rem;
+    background: hsl(var(--muted));
+    border-radius: 6px;
+    font-size: 0.875rem;
+}
+
+.demo-section {
+    padding: 4rem 0;
+}
+
+.demo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.video-placeholder {
+    aspect-ratio: 16/9;
+    background: hsl(var(--muted));
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--muted-foreground));
+}
+
+.demo-list {
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+}
+
+.demo-list li {
+    margin-bottom: 0.5rem;
+}
+
+.use-cases-section {
+    padding: 4rem 0;
+    background: hsl(var(--muted) / 0.3);
+}
+
+.use-cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.use-case-card {
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid hsl(var(--border));
+    text-align: center;
+}
+
+.stats-section {
+    padding: 4rem 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 2rem;
+    background: hsl(var(--card));
+    border-radius: 12px;
+    border: 1px solid hsl(var(--border));
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: hsl(var(--primary));
+}
+
+.stat-label {
+    color: hsl(var(--muted-foreground));
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+.project-cta-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, hsl(262 83% 58%) 0%, hsl(221 83% 53%) 100%);
+    color: white;
+    text-align: center;
+}
+
+.project-cta-section h2 {
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.project-cta-section p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .project-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .demo-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .project-title {
+        font-size: 2rem;
+    }
+}
+</style>
+{{end}}

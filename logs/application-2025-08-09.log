@@ -1,0 +1,16 @@
+{"level":"info","message":"Logger initialized","service":"grep-app-server","timestamp":"2025-08-09 02:01:19"}
+{"level":"info","message":"Starting FastMCP server in stdio mode","service":"grep-app-server","timestamp":"2025-08-09 02:01:19"}
+{"level":"info","message":"Client connected via stdio","service":"grep-app-server","sessionIdentifier":"k4z6mtq7","timestamp":"2025-08-09 02:01:19"}
+{"level":"info","message":"FastMCP server started successfully in stdio mode","service":"grep-app-server","timestamp":"2025-08-09 02:01:19"}
+{"level":"info","message":"Logger initialized","service":"grep-app-server","timestamp":"2025-08-09 02:01:51"}
+{"level":"info","message":"Starting FastMCP server in stdio mode","service":"grep-app-server","timestamp":"2025-08-09 02:01:51"}
+{"level":"info","message":"Client connected via stdio","service":"grep-app-server","sessionIdentifier":"91vkt93u","timestamp":"2025-08-09 02:01:51"}
+{"level":"info","message":"FastMCP server started successfully in stdio mode","service":"grep-app-server","timestamp":"2025-08-09 02:01:51"}
+{"level":"info","message":"Logger initialized","service":"grep-app-server","timestamp":"2025-08-09 02:02:33"}
+{"level":"info","message":"Starting FastMCP server in stdio mode","service":"grep-app-server","timestamp":"2025-08-09 02:02:33"}
+{"level":"info","message":"Client connected via stdio","service":"grep-app-server","sessionIdentifier":"fpmw5is5","timestamp":"2025-08-09 02:02:34"}
+{"level":"info","message":"FastMCP server started successfully in stdio mode","service":"grep-app-server","timestamp":"2025-08-09 02:02:34"}
+{"level":"info","message":"Logger initialized","service":"grep-app-server","timestamp":"2025-08-09 14:58:08"}
+{"level":"info","message":"Starting FastMCP server in stdio mode","service":"grep-app-server","timestamp":"2025-08-09 14:58:08"}
+{"level":"info","message":"Client connected via stdio","service":"grep-app-server","sessionIdentifier":"wb2r8say","timestamp":"2025-08-09 14:58:08"}
+{"level":"info","message":"FastMCP server started successfully in stdio mode","service":"grep-app-server","timestamp":"2025-08-09 14:58:08"}

@@ -1,0 +1,8 @@
+tmp/
+*.log
+.git/
+.gitignore
+README.md
+.env
+.env.local
+craftai-server
