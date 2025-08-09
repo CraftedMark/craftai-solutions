@@ -1,391 +1,403 @@
 /**
- * WebGL Gravity Animation Background
- * Simulates gravitational particle system with white particles on black background
+ * WebGL Gravity Animation
+ * Pure particle physics simulation with gravitational forces
  */
 
-class WebGLGravityBackground {
-    constructor() {
-        this.canvas = null;
-        this.gl = null;
-        this.program = null;
-        this.particles = [];
-        this.particleCount = 2000; // More particles for better effect
-        this.time = 0;
-        this.mouse = { x: 0.5, y: 0.5 };
-        this.gravityPoints = [];
-        
-        this.init();
-    }
-    
-    init() {
-        // Create canvas
-        this.canvas = document.createElement('canvas');
-        this.canvas.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-            background: #000000;
-        `;
-        document.body.insertBefore(this.canvas, document.body.firstChild);
-        
-        // Get WebGL context
-        this.gl = this.canvas.getContext('webgl') || this.canvas.getContext('experimental-webgl');
-        
-        if (!this.gl) {
-            console.warn('WebGL not supported, falling back to canvas');
-            this.fallbackAnimation();
-            return;
+(function() {
+    'use strict';
+
+    // Configuration
+    const CONFIG = {
+        particleCount: 4000,
+        gravityStrength: 0.5,
+        mouseInfluence: 100,
+        particleSize: 2.5,
+        fadeSpeed: 0.0003,
+        velocityDamping: 0.995,
+        maxVelocity: 3,
+        respawnEdgeOffset: 100
+    };
+
+    class GravityParticleSystem {
+        constructor() {
+            this.canvas = null;
+            this.gl = null;
+            this.program = null;
+            this.particles = [];
+            this.time = 0;
+            this.mouse = { x: 0, y: 0 };
+            this.animationId = null;
+            
+            this.init();
         }
-        
-        // Setup WebGL
-        this.setupGL();
-        this.initParticles();
-        this.initGravityPoints();
-        this.animate();
-        
-        // Handle resize
-        window.addEventListener('resize', () => this.resize());
-        this.resize();
-        
-        // Track mouse for interaction
-        document.addEventListener('mousemove', (e) => {
-            this.mouse.x = e.clientX / window.innerWidth;
-            this.mouse.y = 1.0 - (e.clientY / window.innerHeight);
-        });
-    }
-    
-    setupGL() {
-        const gl = this.gl;
-        
-        // Vertex shader - handles particle positions
-        const vertexShaderSource = `
-            precision mediump float;
+
+        init() {
+            // Create and setup canvas
+            this.createCanvas();
             
-            attribute vec2 a_position;
-            attribute vec2 a_velocity;
-            attribute float a_size;
-            attribute float a_life;
-            
-            uniform vec2 u_resolution;
-            uniform float u_time;
-            
-            varying float v_life;
-            
-            void main() {
-                // Convert to clip space
-                vec2 clipSpace = ((a_position / u_resolution) * 2.0 - 1.0) * vec2(1, -1);
-                
-                gl_Position = vec4(clipSpace, 0, 1);
-                
-                // Particle size with slight pulsing
-                gl_PointSize = a_size * (1.0 + sin(u_time * 0.001) * 0.1) * a_life;
-                v_life = a_life;
+            // Initialize WebGL
+            if (!this.initWebGL()) {
+                console.warn('WebGL not supported');
+                return;
             }
-        `;
-        
-        // Fragment shader - white particles with glow
-        const fragmentShaderSource = `
-            precision mediump float;
             
-            varying float v_life;
+            // Setup shaders and particles
+            this.setupShaders();
+            this.initParticles();
             
-            void main() {
-                vec2 coord = gl_PointCoord - vec2(0.5);
-                float dist = length(coord);
-                
-                if (dist > 0.5) {
-                    discard;
-                }
-                
-                // Soft white glow
-                float alpha = (1.0 - dist * 2.0) * v_life;
-                alpha = alpha * alpha; // Make edges softer
-                
-                // Pure white particles
-                gl_FragColor = vec4(1.0, 1.0, 1.0, alpha * 0.7);
-            }
-        `;
-        
-        // Create and compile shaders
-        const vertexShader = this.createShader(gl.VERTEX_SHADER, vertexShaderSource);
-        const fragmentShader = this.createShader(gl.FRAGMENT_SHADER, fragmentShaderSource);
-        
-        // Create program
-        this.program = gl.createProgram();
-        gl.attachShader(this.program, vertexShader);
-        gl.attachShader(this.program, fragmentShader);
-        gl.linkProgram(this.program);
-        
-        if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
-            console.error('Unable to initialize shader program:', gl.getProgramInfoLog(this.program));
-            return;
-        }
-        
-        gl.useProgram(this.program);
-        
-        // Enable blending for transparency
-        gl.enable(gl.BLEND);
-        gl.blendFunc(gl.SRC_ALPHA, gl.ONE); // Additive blending for glow effect
-        
-        // Clear color - pure black
-        gl.clearColor(0, 0, 0, 1);
-    }
-    
-    createShader(type, source) {
-        const gl = this.gl;
-        const shader = gl.createShader(type);
-        gl.shaderSource(shader, source);
-        gl.compileShader(shader);
-        
-        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-            console.error('Shader compilation error:', gl.getShaderInfoLog(shader));
-            gl.deleteShader(shader);
-            return null;
-        }
-        
-        return shader;
-    }
-    
-    initParticles() {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        
-        for (let i = 0; i < this.particleCount; i++) {
-            // Random position in a circle pattern
-            const angle = Math.random() * Math.PI * 2;
-            const radius = Math.random() * Math.min(width, height) * 0.5;
+            // Start animation
+            this.animate();
             
-            this.particles.push({
-                x: width / 2 + Math.cos(angle) * radius,
-                y: height / 2 + Math.sin(angle) * radius,
-                vx: (Math.random() - 0.5) * 0.5,
-                vy: (Math.random() - 0.5) * 0.5,
-                size: Math.random() * 2 + 0.5,
-                life: Math.random()
-            });
+            // Setup event listeners
+            this.setupEventListeners();
         }
-    }
-    
-    initGravityPoints() {
-        // Create multiple gravity centers
-        this.gravityPoints = [
-            { x: 0.5, y: 0.5, strength: 1.0, radius: 0.3 },  // Center
-            { x: 0.2, y: 0.3, strength: 0.5, radius: 0.2 },  // Top left
-            { x: 0.8, y: 0.7, strength: 0.5, radius: 0.2 },  // Bottom right
-        ];
-    }
-    
-    updateParticles() {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        const damping = 0.99; // Friction
-        
-        this.particles.forEach(particle => {
-            // Apply gravity from fixed points
-            this.gravityPoints.forEach(point => {
-                const dx = point.x * width - particle.x;
-                const dy = point.y * height - particle.y;
-                const distSq = dx * dx + dy * dy;
-                const dist = Math.sqrt(distSq);
-                
-                if (dist > 5 && dist < point.radius * width) {
-                    const force = point.strength * 50 / distSq;
-                    particle.vx += (dx / dist) * force;
-                    particle.vy += (dy / dist) * force;
-                }
+
+        createCanvas() {
+            this.canvas = document.createElement('canvas');
+            this.canvas.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                pointer-events: none;
+                background: #000000;
+            `;
+            document.body.insertBefore(this.canvas, document.body.firstChild);
+            this.resize();
+        }
+
+        initWebGL() {
+            this.gl = this.canvas.getContext('webgl', {
+                alpha: true,
+                antialias: false,
+                depth: false,
+                stencil: false,
+                premultipliedAlpha: false
             });
             
-            // Apply mouse gravity (weaker)
-            const mouseDx = this.mouse.x * width - particle.x;
-            const mouseDy = this.mouse.y * height - particle.y;
-            const mouseDistSq = mouseDx * mouseDx + mouseDy * mouseDy;
-            const mouseDist = Math.sqrt(mouseDistSq);
-            
-            if (mouseDist > 10 && mouseDist < 200) {
-                const mouseForce = 30 / mouseDistSq;
-                particle.vx += (mouseDx / mouseDist) * mouseForce;
-                particle.vy += (mouseDy / mouseDist) * mouseForce;
+            if (!this.gl) {
+                this.gl = this.canvas.getContext('experimental-webgl');
             }
             
-            // Apply damping
-            particle.vx *= damping;
-            particle.vy *= damping;
-            
-            // Limit velocity
-            const speed = Math.sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
-            if (speed > 5) {
-                particle.vx = (particle.vx / speed) * 5;
-                particle.vy = (particle.vy / speed) * 5;
+            if (!this.gl) {
+                return false;
             }
             
-            // Update position
-            particle.x += particle.vx;
-            particle.y += particle.vy;
+            const gl = this.gl;
             
-            // Wrap around edges smoothly
-            if (particle.x < -50) particle.x = width + 50;
-            if (particle.x > width + 50) particle.x = -50;
-            if (particle.y < -50) particle.y = height + 50;
-            if (particle.y > height + 50) particle.y = -50;
+            // Set clear color to black
+            gl.clearColor(0, 0, 0, 1);
             
-            // Update life (fade in and out)
-            particle.life -= 0.001;
-            if (particle.life <= 0) {
-                particle.life = 1;
-                // Respawn at random edge
-                const edge = Math.floor(Math.random() * 4);
-                switch(edge) {
-                    case 0: // top
-                        particle.x = Math.random() * width;
-                        particle.y = -20;
-                        break;
-                    case 1: // right
-                        particle.x = width + 20;
-                        particle.y = Math.random() * height;
-                        break;
-                    case 2: // bottom
-                        particle.x = Math.random() * width;
-                        particle.y = height + 20;
-                        break;
-                    case 3: // left
-                        particle.x = -20;
-                        particle.y = Math.random() * height;
-                        break;
-                }
-                particle.vx = (Math.random() - 0.5) * 0.5;
-                particle.vy = (Math.random() - 0.5) * 0.5;
-            }
-        });
-    }
-    
-    render() {
-        const gl = this.gl;
-        
-        gl.clear(gl.COLOR_BUFFER_BIT);
-        
-        // Create arrays for WebGL
-        const positions = [];
-        const velocities = [];
-        const sizes = [];
-        const lives = [];
-        
-        this.particles.forEach(particle => {
-            positions.push(particle.x, particle.y);
-            velocities.push(particle.vx, particle.vy);
-            sizes.push(particle.size);
-            lives.push(particle.life);
-        });
-        
-        // Set uniforms
-        const resolutionLocation = gl.getUniformLocation(this.program, 'u_resolution');
-        const timeLocation = gl.getUniformLocation(this.program, 'u_time');
-        
-        gl.uniform2f(resolutionLocation, window.innerWidth, window.innerHeight);
-        gl.uniform1f(timeLocation, this.time);
-        
-        // Set attributes
-        this.setVertexAttribute('a_position', new Float32Array(positions), 2);
-        this.setVertexAttribute('a_velocity', new Float32Array(velocities), 2);
-        this.setVertexAttribute('a_size', new Float32Array(sizes), 1);
-        this.setVertexAttribute('a_life', new Float32Array(lives), 1);
-        
-        // Draw
-        gl.drawArrays(gl.POINTS, 0, this.particles.length);
-    }
-    
-    setVertexAttribute(name, data, size) {
-        const gl = this.gl;
-        const location = gl.getAttribLocation(this.program, name);
-        
-        if (location === -1) return;
-        
-        const buffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-        gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
-        
-        gl.enableVertexAttribArray(location);
-        gl.vertexAttribPointer(location, size, gl.FLOAT, false, 0, 0);
-    }
-    
-    animate() {
-        this.time++;
-        this.updateParticles();
-        this.render();
-        requestAnimationFrame(() => this.animate());
-    }
-    
-    resize() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
-        
-        if (this.gl) {
-            this.gl.viewport(0, 0, window.innerWidth, window.innerHeight);
+            // Enable blending for particle transparency
+            gl.enable(gl.BLEND);
+            gl.blendFunc(gl.SRC_ALPHA, gl.ONE); // Additive blending for glow
+            
+            return true;
         }
-    }
-    
-    fallbackAnimation() {
-        // Simple canvas fallback for browsers without WebGL
-        const ctx = this.canvas.getContext('2d');
-        const particles = [];
-        
-        for (let i = 0; i < 200; i++) {
-            particles.push({
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                vx: (Math.random() - 0.5) * 0.5,
-                vy: (Math.random() - 0.5) * 0.5,
-                size: Math.random() * 2 + 0.5
-            });
-        }
-        
-        const animateFallback = () => {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+
+        setupShaders() {
+            const gl = this.gl;
             
-            particles.forEach(particle => {
-                // Simple gravity toward center
-                const dx = window.innerWidth / 2 - particle.x;
-                const dy = window.innerHeight / 2 - particle.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
+            // Vertex shader
+            const vertexShaderSource = `
+                attribute vec2 a_position;
+                attribute float a_size;
+                attribute float a_opacity;
                 
-                if (dist > 10) {
-                    particle.vx += (dx / dist) * 0.05;
-                    particle.vy += (dy / dist) * 0.05;
+                uniform vec2 u_resolution;
+                
+                varying float v_opacity;
+                
+                void main() {
+                    vec2 position = (a_position / u_resolution) * 2.0 - 1.0;
+                    position.y = -position.y;
+                    
+                    gl_Position = vec4(position, 0.0, 1.0);
+                    gl_PointSize = a_size;
+                    v_opacity = a_opacity;
+                }
+            `;
+            
+            // Fragment shader
+            const fragmentShaderSource = `
+                precision mediump float;
+                
+                varying float v_opacity;
+                
+                void main() {
+                    vec2 coord = gl_PointCoord - vec2(0.5);
+                    float dist = length(coord);
+                    
+                    if (dist > 0.5) {
+                        discard;
+                    }
+                    
+                    // Smooth particle edge
+                    float alpha = 1.0 - smoothstep(0.1, 0.5, dist);
+                    alpha *= v_opacity;
+                    
+                    // Pure white color
+                    gl_FragColor = vec4(1.0, 1.0, 1.0, alpha);
+                }
+            `;
+            
+            // Create shaders
+            const vertexShader = this.createShader(gl.VERTEX_SHADER, vertexShaderSource);
+            const fragmentShader = this.createShader(gl.FRAGMENT_SHADER, fragmentShaderSource);
+            
+            // Create program
+            this.program = gl.createProgram();
+            gl.attachShader(this.program, vertexShader);
+            gl.attachShader(this.program, fragmentShader);
+            gl.linkProgram(this.program);
+            
+            if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
+                console.error('Unable to initialize shader program:', gl.getProgramInfoLog(this.program));
+                return;
+            }
+            
+            gl.useProgram(this.program);
+            
+            // Get attribute and uniform locations
+            this.attributes = {
+                position: gl.getAttribLocation(this.program, 'a_position'),
+                size: gl.getAttribLocation(this.program, 'a_size'),
+                opacity: gl.getAttribLocation(this.program, 'a_opacity')
+            };
+            
+            this.uniforms = {
+                resolution: gl.getUniformLocation(this.program, 'u_resolution')
+            };
+            
+            // Enable attributes
+            gl.enableVertexAttribArray(this.attributes.position);
+            gl.enableVertexAttribArray(this.attributes.size);
+            gl.enableVertexAttribArray(this.attributes.opacity);
+        }
+
+        createShader(type, source) {
+            const gl = this.gl;
+            const shader = gl.createShader(type);
+            gl.shaderSource(shader, source);
+            gl.compileShader(shader);
+            
+            if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                console.error('Shader compilation error:', gl.getShaderInfoLog(shader));
+                gl.deleteShader(shader);
+                return null;
+            }
+            
+            return shader;
+        }
+
+        initParticles() {
+            const width = this.canvas.width;
+            const height = this.canvas.height;
+            
+            this.particles = [];
+            
+            for (let i = 0; i < CONFIG.particleCount; i++) {
+                this.particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 2,
+                    vy: (Math.random() - 0.5) * 2,
+                    size: Math.random() * CONFIG.particleSize + 1,
+                    opacity: Math.random(),
+                    life: Math.random()
+                });
+            }
+        }
+
+        updateParticles(deltaTime) {
+            const width = this.canvas.width;
+            const height = this.canvas.height;
+            const dt = Math.min(deltaTime * 0.01, 0.1); // Cap delta time
+            
+            // Gravity centers
+            const gravityCenters = [
+                { x: width * 0.5, y: height * 0.3, strength: 0.8 },
+                { x: width * 0.2, y: height * 0.6, strength: 0.5 },
+                { x: width * 0.8, y: height * 0.7, strength: 0.5 },
+                { x: width * 0.5, y: height * 0.9, strength: 0.6 }
+            ];
+            
+            this.particles.forEach(particle => {
+                // Apply gravity from centers
+                gravityCenters.forEach(center => {
+                    const dx = center.x - particle.x;
+                    const dy = center.y - particle.y;
+                    const distSq = dx * dx + dy * dy;
+                    const dist = Math.sqrt(distSq);
+                    
+                    if (dist > 10 && dist < width * 0.5) {
+                        const force = (center.strength * CONFIG.gravityStrength * 1000) / distSq;
+                        particle.vx += (dx / dist) * force * dt;
+                        particle.vy += (dy / dist) * force * dt;
+                    }
+                });
+                
+                // Mouse influence
+                if (this.mouse.x > 0 && this.mouse.y > 0) {
+                    const dx = this.mouse.x - particle.x;
+                    const dy = this.mouse.y - particle.y;
+                    const distSq = dx * dx + dy * dy;
+                    const dist = Math.sqrt(distSq);
+                    
+                    if (dist > 5 && dist < CONFIG.mouseInfluence) {
+                        const force = 50 / distSq;
+                        particle.vx += (dx / dist) * force * dt;
+                        particle.vy += (dy / dist) * force * dt;
+                    }
                 }
                 
-                particle.vx *= 0.99;
-                particle.vy *= 0.99;
+                // Apply velocity damping
+                particle.vx *= CONFIG.velocityDamping;
+                particle.vy *= CONFIG.velocityDamping;
                 
+                // Limit velocity
+                const speed = Math.sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
+                if (speed > CONFIG.maxVelocity) {
+                    particle.vx = (particle.vx / speed) * CONFIG.maxVelocity;
+                    particle.vy = (particle.vy / speed) * CONFIG.maxVelocity;
+                }
+                
+                // Update position
                 particle.x += particle.vx;
                 particle.y += particle.vy;
                 
-                // Wrap around
-                if (particle.x < 0) particle.x = window.innerWidth;
-                if (particle.x > window.innerWidth) particle.x = 0;
-                if (particle.y < 0) particle.y = window.innerHeight;
-                if (particle.y > window.innerHeight) particle.y = 0;
+                // Wrap around edges
+                const edge = CONFIG.respawnEdgeOffset;
+                if (particle.x < -edge) particle.x = width + edge;
+                if (particle.x > width + edge) particle.x = -edge;
+                if (particle.y < -edge) particle.y = height + edge;
+                if (particle.y > height + edge) particle.y = -edge;
                 
-                // Draw white particle
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-                ctx.beginPath();
-                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                ctx.fill();
+                // Update life and opacity
+                particle.life -= CONFIG.fadeSpeed;
+                if (particle.life <= 0) {
+                    particle.life = 1;
+                    particle.opacity = 1;
+                    // Respawn at random position
+                    particle.x = Math.random() * width;
+                    particle.y = Math.random() * height;
+                    particle.vx = (Math.random() - 0.5) * 2;
+                    particle.vy = (Math.random() - 0.5) * 2;
+                } else {
+                    particle.opacity = particle.life;
+                }
+            });
+        }
+
+        render() {
+            const gl = this.gl;
+            
+            // Clear canvas
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            
+            // Update uniforms
+            gl.uniform2f(this.uniforms.resolution, this.canvas.width, this.canvas.height);
+            
+            // Prepare data arrays
+            const positions = [];
+            const sizes = [];
+            const opacities = [];
+            
+            this.particles.forEach(particle => {
+                positions.push(particle.x, particle.y);
+                sizes.push(particle.size);
+                opacities.push(particle.opacity);
             });
             
-            requestAnimationFrame(animateFallback);
-        };
-        
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
-        animateFallback();
-    }
-}
+            // Update position attribute
+            const positionBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+            gl.vertexAttribPointer(this.attributes.position, 2, gl.FLOAT, false, 0, 0);
+            
+            // Update size attribute
+            const sizeBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, sizeBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(sizes), gl.STATIC_DRAW);
+            gl.vertexAttribPointer(this.attributes.size, 1, gl.FLOAT, false, 0, 0);
+            
+            // Update opacity attribute
+            const opacityBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, opacityBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(opacities), gl.STATIC_DRAW);
+            gl.vertexAttribPointer(this.attributes.opacity, 1, gl.FLOAT, false, 0, 0);
+            
+            // Draw particles
+            gl.drawArrays(gl.POINTS, 0, this.particles.length);
+        }
 
-// Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    new WebGLGravityBackground();
-});
+        animate() {
+            let lastTime = performance.now();
+            
+            const frame = (currentTime) => {
+                const deltaTime = currentTime - lastTime;
+                lastTime = currentTime;
+                
+                this.time += deltaTime * 0.001;
+                this.updateParticles(deltaTime);
+                this.render();
+                
+                this.animationId = requestAnimationFrame(frame);
+            };
+            
+            this.animationId = requestAnimationFrame(frame);
+        }
+
+        resize() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            this.canvas.width = width;
+            this.canvas.height = height;
+            
+            if (this.gl) {
+                this.gl.viewport(0, 0, width, height);
+            }
+        }
+
+        setupEventListeners() {
+            // Window resize
+            window.addEventListener('resize', () => this.resize());
+            
+            // Mouse movement
+            document.addEventListener('mousemove', (e) => {
+                this.mouse.x = e.clientX;
+                this.mouse.y = e.clientY;
+            });
+            
+            // Touch movement for mobile
+            document.addEventListener('touchmove', (e) => {
+                if (e.touches.length > 0) {
+                    this.mouse.x = e.touches[0].clientX;
+                    this.mouse.y = e.touches[0].clientY;
+                }
+            });
+        }
+
+        destroy() {
+            if (this.animationId) {
+                cancelAnimationFrame(this.animationId);
+            }
+            
+            if (this.canvas && this.canvas.parentNode) {
+                this.canvas.parentNode.removeChild(this.canvas);
+            }
+        }
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.gravityParticleSystem = new GravityParticleSystem();
+        });
+    } else {
+        window.gravityParticleSystem = new GravityParticleSystem();
+    }
+})();
