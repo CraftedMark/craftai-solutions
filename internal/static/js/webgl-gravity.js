@@ -1,6 +1,6 @@
 /**
  * WebGL Gravity Animation Background
- * Creates an interactive particle system with gravity effects
+ * Simulates gravitational particle system with white particles on black background
  */
 
 class WebGLGravityBackground {
@@ -9,10 +9,10 @@ class WebGLGravityBackground {
         this.gl = null;
         this.program = null;
         this.particles = [];
-        this.particleCount = 500;
+        this.particleCount = 2000; // More particles for better effect
         this.time = 0;
         this.mouse = { x: 0.5, y: 0.5 };
-        this.attractors = [];
+        this.gravityPoints = [];
         
         this.init();
     }
@@ -44,7 +44,7 @@ class WebGLGravityBackground {
         // Setup WebGL
         this.setupGL();
         this.initParticles();
-        this.initAttractors();
+        this.initGravityPoints();
         this.animate();
         
         // Handle resize
@@ -61,7 +61,7 @@ class WebGLGravityBackground {
     setupGL() {
         const gl = this.gl;
         
-        // Vertex shader
+        // Vertex shader - handles particle positions
         const vertexShaderSource = `
             precision mediump float;
             
@@ -72,36 +72,26 @@ class WebGLGravityBackground {
             
             uniform vec2 u_resolution;
             uniform float u_time;
-            uniform vec2 u_mouse;
             
             varying float v_life;
             
             void main() {
-                vec2 position = a_position;
-                
-                // Apply gravity towards mouse
-                vec2 toMouse = u_mouse - position;
-                float dist = length(toMouse);
-                vec2 gravity = normalize(toMouse) * (0.001 / (dist * dist + 0.1));
-                
-                // Update position with velocity and gravity
-                position += a_velocity * 0.01 + gravity;
-                
                 // Convert to clip space
-                vec2 clipSpace = ((position / u_resolution) * 2.0 - 1.0) * vec2(1, -1);
+                vec2 clipSpace = ((a_position / u_resolution) * 2.0 - 1.0) * vec2(1, -1);
                 
                 gl_Position = vec4(clipSpace, 0, 1);
-                gl_PointSize = a_size * (1.0 + sin(u_time * 0.001) * 0.2) * a_life;
+                
+                // Particle size with slight pulsing
+                gl_PointSize = a_size * (1.0 + sin(u_time * 0.001) * 0.1) * a_life;
                 v_life = a_life;
             }
         `;
         
-        // Fragment shader
+        // Fragment shader - white particles with glow
         const fragmentShaderSource = `
             precision mediump float;
             
             varying float v_life;
-            uniform float u_time;
             
             void main() {
                 vec2 coord = gl_PointCoord - vec2(0.5);
@@ -111,17 +101,12 @@ class WebGLGravityBackground {
                     discard;
                 }
                 
-                float alpha = (1.0 - dist * 2.0) * v_life * 0.8;
+                // Soft white glow
+                float alpha = (1.0 - dist * 2.0) * v_life;
+                alpha = alpha * alpha; // Make edges softer
                 
-                // Color gradient based on life and time
-                vec3 color1 = vec3(0.2, 0.5, 1.0); // Blue
-                vec3 color2 = vec3(0.5, 0.2, 0.9); // Purple
-                vec3 color3 = vec3(0.9, 0.3, 0.4); // Red
-                
-                float t = sin(u_time * 0.001 + v_life * 3.14159) * 0.5 + 0.5;
-                vec3 color = mix(color1, mix(color2, color3, t), v_life);
-                
-                gl_FragColor = vec4(color, alpha);
+                // Pure white particles
+                gl_FragColor = vec4(1.0, 1.0, 1.0, alpha * 0.7);
             }
         `;
         
@@ -144,9 +129,9 @@ class WebGLGravityBackground {
         
         // Enable blending for transparency
         gl.enable(gl.BLEND);
-        gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+        gl.blendFunc(gl.SRC_ALPHA, gl.ONE); // Additive blending for glow effect
         
-        // Clear color
+        // Clear color - pure black
         gl.clearColor(0, 0, 0, 1);
     }
     
@@ -166,78 +151,113 @@ class WebGLGravityBackground {
     }
     
     initParticles() {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        
         for (let i = 0; i < this.particleCount; i++) {
+            // Random position in a circle pattern
+            const angle = Math.random() * Math.PI * 2;
+            const radius = Math.random() * Math.min(width, height) * 0.5;
+            
             this.particles.push({
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                vx: (Math.random() - 0.5) * 2,
-                vy: (Math.random() - 0.5) * 2,
-                size: Math.random() * 3 + 1,
+                x: width / 2 + Math.cos(angle) * radius,
+                y: height / 2 + Math.sin(angle) * radius,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                size: Math.random() * 2 + 0.5,
                 life: Math.random()
             });
         }
     }
     
-    initAttractors() {
-        // Create gravity points
-        this.attractors = [
-            { x: 0.25, y: 0.25, strength: 0.5 },
-            { x: 0.75, y: 0.25, strength: 0.5 },
-            { x: 0.5, y: 0.75, strength: 0.8 }
+    initGravityPoints() {
+        // Create multiple gravity centers
+        this.gravityPoints = [
+            { x: 0.5, y: 0.5, strength: 1.0, radius: 0.3 },  // Center
+            { x: 0.2, y: 0.3, strength: 0.5, radius: 0.2 },  // Top left
+            { x: 0.8, y: 0.7, strength: 0.5, radius: 0.2 },  // Bottom right
         ];
     }
     
     updateParticles() {
         const width = window.innerWidth;
         const height = window.innerHeight;
+        const damping = 0.99; // Friction
         
         this.particles.forEach(particle => {
-            // Apply gravity from attractors
-            this.attractors.forEach(attractor => {
-                const dx = attractor.x * width - particle.x;
-                const dy = attractor.y * height - particle.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
+            // Apply gravity from fixed points
+            this.gravityPoints.forEach(point => {
+                const dx = point.x * width - particle.x;
+                const dy = point.y * height - particle.y;
+                const distSq = dx * dx + dy * dy;
+                const dist = Math.sqrt(distSq);
                 
-                if (dist > 10) {
-                    const force = attractor.strength / (dist * 0.01);
+                if (dist > 5 && dist < point.radius * width) {
+                    const force = point.strength * 50 / distSq;
                     particle.vx += (dx / dist) * force;
                     particle.vy += (dy / dist) * force;
                 }
             });
             
-            // Apply mouse gravity
+            // Apply mouse gravity (weaker)
             const mouseDx = this.mouse.x * width - particle.x;
             const mouseDy = this.mouse.y * height - particle.y;
-            const mouseDist = Math.sqrt(mouseDx * mouseDx + mouseDy * mouseDy);
+            const mouseDistSq = mouseDx * mouseDx + mouseDy * mouseDy;
+            const mouseDist = Math.sqrt(mouseDistSq);
             
             if (mouseDist > 10 && mouseDist < 200) {
-                const mouseForce = 2.0 / (mouseDist * 0.01);
+                const mouseForce = 30 / mouseDistSq;
                 particle.vx += (mouseDx / mouseDist) * mouseForce;
                 particle.vy += (mouseDy / mouseDist) * mouseForce;
             }
             
-            // Apply friction
-            particle.vx *= 0.98;
-            particle.vy *= 0.98;
+            // Apply damping
+            particle.vx *= damping;
+            particle.vy *= damping;
+            
+            // Limit velocity
+            const speed = Math.sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
+            if (speed > 5) {
+                particle.vx = (particle.vx / speed) * 5;
+                particle.vy = (particle.vy / speed) * 5;
+            }
             
             // Update position
             particle.x += particle.vx;
             particle.y += particle.vy;
             
-            // Wrap around edges
-            if (particle.x < 0) particle.x = width;
-            if (particle.x > width) particle.x = 0;
-            if (particle.y < 0) particle.y = height;
-            if (particle.y > height) particle.y = 0;
+            // Wrap around edges smoothly
+            if (particle.x < -50) particle.x = width + 50;
+            if (particle.x > width + 50) particle.x = -50;
+            if (particle.y < -50) particle.y = height + 50;
+            if (particle.y > height + 50) particle.y = -50;
             
-            // Update life
-            particle.life -= 0.002;
+            // Update life (fade in and out)
+            particle.life -= 0.001;
             if (particle.life <= 0) {
                 particle.life = 1;
-                particle.x = Math.random() * width;
-                particle.y = Math.random() * height;
-                particle.vx = (Math.random() - 0.5) * 2;
-                particle.vy = (Math.random() - 0.5) * 2;
+                // Respawn at random edge
+                const edge = Math.floor(Math.random() * 4);
+                switch(edge) {
+                    case 0: // top
+                        particle.x = Math.random() * width;
+                        particle.y = -20;
+                        break;
+                    case 1: // right
+                        particle.x = width + 20;
+                        particle.y = Math.random() * height;
+                        break;
+                    case 2: // bottom
+                        particle.x = Math.random() * width;
+                        particle.y = height + 20;
+                        break;
+                    case 3: // left
+                        particle.x = -20;
+                        particle.y = Math.random() * height;
+                        break;
+                }
+                particle.vx = (Math.random() - 0.5) * 0.5;
+                particle.vy = (Math.random() - 0.5) * 0.5;
             }
         });
     }
@@ -263,11 +283,9 @@ class WebGLGravityBackground {
         // Set uniforms
         const resolutionLocation = gl.getUniformLocation(this.program, 'u_resolution');
         const timeLocation = gl.getUniformLocation(this.program, 'u_time');
-        const mouseLocation = gl.getUniformLocation(this.program, 'u_mouse');
         
         gl.uniform2f(resolutionLocation, window.innerWidth, window.innerHeight);
         gl.uniform1f(timeLocation, this.time);
-        gl.uniform2f(mouseLocation, this.mouse.x * window.innerWidth, this.mouse.y * window.innerHeight);
         
         // Set attributes
         this.setVertexAttribute('a_position', new Float32Array(positions), 2);
@@ -314,28 +332,45 @@ class WebGLGravityBackground {
         const ctx = this.canvas.getContext('2d');
         const particles = [];
         
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 200; i++) {
             particles.push({
                 x: Math.random() * window.innerWidth,
                 y: Math.random() * window.innerHeight,
-                vx: (Math.random() - 0.5) * 2,
-                vy: (Math.random() - 0.5) * 2,
-                size: Math.random() * 3 + 1
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                size: Math.random() * 2 + 0.5
             });
         }
         
         const animateFallback = () => {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
             
             particles.forEach(particle => {
+                // Simple gravity toward center
+                const dx = window.innerWidth / 2 - particle.x;
+                const dy = window.innerHeight / 2 - particle.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                if (dist > 10) {
+                    particle.vx += (dx / dist) * 0.05;
+                    particle.vy += (dy / dist) * 0.05;
+                }
+                
+                particle.vx *= 0.99;
+                particle.vy *= 0.99;
+                
                 particle.x += particle.vx;
                 particle.y += particle.vy;
                 
-                if (particle.x < 0 || particle.x > window.innerWidth) particle.vx *= -1;
-                if (particle.y < 0 || particle.y > window.innerHeight) particle.vy *= -1;
+                // Wrap around
+                if (particle.x < 0) particle.x = window.innerWidth;
+                if (particle.x > window.innerWidth) particle.x = 0;
+                if (particle.y < 0) particle.y = window.innerHeight;
+                if (particle.y > window.innerHeight) particle.y = 0;
                 
-                ctx.fillStyle = 'rgba(59, 130, 246, 0.5)';
+                // Draw white particle
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
                 ctx.beginPath();
                 ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
                 ctx.fill();
