@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}}</title>
+    <meta name="description" content="{{.Description}}">
+</head>
+<body>
+
+{{define "content"}}
+<style>
+    body {
+        background: #000000 !important;
+        overflow: hidden;
+    }
+    
+    .navbar {
+        display: none;
+    }
+    
+    .footer {
+        display: none;
+    }
+    
+    .chapters-nav {
+        display: none;
+    }
+    
+    .info {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        color: rgba(255, 255, 255, 0.7);
+        font-family: monospace;
+        font-size: 12px;
+        z-index: 10;
+        pointer-events: none;
+    }
+    
+    .back-link {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        color: rgba(255, 255, 255, 0.7);
+        font-family: monospace;
+        font-size: 12px;
+        z-index: 10;
+        text-decoration: none;
+        padding: 5px 10px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
+    
+    .back-link:hover {
+        color: white;
+        border-color: white;
+        background: rgba(255, 255, 255, 0.1);
+    }
+</style>
+
+<div class="info">
+    GPU Gravity Simulation<br>
+    4096 particles<br>
+    Move mouse to attract<br>
+    Scroll to disturb
+</div>
+
+<a href="/" class="back-link">← Back to site</a>
+
+<script src="/static/js/simple-gravity.js"></script>
+{{end}}
+
+</body>
+</html>

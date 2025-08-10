@@ -32,6 +32,8 @@
             };
             this.mouse = new THREE.Vector2(0, 0);
             this.raycaster = new THREE.Raycaster();
+            this.scrollOffset = 0;
+            this.lastScrollPosition = 0;
             
             this.init();
         }
@@ -44,13 +46,14 @@
 
             // Create container
             this.container = document.createElement('div');
+            this.container.className = 'gpu-gravity-container';
             this.container.style.cssText = `
                 position: fixed;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                z-index: -1;
+                z-index: 0;
                 background: #000000;
                 pointer-events: none;
             `;
@@ -63,6 +66,7 @@
             window.addEventListener('resize', () => this.onWindowResize(), false);
             document.addEventListener('mousemove', (e) => this.onMouseMove(e), false);
             document.addEventListener('touchmove', (e) => this.onTouchMove(e), false);
+            window.addEventListener('scroll', (e) => this.onScroll(e), false);
             
             this.animate();
         }
@@ -70,7 +74,7 @@
         initThree() {
             // Camera
             this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 5, 15000);
-            this.camera.position.z = 500;
+            this.camera.position.z = 800;
 
             // Scene
             this.scene = new THREE.Scene();
@@ -120,6 +124,7 @@
             this.velocityVariable.material.uniforms['gravityConstant'] = { value: CONFIG.gravityConstant };
             this.velocityVariable.material.uniforms['damping'] = { value: CONFIG.damping };
             this.velocityVariable.material.uniforms['mousePos'] = { value: new THREE.Vector3(0, 0, 0) };
+            this.velocityVariable.material.uniforms['scrollOffset'] = { value: 0.0 };
             this.velocityVariable.wrapS = THREE.RepeatWrapping;
             this.velocityVariable.wrapT = THREE.RepeatWrapping;
 
@@ -137,14 +142,11 @@
             const data = texture.image.data;
             
             for (let i = 0, l = data.length; i < l; i += 4) {
-                // Spherical distribution like reference
-                const radius = (0.5 + Math.random() * 0.5) * 200;
-                const theta = Math.random() * Math.PI * 2;
-                const phi = Math.acos(Math.random() * 2 - 1);
-                
-                data[i + 0] = radius * Math.sin(phi) * Math.cos(theta);
-                data[i + 1] = radius * Math.sin(phi) * Math.sin(theta);
-                data[i + 2] = radius * Math.cos(phi);
+                // Distribute particles across entire viewport
+                const spread = 800;
+                data[i + 0] = (Math.random() - 0.5) * spread;
+                data[i + 1] = (Math.random() - 0.5) * spread;
+                data[i + 2] = (Math.random() - 0.5) * spread * 0.5;
                 data[i + 3] = 1;
             }
         }
@@ -183,6 +185,7 @@
                 uniform float gravityConstant;
                 uniform float damping;
                 uniform vec3 mousePos;
+                uniform float scrollOffset;
                 
                 const float width = resolution.x;
                 const float height = resolution.y;
@@ -196,28 +199,50 @@
                     vec4 tmpVel = texture2D(textureVelocity, uv);
                     vec3 vel = tmpVel.xyz;
                     
-                    // Gravity to center
-                    vec3 direction = normalize(-pos);
-                    float distSquared = dot(pos, pos);
-                    float gravity = gravityConstant / (distSquared + 10.0);
-                    vel += direction * gravity;
+                    // Multiple gravity points
+                    vec3 gravity1 = vec3(0.0, 0.0, 0.0);
+                    vec3 gravity2 = vec3(300.0, 200.0, 0.0);
+                    vec3 gravity3 = vec3(-300.0, -200.0, 0.0);
+                    vec3 gravity4 = vec3(-200.0, 300.0, 0.0);
+                    vec3 gravity5 = vec3(200.0, -300.0, 0.0);
+                    
+                    // Apply gravity from multiple points
+                    vec3 gravityPoints[5];
+                    gravityPoints[0] = gravity1;
+                    gravityPoints[1] = gravity2;
+                    gravityPoints[2] = gravity3;
+                    gravityPoints[3] = gravity4;
+                    gravityPoints[4] = gravity5;
+                    
+                    for (int i = 0; i < 5; i++) {
+                        vec3 direction = gravityPoints[i] - pos;
+                        float dist = length(direction);
+                        if (dist > 0.01 && dist < 1000.0) {
+                            direction = normalize(direction);
+                            float force = gravityConstant / (dist * dist + 50.0);
+                            vel += direction * force;
+                        }
+                    }
                     
                     // Mouse attraction
                     vec3 mouseDir = mousePos - pos;
                     float mouseDist = length(mouseDir);
-                    if (mouseDist < 200.0 && mouseDist > 0.01) {
+                    if (mouseDist < 300.0 && mouseDist > 0.01) {
                         mouseDir = normalize(mouseDir);
-                        float mouseGravity = gravityConstant * 2.0 / (mouseDist * mouseDist + 10.0);
+                        float mouseGravity = gravityConstant * 3.0 / (mouseDist * mouseDist + 10.0);
                         vel += mouseDir * mouseGravity;
                     }
+                    
+                    // Add scroll effect
+                    vel.y += scrollOffset * 50.0;
                     
                     // Apply damping
                     vel *= damping;
                     
                     // Limit velocity
                     float speed = length(vel);
-                    if (speed > 10.0) {
-                        vel = normalize(vel) * 10.0;
+                    if (speed > 15.0) {
+                        vel = normalize(vel) * 15.0;
                     }
                     
                     gl_FragColor = vec4(vel, 0.0);
@@ -329,6 +354,12 @@
             );
             this.velocityVariable.material.uniforms.mousePos.value = mouseWorld;
             
+            // Update scroll offset
+            this.velocityVariable.material.uniforms.scrollOffset.value = this.scrollOffset;
+            
+            // Decay scroll offset
+            this.scrollOffset *= 0.95;
+            
             // Render scene
             this.renderer.render(this.scene, this.camera);
         }
@@ -352,27 +383,33 @@
                 this.mouse.y = event.touches[0].pageY / window.innerHeight;
             }
         }
+
+        onScroll(event) {
+            // Calculate scroll velocity
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollDelta = currentScroll - this.lastScrollPosition || 0;
+            this.lastScrollPosition = currentScroll;
+            
+            // Smooth scroll offset
+            this.scrollOffset = scrollDelta * 0.01;
+        }
     }
 
     // Load Three.js and GPUComputationRenderer
     function loadScripts(callback) {
-        const scripts = [
-            'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',
-            'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/js/misc/GPUComputationRenderer.js'
-        ];
-        
-        let loaded = 0;
-        scripts.forEach(src => {
-            const script = document.createElement('script');
-            script.src = src;
-            script.onload = () => {
-                loaded++;
-                if (loaded === scripts.length) {
-                    callback();
-                }
+        // First load Three.js
+        const threeScript = document.createElement('script');
+        threeScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+        threeScript.onload = function() {
+            // Then load GPUComputationRenderer after Three.js is loaded
+            const gpuScript = document.createElement('script');
+            gpuScript.src = 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/js/misc/GPUComputationRenderer.js';
+            gpuScript.onload = function() {
+                callback();
             };
-            document.head.appendChild(script);
-        });
+            document.head.appendChild(gpuScript);
+        };
+        document.head.appendChild(threeScript);
     }
 
     // Initialize when ready

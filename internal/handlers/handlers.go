@@ -198,7 +198,9 @@ func ProjectEmailAgentHandler(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "project-emailagent", data)
 }
 
-// ProjectCraftAIDashboardHandler handles the CraftAI Dashboard project page
+/**
+ * ProjectCraftAIDashboardHandler handles the CraftAI Dashboard project page
+ */
 func ProjectCraftAIDashboardHandler(w http.ResponseWriter, r *http.Request) {
 	data := TemplateData{
 		Title:       "CraftAI Dashboard - Modern iOS Architecture Template",
@@ -207,5 +209,18 @@ func ProjectCraftAIDashboardHandler(w http.ResponseWriter, r *http.Request) {
 		PageName:    "project-craftaidashboard",
 	}
 	renderTemplate(w, "project-craftaidashboard", data)
+}
+
+/**
+ * GravityDemoHandler serves the WebGL gravity simulation demo page
+ */
+func GravityDemoHandler(w http.ResponseWriter, r *http.Request) {
+	data := TemplateData{
+		Title:       "WebGL Gravity Simulation Demo",
+		Description: "Interactive GPU-accelerated particle gravity simulation powered by Three.js and GPUComputationRenderer.",
+		Keywords:    "WebGL, Three.js, GPUComputationRenderer, particles, gravity simulation",
+		PageName:    "gravity",
+	}
+	renderTemplate(w, "gravity", data)
 }
 

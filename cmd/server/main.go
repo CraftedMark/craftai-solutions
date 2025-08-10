@@ -55,6 +55,7 @@ func main() {
 	r.HandleFunc("/projects/mindlattice", handlers.ProjectMindLatticeHandler).Methods("GET")
 	r.HandleFunc("/projects/emailagent", handlers.ProjectEmailAgentHandler).Methods("GET")
 	r.HandleFunc("/projects/craftaidashboard", handlers.ProjectCraftAIDashboardHandler).Methods("GET")
+	r.HandleFunc("/gravity", handlers.GravityDemoHandler).Methods("GET")
 
 	// API routes
 	r.HandleFunc("/api/contact", handlers.ContactFormHandler).Methods("POST")
@@ -65,6 +66,7 @@ func main() {
 		w.WriteHeader(http.StatusOK)
 		fmt.Fprintf(w, "OK")
 	}).Methods("GET")
+	
 
 	// Configure server
 	srv := &http.Server{
