@@ -14,7 +14,10 @@
         particleSize: 2.5,  // Slightly larger for better visibility
         gravityConstant: 100.0,
         damping: 0.985,  // Slightly less damping for smoother motion
-        targetFPS: 60  // Target frame rate
+        targetFPS: 60,  // Target frame rate
+        lowMotionFPS: 12, // Lower FPS for reduced-motion users
+        visibilityThreshold: 0.15, // IntersectionObserver threshold
+        maxVelocity: 15.0 // Cap particle speed
     };
 
     class GPUGravitySimulation {
@@ -35,6 +38,14 @@
             this.raycaster = new THREE.Raycaster();
             this.scrollOffset = 0;
             this.lastScrollPosition = 0;
+
+            // Motion/performance flags
+            this._prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            this._running = false;
+            this._rafId = 0;
+            this._lastFrame = 0;
+            this._targetInterval = 1000 / (this._prefersReducedMotion ? CONFIG.lowMotionFPS : CONFIG.targetFPS);
+            this._io = null;
             
             this.init();
         }
@@ -44,6 +55,10 @@
             const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
             this.textureWidth = isMobile ? CONFIG.mobileTextureWidth : CONFIG.textureWidth;
             this.particleCount = this.textureWidth * this.textureWidth;
+            if (this._prefersReducedMotion) {
+                this.textureWidth = Math.min(this.textureWidth, 16);
+                this.particleCount = this.textureWidth * this.textureWidth;
+            }
 
             // Create container
             this.container = document.createElement('div');
@@ -69,7 +84,8 @@
             document.addEventListener('touchmove', (e) => this.onTouchMove(e), false);
             window.addEventListener('scroll', (e) => this.onScroll(e), false);
             
-            this.animate();
+            this.setupLifecycleHandlers();
+            this.startIfVisible();
         }
 
         initThree() {
@@ -85,7 +101,8 @@
                 antialias: false,
                 alpha: false
             });
-            this.renderer.setPixelRatio(window.devicePixelRatio);
+            const pixelRatio = this._prefersReducedMotion ? Math.min(window.devicePixelRatio, 1) : window.devicePixelRatio;
+            this.renderer.setPixelRatio(pixelRatio);
             this.renderer.setSize(window.innerWidth, window.innerHeight);
             this.renderer.setClearColor(0x000000, 1);
             this.container.appendChild(this.renderer.domElement);
@@ -112,6 +129,7 @@
                 dtPosition
             );
             this.positionVariable.material.uniforms['textureVelocity'] = { value: null };
+            this.positionVariable.material.uniforms['delta'] = { value: 0.016 };
             this.positionVariable.wrapS = THREE.RepeatWrapping;
             this.positionVariable.wrapT = THREE.RepeatWrapping;
 
@@ -336,8 +354,19 @@
         }
 
         animate() {
-            requestAnimationFrame(() => this.animate());
-            this.render();
+            if (!this._running) return;
+            const now = performance.now();
+            const last = this._lastFrame || now;
+            const deltaMs = now - last;
+
+            if (!this._lastFrame || deltaMs >= this._targetInterval) {
+                this._lastFrame = now;
+                if (this.positionVariable && this.positionVariable.material && this.positionVariable.material.uniforms && this.positionVariable.material.uniforms.delta) {
+                    this.positionVariable.material.uniforms.delta.value = Math.min(deltaMs / 1000, 0.05);
+                }
+                this.render();
+            }
+            this._rafId = requestAnimationFrame(() => this.animate());
         }
 
         render() {
@@ -368,6 +397,7 @@
         onWindowResize() {
             this.camera.aspect = window.innerWidth / window.innerHeight;
             this.camera.updateProjectionMatrix();
+            this.renderer.setPixelRatio(this._prefersReducedMotion ? Math.min(window.devicePixelRatio, 1) : window.devicePixelRatio);
             this.renderer.setSize(window.innerWidth, window.innerHeight);
             this.particleUniforms.cameraConstant.value = this.getCameraConstant();
         }
@@ -393,6 +423,88 @@
             
             // Smooth scroll offset
             this.scrollOffset = scrollDelta * 0.01;
+        }
+
+        setupLifecycleHandlers() {
+            const target = document.querySelector('[data-hero-animation]') || document.querySelector('.hero-section') || this.container;
+            this._ioTarget = target;
+            this._io = new IntersectionObserver((entries) => {
+                const entry = entries[0];
+                if (!entry) return;
+                if (entry.isIntersecting) {
+                    this.start();
+                } else {
+                    this.stop();
+                }
+            }, { threshold: CONFIG.visibilityThreshold });
+            this._io.observe(target);
+
+            document.addEventListener('visibilitychange', this._onVisibility = () => {
+                if (document.visibilityState === 'hidden') {
+                    this.stop();
+                } else {
+                    this.startIfVisible();
+                }
+            });
+
+            window.addEventListener('blur', this._onBlur = () => this.stop());
+            window.addEventListener('focus', this._onFocus = () => this.startIfVisible());
+        }
+
+        isElementMostlyInView(el) {
+            if (!el) return true;
+            const r = el.getBoundingClientRect();
+            const vh = window.innerHeight || document.documentElement.clientHeight;
+            return r.top < vh * (1 - CONFIG.visibilityThreshold) && r.bottom > vh * CONFIG.visibilityThreshold;
+        }
+
+        startIfVisible() {
+            if (this.isElementMostlyInView(this._ioTarget)) {
+                this.start();
+            } else {
+                this.stop();
+            }
+        }
+
+        start() {
+            if (this._running) return;
+            this._running = true;
+            this._lastFrame = performance.now();
+            if (!this._rafId) {
+                this._rafId = requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        stop() {
+            this._running = false;
+            if (this._rafId) {
+                cancelAnimationFrame(this._rafId);
+                this._rafId = 0;
+            }
+        }
+
+        destroy() {
+            this.stop();
+            if (this._io && this._ioTarget) {
+                try { this._io.unobserve(this._ioTarget); } catch (e) {}
+                try { this._io.disconnect(); } catch (e) {}
+                this._io = null;
+            }
+            if (this._onVisibility) document.removeEventListener('visibilitychange', this._onVisibility);
+            if (this._onBlur) window.removeEventListener('blur', this._onBlur);
+            if (this._onFocus) window.removeEventListener('focus', this._onFocus);
+
+            try {
+                if (this.particleSystem) {
+                    if (this.particleSystem.geometry) this.particleSystem.geometry.dispose();
+                    if (this.particleSystem.material) this.particleSystem.material.dispose();
+                    this.scene.remove(this.particleSystem);
+                    this.particleSystem = null;
+                }
+                if (this.gpuCompute && this.gpuCompute.dispose) this.gpuCompute.dispose();
+                if (this.renderer) this.renderer.dispose();
+                if (this.container && this.container.parentNode) this.container.parentNode.removeChild(this.container);
+            } catch (err) {}
         }
     }
 

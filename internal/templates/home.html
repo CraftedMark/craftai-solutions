@@ -1,7 +1,7 @@
 {{define "content"}}
-<main class="main-content">
+<main class="main-content" aria-labelledby="page-title">
     <!-- Hero Section -->
-    <section class="hero-section" data-hero-animation="floating">
+    <section class="hero-section" data-hero-animation="floating" data-animate-when-visible="true" aria-label="Hero">
 
         <div class="hero-content">
             <!-- Badge -->
@@ -9,7 +9,7 @@
                 15+ YEARS OF TECHNOLOGY EXCELLENCE - DEPLOYED VIA DOKPLOY
             </div>
             
-            <h1 class="hero-title">
+            <h1 id="page-title" class="hero-title">
                 Bespoke AI solutions,<br>
                 automation &<br>
                 <strong>intelligent systems</strong>
@@ -34,11 +34,14 @@
                 </div>
             </div>
             
-            <a href="#contact" class="hero-cta">
+            <a href="#contact" class="hero-cta" aria-label="Start your AI project — jump to contact section" title="Start your AI project">
                 Start Your AI Project
             </a>
         </div>
         <div class="hero-decoration hero-decoration-2 hero-layer" data-depth="0.4" aria-hidden="true"></div>
+        <noscript>
+            <div class="hero-nojs-fallback" aria-hidden="true"></div>
+        </noscript>
     </section>
 
     <!-- Trusted By Marquee -->
@@ -55,10 +58,10 @@
                 <div class="marquee-item"><img src="/static/images/clients/providence.svg" alt="Providence"></div>
                 <div class="marquee-item"><img src="/static/images/clients/world-wide-love.avif" alt="World Wide Love"></div>
                 <!-- duplicate sequence for seamless loop -->
-                <div class="marquee-item"><img src="/static/images/clients/altamed.svg" alt="AltaMed"></div>
-                <div class="marquee-item"><img src="/static/images/clients/hoag.svg" alt="Hoag"></div>
-                <div class="marquee-item"><img src="/static/images/clients/providence.svg" alt="Providence"></div>
-                <div class="marquee-item"><img src="/static/images/clients/world-wide-love.avif" alt="World Wide Love"></div>
+                <div class="marquee-item" data-duplicate="true" aria-hidden="true"><img src="/static/images/clients/altamed.svg" alt="AltaMed"></div>
+                <div class="marquee-item" data-duplicate="true" aria-hidden="true"><img src="/static/images/clients/hoag.svg" alt="Hoag"></div>
+                <div class="marquee-item" data-duplicate="true" aria-hidden="true"><img src="/static/images/clients/providence.svg" alt="Providence"></div>
+                <div class="marquee-item" data-duplicate="true" aria-hidden="true"><img src="/static/images/clients/world-wide-love.avif" alt="World Wide Love"></div>
             </div>
         </div>
     </section>
@@ -71,7 +74,7 @@
                 <span class="section-label">FEATURED PROJECTS</span>
             </div>
             
-            <div class="projects-grid projects-grid-modern" data-scroll-animate="cards">
+            <div class="projects-grid projects-grid-modern" data-scroll-animate="cards" data-animate-when-visible="true">
                 <!-- Crafted -->
                 <div class="project-card modern-card reveal-up">
                     <div class="project-header">
@@ -160,7 +163,7 @@
                 </p>
             </div>
 
-            <div class="services-grid" style="grid-template-columns: repeat(3, minmax(0,1fr)); gap: 2rem;">
+            <div class="services-grid" data-animate-when-visible="true" style="grid-template-columns: repeat(3, minmax(0,1fr)); gap: 2rem;">
                 <div class="service-card reveal-up hover-glow">
                     <div class="service-icon service-icon-gradient">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#icon-gradient-1)" stroke-width="1.5">
@@ -449,7 +452,7 @@
                     Senior-only team, clear communication, and delivery you can trust.
                 </p>
             </div>
-            <div class="services-grid" style="grid-template-columns: repeat(3, minmax(0,1fr)); gap: 2rem;">
+            <div class="services-grid" data-animate-when-visible="true" style="grid-template-columns: repeat(3, minmax(0,1fr)); gap: 2rem;">
                 <div class="service-card reveal-up hover-glow">
                     <div class="service-icon service-icon-gradient">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#about-gradient-1)" stroke-width="1.5">
@@ -512,18 +515,18 @@
                         Ready to transform your business with AI? Tell us about your project and we’ll get back within 24 hours.
                     </p>
                 </div>
-                <form id="contact-form" action="/api/contact" method="post" class="card-premium" style="padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px;">
+                <form id="contact-form" action="/api/contact" method="post" class="card-premium" aria-describedby="contact-result" style="padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px;">
                     <div style="display:grid; grid-template-columns:1fr 1fr; gap: 1rem;">
-                        <input name="name" placeholder="Full name" required style="padding:0.9rem 1.1rem; border-radius:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); color:#fff;">
-                        <input name="email" type="email" placeholder="Email" required style="padding:0.9rem 1.1rem; border-radius:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); color:#fff;">
-                        <input name="company" placeholder="Company" style="padding:0.9rem 1.1rem; border-radius:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); color:#fff;">
-                        <input name="phone" placeholder="Phone" style="padding:0.9rem 1.1rem; border-radius:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); color:#fff;">
-                        <textarea name="message" placeholder="Tell us about your project" required rows="6" style="grid-column:1/-1; padding:0.9rem 1.1rem; border-radius:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); color:#fff;"></textarea>
+                        <input name="name" placeholder="Full name" autocomplete="name" aria-label="Full name" required style="padding:0.9rem 1.1rem; border-radius:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); color:#fff;">
+                        <input name="email" type="email" placeholder="Email" autocomplete="email" aria-label="Email" required style="padding:0.9rem 1.1rem; border-radius:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); color:#fff;">
+                        <input name="company" placeholder="Company" autocomplete="organization" aria-label="Company" style="padding:0.9rem 1.1rem; border-radius:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); color:#fff;">
+                        <input name="phone" type="tel" placeholder="Phone" autocomplete="tel" aria-label="Phone" style="padding:0.9rem 1.1rem; border-radius:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); color:#fff;">
+                        <textarea name="message" placeholder="Tell us about your project" aria-label="Project details" required rows="6" style="grid-column:1/-1; padding:0.9rem 1.1rem; border-radius:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); color:#fff;"></textarea>
                     </div>
                     <div style="display:flex; justify-content:flex-end; margin-top: 1rem;">
-                        <button type="submit" class="btn btn-primary btn-magnetic" style="padding: 0.9rem 1.4rem;">Send message</button>
+                        <button type="submit" class="btn btn-primary btn-magnetic" aria-label="Send message" style="padding: 0.9rem 1.4rem;">Send message</button>
                     </div>
-                    <div id="contact-result" style="margin-top:0.75rem; font-size:0.9rem; color:#cbd5e1;"></div>
+                    <div id="contact-result" role="status" aria-live="polite" style="margin-top:0.75rem; font-size:0.9rem; color:#cbd5e1;"></div>
                 </form>
             </div>
         </div>
