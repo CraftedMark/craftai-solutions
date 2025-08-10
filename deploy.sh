@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Deploy script for automation website
+# Deploy script for CraftAI Solutions website
 
-echo "🚀 Deploying to production..."
+echo "🚀 Deploying to Dokploy production..."
 
 # Add all changes
 git add -A
@@ -11,9 +11,10 @@ git add -A
 COMMIT_MSG="${1:-"Update from local development"}"
 git commit -m "$COMMIT_MSG"
 
-# Push to production
-echo "📤 Pushing to production server..."
-GIT_SSH_COMMAND="ssh -i ~/.ssh/Proxmox_key" git push production master
+# Push to GitHub (which triggers Dokploy deployment)
+echo "📤 Pushing to GitHub for Dokploy deployment..."
+git push github master
 
-echo "✅ Deployment complete!"
-echo "🌐 Your changes are now live at http://10.10.1.229/"
+echo "✅ Push complete!"
+echo "🌐 Dokploy will now deploy your changes to http://72.60.28.31:3000"
+echo "Note: Deployment may take a few minutes to complete on Dokploy"

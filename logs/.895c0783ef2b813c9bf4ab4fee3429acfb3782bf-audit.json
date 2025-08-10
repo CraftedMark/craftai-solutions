@@ -14,6 +14,11 @@
             "date": 1754730079033,
             "name": "/Users/m/CRAFTAI_PRODUCTION/logs/application-2025-08-09.log",
             "hash": "f3a03bac2cd4469464463d96b1867a11173492ba95ed2bde605b151bd9441a8b"
+        },
+        {
+            "date": 1754839366996,
+            "name": "/Users/m/CRAFTAI_PRODUCTION/logs/application-2025-08-10.log",
+            "hash": "aa0e1bc0fd4a5b87b10c43ff41e184ac1d15931db17550368026ff52d314d6d9"
         }
     ],
     "hashType": "sha256"
