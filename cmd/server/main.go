@@ -30,6 +30,9 @@ func main() {
 	staticDir := filepath.Join(".", "internal", "static")
 	fileServer := http.FileServer(http.Dir(staticDir))
 	staticHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Strip query parameters for file serving (fixes production CSS loading)
+		r.URL.RawQuery = ""
+		
 		// Set cache control headers
 		w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 		w.Header().Set("Pragma", "no-cache")
