@@ -1,0 +1,480 @@
+/* ========================================
+   EXCEPTIONAL STATUS ENHANCEMENTS
+   Elevating CraftAI.Solutions to Award-Winning Level
+   ======================================== */
+
+/* FULL-WIDTH LAYOUT FOR ALL SECTIONS */
+.container {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0 4rem !important;
+}
+
+.main-content section {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Remove any max-width constraints from inner content */
+.section-header,
+.services-grid,
+.projects-grid,
+.capabilities-showcase,
+.cta-content,
+.industry-expertise {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* 1. ENHANCED HERO SECTION - Bigger, Bolder Impact */
+/* Use full width for hero content */
+.hero-content {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0 4rem !important;
+}
+
+@media (max-width: 768px) {
+  .container,
+  .hero-content {
+    padding: 0 2rem !important;
+  }
+}
+
+.hero-title {
+  font-size: clamp(3.5rem, 10vw, 8rem) !important;
+  font-weight: 900 !important;
+  line-height: 0.95 !important;
+  letter-spacing: -0.04em !important;
+  margin-bottom: 2rem !important;
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 8s ease infinite, heroReveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  opacity: 0;
+  transform: translateY(40px);
+  /* Prevent word hyphenation */
+  word-break: keep-all !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  -moz-hyphens: none !important;
+  -ms-hyphens: none !important;
+  overflow-wrap: normal !important;
+  white-space: normal !important;
+  /* Use full width */
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes heroReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-title strong {
+  display: block;
+  font-size: 1.1em;
+  background: linear-gradient(90deg, #f472b6, #60a5fa);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 30px rgba(168, 139, 250, 0.3));
+}
+
+/* Enhanced hero description */
+.hero-description {
+  font-size: clamp(1.25rem, 2vw, 1.75rem) !important;
+  line-height: 1.6 !important;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.3s forwards;
+  max-width: 100% !important;
+  margin: 0 auto 3rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Fix text cutting in section descriptions */
+.section-description {
+  max-width: 100% !important;
+  padding: 0 2rem !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  -moz-hyphens: none !important;
+  -ms-hyphens: none !important;
+}
+
+/* 2. STATS WITH COUNT-UP ANIMATION */
+.metric-value {
+  font-size: clamp(2.5rem, 4vw, 3.5rem) !important;
+  font-weight: 800 !important;
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: inline-block;
+}
+
+.metric-value[data-count] {
+  animation: countUp 2s ease-out forwards;
+}
+
+.metric-value::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  animation: expandWidth 1s ease-out 0.5s forwards;
+}
+
+@keyframes expandWidth {
+  to { width: 100%; }
+}
+
+/* 3. SMOOTH SCROLL ENHANCEMENT */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #60a5fa, #a78bfa);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+}
+
+/* 4. MAGNETIC BUTTON EFFECT */
+.btn-primary, .hero-actions a, button[type="submit"] {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(96, 165, 250, 0.3);
+}
+
+/* 5. STAGGERED CARD ANIMATIONS */
+.service-card, .work-card, .capability-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.service-card.reveal-up, .work-card.reveal-up, .capability-card.reveal-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.service-card:nth-child(1) { transition-delay: 0s; }
+.service-card:nth-child(2) { transition-delay: 0.1s; }
+.service-card:nth-child(3) { transition-delay: 0.2s; }
+.service-card:nth-child(4) { transition-delay: 0.3s; }
+.service-card:nth-child(5) { transition-delay: 0.4s; }
+
+/* Enhanced hover state */
+.service-card:hover, .work-card:hover {
+  transform: translateY(-8px) rotateX(2deg);
+  box-shadow: 
+    0 30px 60px rgba(96, 165, 250, 0.15),
+    0 15px 30px rgba(168, 139, 250, 0.15);
+}
+
+/* 6. INTERACTIVE CAPABILITY CARDS */
+.capability-card {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.capability-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.2), transparent);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.capability-card:hover::after {
+  width: 300%;
+  height: 300%;
+}
+
+.capability-demo {
+  transform: scale(0.95);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.capability-card:hover .capability-demo {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* 7. ENHANCED PARTICLE SYSTEM INTERACTION */
+#gravity-canvas {
+  transition: filter 0.3s ease;
+}
+
+body:has(.btn-primary:hover) #gravity-canvas {
+  filter: blur(2px) brightness(1.2);
+}
+
+/* 8. LOADING STATES */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.loading-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid rgba(96, 165, 250, 0.1);
+  border-top-color: #60a5fa;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 9. SECTION REVEAL ANIMATIONS */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reveal-up.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reveal-scale.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 10. MICRO-INTERACTIONS */
+a, button {
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+a:active, button:active {
+  transform: scale(0.98);
+}
+
+/* Navigation link underline effect */
+.nav-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* 11. ENHANCED FORM INTERACTIONS */
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #60a5fa;
+  box-shadow: 
+    0 0 0 3px rgba(96, 165, 250, 0.1),
+    0 0 20px rgba(96, 165, 250, 0.2);
+  transform: translateY(-2px);
+}
+
+/* 12. FLOATING LABELS */
+.form-group {
+  position: relative;
+}
+
+.form-group label {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+input:focus + label,
+input:not(:placeholder-shown) + label,
+textarea:focus + label,
+textarea:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 0.5rem;
+  font-size: 0.85rem;
+  color: #60a5fa;
+  background: #000;
+  padding: 0 0.5rem;
+}
+
+/* 13. ENHANCED BADGE */
+.badge {
+  background: rgba(96, 165, 250, 0.1);
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  backdrop-filter: blur(10px);
+  animation: pulse 2s ease infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+/* 14. PERFORMANCE OPTIMIZATIONS */
+* {
+  will-change: auto;
+}
+
+.hero-title, .metric-value, .service-card, .work-card {
+  will-change: transform, opacity;
+}
+
+/* 15. RESPONSIVE REFINEMENTS */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(2.5rem, 10vw, 4rem) !important;
+  }
+  
+  .metric-value {
+    font-size: clamp(2rem, 6vw, 2.5rem) !important;
+  }
+}
+
+/* 16. TEXT SELECTION STYLE */
+::selection {
+  background: rgba(168, 139, 250, 0.3);
+  color: #fff;
+}
+
+/* 17. FOCUS VISIBLE FOR ACCESSIBILITY */
+*:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 4px;
+}
+
+/* 18. IMPROVED GLASSMORPHISM */
+.glass-card {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* 19. ENHANCED NAV SCROLL EFFECT */
+.navbar.scrolled {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* 20. PREMIUM FEEL FINISHING TOUCHES */
+.section-title {
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  border-radius: 2px;
+  animation: slideIn 0.6s ease forwards;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+@keyframes slideIn {
+  to { transform: scaleX(1); }
+}

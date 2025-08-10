@@ -410,7 +410,7 @@ body[data-site-ambient="on"] .main-content {
   letter-spacing: -0.02em;
   overflow-wrap: break-word;
   word-wrap: break-word;
-  hyphens: auto;
+  hyphens: none;
   width: 100%;
   max-width: 100%;
   white-space: normal;
@@ -5332,3 +5332,85 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); letter-spacing: -0.005em; margin-bo
         padding: 1.5rem;
     }
 }
+/* Industry Expertise Section */
+.industry-expertise {
+    margin-top: 3rem;
+}
+
+.industry-expertise h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.industry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.industry-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.industry-item:hover {
+    transform: translateX(4px);
+}
+
+.industry-icon {
+    width: 24px;
+    height: 24px;
+    color: rgba(255, 255, 255, 0.4);
+    flex-shrink: 0;
+    transition: color 0.3s ease;
+}
+
+.industry-item:hover .industry-icon {
+    color: #3b82f6;
+}
+
+.industry-item span {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    transition: color 0.3s ease;
+}
+
+.industry-item:hover span {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* Mobile responsiveness for industry grid */
+@media (max-width: 768px) {
+    .industry-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .industry-item {
+        padding: 0.5rem 0;
+    }
+    
+    .industry-icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .industry-item span {
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .industry-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+EOF < /dev/null

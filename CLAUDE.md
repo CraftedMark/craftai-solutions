@@ -2,139 +2,195 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+**## NOTES FROM MARK **
+
+- When making changes to the site .. or even creating new sites , you need to use puppeteeer to "See" what the changes look like
+- The changes should be there at the following:
+1. Local
+2. Pushed to Git
+3. Pre-lived at 10.10.1.229
+4. Verified by User Live to Production Via Dokploy
+
+##Design
+
+1. The Designs should be mordern clean and Elegent , using all of the latest and great technologies, WEbGl , 3d Design , Blender rednering , Animations , etc. But we also need to make sure that it doesnt look childish . the pages , and templates shoudl be full width responsive and expertly seo optimized.
+
+2. the project pages , when developing a page for apps that we have built it would be required to build interactive UI screens of the app , so we can show the potential users functionality and styling. What tecnologies to use will be upt o the developer ( Claude Code)
+
+3. Deployment and Changes - you need to visually inspect the pages before turning over to the user. its not complete till the changes are approved and inspected by you and the user. via puppeteer.
+
+4. Keep the codebase clean and orginized , there shouldnt be code in the filesystem that isnt being useed . if ther is rempve it . we dont want to have things runing all over the place . 
+
 ## Project Overview
 
-CraftAI.Solutions - Go-based business website for AI automation services. Production deployment at 10.10.1.229:3000.
+CraftAI.Solutions - Go-based business website for AI automation services showcasing AI capabilities, projects, and services. 
+
+**Production**: https://craftai.solutions (via Cloudflare tunnel → Dokploy at 72.60.28.31)  
+**GitHub**: https://github.com/CraftedMark/craftai-solutions
 
 ## Essential Commands
 
 ### Development
 ```bash
-# Run with hot reload (requires air installed)
-air
-
-# Run directly
+# Run locally (default port 3000)
 go run cmd/server/main.go
+
+# Run with hot reload (requires air)
+go install github.com/cosmtrek/air@latest
+air
 
 # Build executable
 go build -o craftai-server cmd/server/main.go
 ```
 
-### Production Deployment
+### Deployment
 ```bash
-# Deploy to production server (10.10.1.229)
+# Deploy to production via GitHub push (triggers Dokploy)
 ./deploy.sh "commit message"
 
-# Manual Docker deployment
-docker build -t craftai-solutions .
-docker-compose up -d
+# Or manually:
+git add -A
+git commit -m "your message"
+git push dokploy master  # or: git push github master
 
-# Build Linux binary for server
+# Build for Linux server
 GOOS=linux GOARCH=amd64 go build -o craftai-website-linux cmd/server/main.go
 ```
 
-### Testing & Verification
+### Docker Operations
 ```bash
-# Test locally
+# Build and run locally
+docker build -t craftai-solutions .
+docker run -p 3000:3000 -e PORT=3000 craftai-solutions
+
+# Docker Compose
+docker-compose up -d
+docker-compose logs -f
+```
+
+### Health Checks
+```bash
+# Local
 curl http://localhost:3000/health
 
-# Test production
-curl http://10.10.1.229:3000/health
+# Production (via Cloudflare)
+curl https://craftai.solutions/health
 ```
 
-## Architecture & Code Structure
+## Architecture
 
 ### Request Flow
-1. **Entry Point**: `cmd/server/main.go` - Sets up router, middleware, and starts server
-2. **Routing**: Uses Gorilla Mux, routes defined in main.go
-3. **Handlers**: `internal/handlers/` - Business logic for each endpoint
-   - `home.go` - Homepage and main sections
-   - `contact.go` - Contact form processing
-   - `services.go` - Service-specific pages
-4. **Templates**: Go templates in `internal/templates/` with base layout
-5. **Static Assets**: Served from `internal/static/` with cache headers
+1. **Entry**: `cmd/server/main.go` - Gorilla Mux router setup
+2. **Routing**: All routes defined in main.go (no separate router package)
+3. **Handlers**: `internal/handlers/` - Each handler renders templates directly
+4. **Templates**: `internal/templates/` - Go html/template with layout inheritance
+5. **Static**: `internal/static/` - CSS, JS, images served with cache headers
 
-### Key Architectural Patterns
+### Key Implementation Details
 
-**Handler Pattern**: All handlers follow consistent structure:
+**Static File Serving Fix** (main.go:33-34):
 ```go
-func HandlerName(w http.ResponseWriter, r *http.Request) {
-    // 1. Parse request/parameters
-    // 2. Prepare template data
-    // 3. Execute template with error handling
-}
+// Strip query parameters for file serving (fixes production CSS loading)
+r.URL.RawQuery = ""
+```
+This prevents 404s when CSS files are requested with version query strings.
+
+**Template Rendering Pattern**:
+```go
+tmpl := template.Must(template.ParseFiles(
+    "internal/templates/layout.html",
+    "internal/templates/home.html",
+))
+tmpl.ExecuteTemplate(w, "layout", data)
 ```
 
-**Template Data Structure**: Common `PageData` struct passed to all templates:
-```go
-type PageData struct {
-    Title       string
-    Description string
-    // Additional page-specific fields
-}
-```
+**No centralized PageData struct** - Each handler defines its own data structure.
 
-**Static File Serving**: Optimized with 24-hour cache control headers for production.
+## Production Infrastructure
 
-### Important Files & Their Roles
+### Dokploy Deployment
+- **Platform**: Dokploy (Docker Swarm orchestrator)
+- **Server**: 72.60.28.31:3000
+- **Auto-deploy**: On push to GitHub master branch
+- **Container**: Runs as non-root user (appuser:1001)
 
-- **`internal/handlers/home.go`**: Main business logic, handles homepage and service sections
-- **`internal/templates/layout.html`**: Base template with navigation, footer, analytics
-- **`internal/static/css/styles.css`**: Main styling, responsive design
-- **`internal/static/js/script.js`**: Animations, interactions, contact form handling
+### Cloudflare Tunnel Configuration
+- **Domain**: craftai.solutions
+- **Tunnel**: dokploy-craftai (ID: c2dcd83c-bd5a-4a25-b39d-ee88e0f36196)
+- **Backend**: http://localhost:80 (Traefik proxy)
+- **Important**: Traefik's redirect-to-https middleware must be disabled to prevent redirect loops
 
-## Production Environment
+### Traefik Configuration
+The application uses Traefik as reverse proxy. Key configuration:
+- No HTTPS redirect middleware (causes loops with Cloudflare)
+- Routes: Host(`craftai.solutions`)
+- Service: http://craftaisolutions-website-t6484t:3000
 
-- **Server**: 10.10.1.229 (accessible via Tailscale)
-- **Service**: `craftai-website.service` (systemd)
-- **Port**: 3000 (containerized)
-- **Git Remote**: `root@10.10.1.229:/opt/git-repos/craftai-website.git`
-- **Docker Container**: Runs as non-root user (appuser:1001)
+## CSS Architecture
 
-## Development Considerations
+### Main Stylesheet
+`internal/static/css/main.css` (~5400 lines) contains all styles:
+- Dark glassmorphic theme
+- Responsive grid layouts
+- Animation keyframes
+- Component-specific styles
 
-### When Modifying Templates
-- All templates extend `layout.html` using `{{template "layout" .}}`
-- Pass data using `PageData` struct or extend it for specific needs
-- Templates use Go's html/template syntax with automatic HTML escaping
+### CSS Organization Issues
+- Multiple backup/variant CSS files exist but aren't used
+- All styles in single main.css file (no modularization)
+- Cache-busting via query parameters handled by stripping in Go
 
-### When Adding New Routes
-1. Add handler function in `internal/handlers/`
-2. Register route in `cmd/server/main.go` using `router.HandleFunc()`
-3. Create corresponding template in `internal/templates/`
+## Common Development Tasks
 
-### When Updating Styles/JavaScript
-- Static files are cached for 24 hours in production
-- Test changes locally first with `air` for hot reload
-- Consider mobile responsiveness (separate mobile CSS exists)
+### Adding New Pages
+1. Create handler in `internal/handlers/`
+2. Add route in `cmd/server/main.go`:
+   ```go
+   r.HandleFunc("/new-page", handlers.NewPageHandler).Methods("GET")
+   ```
+3. Create template in `internal/templates/`
+4. Ensure template includes layout: `{{template "layout" .}}`
 
-### Environment Variables
+### Modifying Styles
+1. Edit `internal/static/css/main.css`
+2. Test locally first (changes apply immediately with air)
+3. Note: Production caches for 24 hours (currently set to no-cache)
+
+### Updating Navigation
+Edit `internal/templates/layout.html` - navigation is hardcoded there.
+
+## Project-Specific Features
+
+### GPU Gravity Animation
+- Path: `/gravity`
+- File: `internal/static/js/gpu-gravity.js`
+- WebGL-based particle animation with gravitational physics
+
+### Industry Expertise Section Fix
+Recently updated to responsive grid layout:
+- Changed from single-line text to grid
+- Added SVG icons for each industry
+- Removed background box to match other sections
+
+### Service Icons
+Custom SVG icons embedded directly in templates (not as separate files).
+
+## Environment Variables
 - `PORT`: Server port (default: 3000)
-- Loaded from `.env` file via godotenv
+- Loaded from `.env` file via godotenv (optional)
 
-## Deployment Process
+## Logs
+- Application: `logs/application-YYYY-MM-DD.log`
+- Errors: `logs/error-YYYY-MM-DD.log`
+- Docker: `docker logs craftai-website`
 
-The `deploy.sh` script automates deployment:
-1. Commits changes to git
-2. Pushes to production server
-3. Server automatically pulls and rebuilds via git hooks
-4. Restarts Docker container with new build
+## Known Issues & Fixes
 
-## Common Tasks
+### Static Files 404 in Production
+**Fixed**: Query parameters stripped in main.go before serving files
 
-### Adding a New Service Page
-1. Create handler in `internal/handlers/services.go`
-2. Add template in `internal/templates/services/`
-3. Register route in `cmd/server/main.go`
-4. Update navigation in `layout.html` if needed
+### Cloudflare Redirect Loop
+**Fixed**: Removed redirect-to-https middleware from Traefik config
 
-### Updating Contact Form
-- Handler: `internal/handlers/contact.go`
-- Frontend: `internal/static/js/script.js` (form submission logic)
-- Validation and processing in `SubmitContactHandler`
-
-### Monitoring & Debugging
-- Application logs: `logs/app.log`
-- Error logs: `logs/error.log`
-- Health endpoint: `/health`
-- Check Docker logs: `docker logs craftai-website`
+### CSS Not Loading
+Ensure path starts with `/static/` and file exists in `internal/static/`

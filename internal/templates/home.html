@@ -23,14 +23,14 @@
             </p>
             
             <!-- Stats -->
-            <div class="hero-stats" style="max-width: 960px; margin: 0 auto;">
+            <div class="hero-stats">
                 <div class="stat-item">
-                    <div class="stat-number">150+</div>
-                    <div class="stat-label">AI Solutions Deployed</div>
+                    <div class="stat-number metric-value">150+</div>
+                    <div class="stat-label metric-label">AI Solutions Deployed</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">98%</div>
-                    <div class="stat-label">Client Satisfaction</div>
+                    <div class="stat-number metric-value">98%</div>
+                    <div class="stat-label metric-label">Client Satisfaction</div>
                 </div>
             </div>
             
@@ -160,7 +160,7 @@
                 </p>
             </div>
 
-            <div class="services-grid" style="max-width: 1400px; margin: 0 auto; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 2rem;">
+            <div class="services-grid" style="grid-template-columns: repeat(3, minmax(0,1fr)); gap: 2rem;">
                 <div class="service-card reveal-up hover-glow">
                     <div class="service-icon service-icon-gradient">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#icon-gradient-1)" stroke-width="1.5">
@@ -251,13 +251,44 @@
 
             <div class="industry-expertise reveal-up">
                 <h3>Industry Expertise</h3>
-                <div class="industry-tags">
-                    <span class="industry-tag">• Healthcare & MedTech</span>
-                    <span class="industry-tag">• Financial Services</span>
-                    <span class="industry-tag">• Manufacturing</span>
-                    <span class="industry-tag">• Retail & E-commerce</span>
-                    <span class="industry-tag">• Legal & Compliance</span>
-                    <span class="industry-tag">• Energy & Utilities</span>
+                <div class="industry-grid">
+                    <div class="industry-item">
+                        <svg class="industry-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                        <span>Healthcare & MedTech</span>
+                    </div>
+                    <div class="industry-item">
+                        <svg class="industry-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        </svg>
+                        <span>Financial Services</span>
+                    </div>
+                    <div class="industry-item">
+                        <svg class="industry-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                        </svg>
+                        <span>Manufacturing</span>
+                    </div>
+                    <div class="industry-item">
+                        <svg class="industry-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11V6a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-7M4 7h5M4 11h5M4 15h3"/>
+                        </svg>
+                        <span>Retail & E-commerce</span>
+                    </div>
+                    <div class="industry-item">
+                        <svg class="industry-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                        </svg>
+                        <span>Legal & Compliance</span>
+                    </div>
+                    <div class="industry-item">
+                        <svg class="industry-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                        <span>Energy & Utilities</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -418,7 +449,7 @@
                     Senior-only team, clear communication, and delivery you can trust.
                 </p>
             </div>
-            <div class="services-grid" style="max-width: 1200px; margin: 0 auto; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 2rem;">
+            <div class="services-grid" style="grid-template-columns: repeat(3, minmax(0,1fr)); gap: 2rem;">
                 <div class="service-card reveal-up hover-glow">
                     <div class="service-icon service-icon-gradient">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#about-gradient-1)" stroke-width="1.5">
@@ -471,7 +502,7 @@
     <!-- CTA Section -->
     <section id="contact" class="cta-section">
         <div class="container">
-            <div class="cta-content reveal-up" style="max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1fr; gap: 2rem; align-items: start;">
+            <div class="cta-content reveal-up" style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 2rem; align-items: start;">
                 <div>
                     <h2 class="cta-title">
                         Let's build something<br>

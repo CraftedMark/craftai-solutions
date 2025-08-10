@@ -7,13 +7,14 @@
 (function() {
     'use strict';
 
-    // Configuration matching reference
+    // Configuration optimized for performance
     const CONFIG = {
-        textureWidth: 64,  // 64x64 = 4096 particles on desktop
-        mobileTextureWidth: 32,  // 32x32 = 1024 particles on mobile
-        particleSize: 2.0,
+        textureWidth: 48,  // 48x48 = 2304 particles on desktop (optimized)
+        mobileTextureWidth: 24,  // 24x24 = 576 particles on mobile (optimized)
+        particleSize: 2.5,  // Slightly larger for better visibility
         gravityConstant: 100.0,
-        damping: 0.99
+        damping: 0.985,  // Slightly less damping for smoother motion
+        targetFPS: 60  // Target frame rate
     };
 
     class GPUGravitySimulation {
