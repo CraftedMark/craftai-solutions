@@ -8,88 +8,77 @@ class AnimatedIcon {
     }
     
     init() {
-        // Add hover effects to all icons with data-animate attribute
-        const animatedIcons = document.querySelectorAll('[data-animate-icon]');
-        animatedIcons.forEach(icon => this.enhanceIcon(icon));
+        // Add entrance animations to service icons
+        this.addEntranceAnimations();
         
-        // Add pulse glow effect to icons with pulse-glow class
-        this.addPulseGlowStyles();
+        // Add subtle interaction styles
+        this.addInteractionStyles();
     }
     
-    enhanceIcon(icon) {
-        const animationType = icon.getAttribute('data-animate-icon') || 'scale';
+    addEntranceAnimations() {
+        const serviceIcons = document.querySelectorAll('.service-icon');
         
-        // Add base transition styles
-        icon.style.transition = 'all 0.3s ease-in-out';
-        
-        // Add hover event listeners
-        icon.addEventListener('mouseenter', () => {
-            this.triggerAnimation(icon, animationType, true);
+        // Create intersection observer for entrance animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Add staggered entrance animation
+                    setTimeout(() => {
+                        entry.target.classList.add('icon-visible');
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
         });
         
-        icon.addEventListener('mouseleave', () => {
-            this.triggerAnimation(icon, animationType, false);
+        serviceIcons.forEach(icon => {
+            icon.classList.add('icon-entrance');
+            observer.observe(icon);
         });
     }
     
-    triggerAnimation(icon, type, isHover) {
-        switch (type) {
-            case 'scale':
-                icon.style.transform = isHover ? 'scale(1.1)' : 'scale(1)';
-                break;
-            case 'rotate':
-                icon.style.transform = isHover ? 'rotate(10deg) scale(1.05)' : 'rotate(0deg) scale(1)';
-                break;
-            case 'pulse':
-                if (isHover) {
-                    icon.classList.add('pulse-glow');
-                } else {
-                    icon.classList.remove('pulse-glow');
-                }
-                break;
-            case 'bounce':
-                if (isHover) {
-                    icon.style.animation = 'bounce 0.5s ease-in-out';
-                } else {
-                    icon.style.animation = '';
-                }
-                break;
-            default:
-                icon.style.transform = isHover ? 'scale(1.1)' : 'scale(1)';
-        }
-    }
-    
-    addPulseGlowStyles() {
-        // Add pulse glow keyframes if not already present
-        if (!document.querySelector('#pulse-glow-styles')) {
+    addInteractionStyles() {
+        // Add CSS for entrance animations and interactions
+        if (!document.querySelector('#icon-animation-styles')) {
             const style = document.createElement('style');
-            style.id = 'pulse-glow-styles';
+            style.id = 'icon-animation-styles';
             style.textContent = `
-                @keyframes pulseGlow {
-                    0%, 100% {
-                        opacity: 1;
-                        filter: drop-shadow(0 0 8px currentColor);
+                /* Entrance animation for icons */
+                .icon-entrance {
+                    opacity: 0;
+                    transform: translateY(20px) scale(0.9);
+                    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+                
+                .icon-entrance.icon-visible {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+                
+                /* Subtle glow on hover */
+                @keyframes subtleGlow {
+                    0% {
+                        box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
                     }
-                    50% {
-                        opacity: 0.7;
-                        filter: drop-shadow(0 0 12px currentColor);
+                    100% {
+                        box-shadow: 0 0 30px rgba(56, 189, 248, 0.3),
+                                    0 0 40px rgba(168, 85, 247, 0.2);
                     }
                 }
                 
-                .pulse-glow {
-                    animation: pulseGlow 2s ease-in-out infinite;
+                .service-icon:hover {
+                    animation: subtleGlow 0.5s ease-in-out forwards;
+                    box-shadow: 0 0 30px rgba(56, 189, 248, 0.3),
+                                0 0 40px rgba(168, 85, 247, 0.2);
                 }
                 
-                @keyframes bounce {
-                    0%, 20%, 60%, 100% {
-                        transform: translateY(0) scale(1);
-                    }
-                    40% {
-                        transform: translateY(-10px) scale(1.05);
-                    }
-                    80% {
-                        transform: translateY(-5px) scale(1.02);
-                    }
+                /* Icon lift on hover - no continuous animation */
+                .service-card:hover .service-icon svg {
+                    transform: translateY(-3px) scale(1.05);
+                    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 }
             `;
             document.head.appendChild(style);
