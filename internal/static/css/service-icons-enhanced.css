@@ -1,0 +1,181 @@
+/* Enhanced Service Icons - Glassmorphic Integration */
+
+/* Service card glassmorphic enhancement */
+.service-card {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.02) 0%, 
+        rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.service-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent,
+        rgba(255, 255, 255, 0.1) 20%,
+        rgba(255, 255, 255, 0.1) 80%,
+        transparent);
+}
+
+/* Enhanced icon containers */
+.service-icon-gradient {
+    position: relative;
+    overflow: visible;
+}
+
+/* Subtle ambient glow for icons */
+.service-icon-gradient::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle,
+        rgba(56, 189, 248, 0.15) 0%,
+        transparent 70%);
+    filter: blur(20px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.service-card:hover .service-icon-gradient::after {
+    opacity: 1;
+}
+
+/* Icon stroke animation on hover */
+.service-icon svg path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card:hover .service-icon svg path {
+    animation: strokeDraw 0.6s ease-in-out forwards;
+}
+
+@keyframes strokeDraw {
+    0% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+    50% {
+        stroke-dashoffset: 50;
+        opacity: 0.8;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+/* Service link enhancement */
+.service-link {
+    position: relative;
+    color: #38bdf8;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    padding: 0.25rem 0;
+}
+
+.service-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, #38bdf8, #a855f7);
+    transition: width 0.3s ease;
+}
+
+.service-link:hover::before {
+    width: 100%;
+}
+
+.service-link:hover {
+    color: #60a5fa;
+    gap: 0.75rem;
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .service-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .service-icon svg {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* Dark mode optimization */
+@media (prefers-color-scheme: dark) {
+    .service-card {
+        background: linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.03) 0%, 
+            rgba(255, 255, 255, 0.01) 100%);
+    }
+    
+    .service-icon-gradient {
+        background: linear-gradient(135deg, 
+            rgba(56, 189, 248, 0.08) 0%, 
+            rgba(168, 85, 247, 0.08) 100%);
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    .service-icon,
+    .service-icon svg,
+    .service-card {
+        animation: none !important;
+        transition: transform 0.2s ease, opacity 0.2s ease !important;
+    }
+    
+    @keyframes strokeDraw {
+        0%, 100% {
+            stroke-dashoffset: 0;
+            opacity: 1;
+        }
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .service-icon {
+        border-width: 2px;
+    }
+    
+    .service-card {
+        border-width: 2px;
+    }
+    
+    .service-icon svg {
+        stroke-width: 2;
+    }
+}
