@@ -219,6 +219,9 @@ body[data-site-ambient="on"] .main-content {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f765a3 100%);
   -webkit-background-clip: text;
   background-clip: text;
+  background-clip: text;
+  background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -964,8 +967,9 @@ body[data-site-ambient="on"] .main-content {
   font-size: 0.875rem;
 }
 
-.project-content {
-  space-y: 1rem;
+/* Use margin-top for spacing between children */
+.project-content > * + * {
+  margin-top: 1rem;
 }
 
 .project-section {
@@ -5263,9 +5267,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); letter-spacing: -0.005em; margin-bo
 }
 
 /* SVG Animations - Removed continuous animations for better UX */
-.wave-path {
-    /* Animation removed - was distracting */
-}
+/* .wave-path animation removed - was distracting */
 
 .scan-box {
     /* Animation removed - was distracting */

@@ -1,0 +1,751 @@
+/* 
+ * CraftAI Solutions - Consolidated Responsive CSS
+ * Mobile-first responsive design for all screen sizes
+ * Version: 2025-08-11
+ */
+
+/* === RESPONSIVE BREAKPOINTS === */
+/* Mobile: up to 767px */
+/* Tablet: 768px to 1023px */
+/* Desktop: 1024px and up */
+
+/* === MOBILE STYLES (Default - up to 767px) === */
+
+/* Container adjustments for mobile */
+.container {
+  padding: 0 1rem;
+  max-width: 100%;
+}
+
+/* Typography scaling for mobile */
+h1 { font-size: clamp(2rem, 8vw, 3rem); }
+h2 { font-size: clamp(1.75rem, 6vw, 2.5rem); }
+h3 { font-size: clamp(1.25rem, 4vw, 1.5rem); }
+h4 { font-size: clamp(1.125rem, 3vw, 1.25rem); }
+
+/* Navigation mobile styles */
+.navbar {
+  padding: 0.75rem 0;
+}
+
+.mobile-menu-toggle {
+  display: block;
+}
+
+.nav-menu {
+  position: fixed;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  flex-direction: column;
+  gap: 1.5rem;
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 1000;
+}
+
+.nav-menu.active {
+  top: 100%;
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-menu a {
+  font-size: 1.125rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-menu a:last-child {
+  border-bottom: none;
+}
+
+/* Logo adjustments for mobile */
+.logo-modern {
+  font-size: 1.25rem;
+}
+
+.logo-icon-box {
+  width: 36px;
+  height: 36px;
+}
+
+.logo-svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Hero section mobile */
+.hero-section {
+  min-height: 80vh;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 100%;
+  padding: 0 1rem;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 8vw, 3rem);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.hero-description {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  max-width: 100%;
+}
+
+.hero-stats {
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.stat-number {
+  font-size: 2rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+}
+
+.hero-cta {
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 280px;
+}
+
+.tech-badge {
+  font-size: 0.6875rem;
+  padding: 0.375rem 0.75rem;
+}
+
+/* Grids mobile adjustments */
+.services-grid,
+.projects-grid,
+.capabilities-showcase {
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.industry-cards-grid {
+  grid-template-columns: 1fr !important;
+  gap: 1rem !important;
+}
+
+/* Cards mobile optimization */
+.service-card,
+.project-card,
+.capability-card {
+  padding: 1.5rem;
+}
+
+.service-card h3,
+.project-card h3,
+.capability-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.service-card p,
+.project-card p,
+.capability-card p {
+  font-size: 0.9375rem;
+  margin-bottom: 1rem;
+}
+
+/* Service icons mobile */
+.service-icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 1rem;
+}
+
+.service-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Tech stack mobile */
+.tech-stack {
+  gap: 0.375rem;
+}
+
+.tech-tag {
+  font-size: 0.6875rem;
+  padding: 0.1875rem 0.5625rem;
+}
+
+/* Section headers mobile */
+.section-header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.section-description {
+  font-size: 1rem;
+  max-width: 100%;
+}
+
+.section-label {
+  font-size: 0.6875rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Forms mobile optimization */
+#contact-form {
+  padding: 1.5rem;
+}
+
+#contact-form input,
+#contact-form textarea {
+  padding: 0.875rem 1rem;
+  font-size: 0.9375rem;
+}
+
+#contact-form textarea {
+  rows: 4;
+}
+
+#contact-form button {
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+  width: 100%;
+}
+
+/* CTA section mobile */
+.cta-title {
+  font-size: 2rem !important;
+}
+
+.cta-description {
+  font-size: 1rem !important;
+  max-width: 100% !important;
+}
+
+.cta-benefits {
+  flex-direction: column !important;
+  gap: 1rem !important;
+  text-align: center;
+}
+
+/* Marquee mobile */
+.marquee-item {
+  min-width: 150px;
+  height: 50px;
+}
+
+.marquee-item img {
+  max-width: 100px;
+  max-height: 32px;
+}
+
+/* Footer mobile */
+.footer-wave {
+  padding: 3rem 0 1.5rem;
+  margin-top: 4rem;
+}
+
+.footer-social {
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.footer-social a {
+  width: 44px;
+  height: 44px;
+}
+
+.footer-tagline {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-contact-btn {
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+}
+
+/* Chapters navigation - hide on mobile */
+.chapters-nav {
+  display: none;
+}
+
+/* AI Capabilities mobile */
+.capability-demo {
+  padding: 1rem;
+}
+
+.capability-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+}
+
+.capability-description {
+  font-size: 0.9375rem;
+}
+
+/* Performance optimizations for mobile */
+.particle {
+  display: none; /* Disable particles on mobile for performance */
+}
+
+.footer-waves {
+  display: none; /* Simplify footer on mobile */
+}
+
+/* === TABLET STYLES (768px to 1023px) === */
+@media (min-width: 768px) {
+  /* Container adjustments */
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  /* Navigation tablet */
+  .mobile-menu-toggle {
+    display: none;
+  }
+
+  .nav-menu {
+    position: static;
+    background: none;
+    border: none;
+    padding: 0;
+    flex-direction: row;
+    gap: 2rem;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    transition: none;
+  }
+
+  .nav-menu a {
+    font-size: 1rem;
+    padding: 0;
+    border-bottom: none;
+  }
+
+  /* Hero tablet */
+  .hero-section {
+    min-height: 90vh;
+    padding: 3rem 0;
+  }
+
+  .hero-content {
+    max-width: 700px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-description {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+  }
+
+  .hero-stats {
+    flex-direction: row;
+    gap: 3rem;
+    margin: 2rem 0;
+  }
+
+  .hero-cta {
+    width: auto;
+    max-width: none;
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+
+  /* Grids tablet */
+  .services-grid,
+  .projects-grid,
+  .capabilities-showcase {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .industry-cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Cards tablet */
+  .service-card,
+  .project-card,
+  .capability-card {
+    padding: 2rem;
+  }
+
+  /* Forms tablet */
+  #contact-form {
+    padding: 2rem;
+  }
+
+  #contact-form input,
+  #contact-form textarea {
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  #contact-form textarea {
+    rows: 5;
+  }
+
+  #contact-form button {
+    width: auto;
+    padding: 1rem 3rem;
+    font-size: 1.125rem;
+  }
+
+  /* CTA section tablet */
+  .cta-title {
+    font-size: 2.5rem !important;
+  }
+
+  .cta-description {
+    font-size: 1.125rem !important;
+    max-width: 600px !important;
+  }
+
+  .cta-benefits {
+    flex-direction: row !important;
+    gap: 2rem !important;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Enable chapters nav on tablet */
+  .chapters-nav {
+    display: flex;
+  }
+
+  /* Re-enable footer waves on tablet */
+  .footer-waves {
+    display: block;
+  }
+
+  /* Marquee tablet */
+  .marquee-item {
+    min-width: 180px;
+    height: 60px;
+  }
+
+  .marquee-item img {
+    max-width: 120px;
+    max-height: 40px;
+  }
+}
+
+/* === DESKTOP STYLES (1024px and up) === */
+@media (min-width: 1024px) {
+  /* Container full width */
+  .container {
+    padding: 0 2rem;
+  }
+
+  /* Navigation desktop refinements */
+  .nav-menu {
+    gap: 2.5rem;
+  }
+
+  /* Logo desktop */
+  .logo-modern {
+    font-size: 1.5rem;
+  }
+
+  .logo-icon-box {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logo-svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Hero desktop */
+  .hero-section {
+    min-height: 100vh;
+    padding: 4rem 0;
+  }
+
+  .hero-content {
+    max-width: 800px;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 5vw, 4rem);
+    margin-bottom: 2rem;
+  }
+
+  .hero-description {
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-stats {
+    gap: 4rem;
+    margin: 3rem 0;
+  }
+
+  .stat-number {
+    font-size: 3rem;
+  }
+
+  .stat-label {
+    font-size: 1rem;
+  }
+
+  /* Grids desktop */
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .projects-grid-modern {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .capabilities-showcase {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .industry-cards-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  /* Section headers desktop */
+  .section-header {
+    margin-bottom: 4rem;
+  }
+
+  .section-description {
+    font-size: 1.125rem;
+    max-width: 700px;
+  }
+
+  /* CTA section desktop */
+  .cta-title {
+    font-size: 3rem !important;
+  }
+
+  .cta-description {
+    font-size: 1.25rem !important;
+    max-width: 600px !important;
+  }
+
+  .cta-benefits {
+    gap: 2rem !important;
+    flex-wrap: nowrap;
+  }
+
+  /* Re-enable particles on desktop for visual appeal */
+  .particle {
+    display: block;
+  }
+
+  /* Footer desktop */
+  .footer-wave {
+    padding: 4rem 0 2rem;
+    margin-top: 6rem;
+  }
+
+  .footer-social {
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-social a {
+    width: 48px;
+    height: 48px;
+  }
+
+  .footer-tagline {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* === LARGE DESKTOP STYLES (1280px and up) === */
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+
+  .projects-grid-modern {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  .capabilities-showcase {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  .hero-title {
+    font-size: 4rem;
+  }
+}
+
+/* === EXTRA LARGE DESKTOP STYLES (1536px and up) === */
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+
+  .services-grid {
+    gap: 3rem;
+  }
+
+  .projects-grid-modern {
+    gap: 3rem;
+  }
+
+  .capabilities-showcase {
+    gap: 3rem;
+  }
+}
+
+/* === HIGH DPI / RETINA DISPLAYS === */
+@media (min-resolution: 2dppx) {
+  /* Optimize for high-resolution displays */
+  .logo-svg,
+  .service-icon svg {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* Adjust thin borders for retina */
+  .card-premium,
+  .service-card,
+  .project-card,
+  .capability-card {
+    border-width: 0.5px;
+  }
+}
+
+/* === LANDSCAPE ORIENTATION (Mobile) === */
+@media (max-width: 767px) and (orientation: landscape) {
+  .hero-section {
+    min-height: 60vh;
+    padding: 1rem 0;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-description {
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-stats {
+    margin: 1rem 0;
+  }
+
+  .nav-menu {
+    padding: 1rem;
+  }
+
+  .navbar {
+    padding: 0.5rem 0;
+  }
+}
+
+/* === ACCESSIBILITY IMPROVEMENTS === */
+
+/* Focus states for keyboard navigation */
+@media (max-width: 767px) {
+  .nav-menu a:focus,
+  .btn:focus,
+  input:focus,
+  textarea:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  /* Larger touch targets on mobile */
+  .btn {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  .chapters-dot {
+    width: 16px;
+    height: 16px;
+  }
+
+  .mobile-menu-toggle {
+    min-height: 48px;
+    min-width: 48px;
+  }
+}
+
+/* === PRINT STYLES === */
+@media print {
+  /* Reset mobile styles for print */
+  .mobile-menu-toggle {
+    display: none !important;
+  }
+
+  .nav-menu {
+    position: static !important;
+    background: none !important;
+    flex-direction: row !important;
+    gap: 1rem !important;
+    padding: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+
+  .hero-section {
+    min-height: auto;
+    padding: 2rem 0;
+  }
+
+  .services-grid,
+  .projects-grid,
+  .capabilities-showcase {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .service-card,
+  .project-card,
+  .capability-card {
+    padding: 1rem;
+    border: 1px solid #ccc;
+    background: white;
+  }
+
+  .footer-wave {
+    margin-top: 2rem;
+    padding: 1rem 0;
+  }
+}
