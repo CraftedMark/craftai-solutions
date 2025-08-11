@@ -38,3 +38,6 @@ Disallow: /
 
 # Sitemap location
 Sitemap: https://craftai.solutions/sitemap.xml
+
+# LLMs.txt location for AI agents
+# See: https://craftai.solutions/llms.txt
