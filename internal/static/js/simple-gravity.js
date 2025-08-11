@@ -9,7 +9,7 @@
     class SimpleGravitySystem {
         constructor() {
             this.particles = [];
-            this.particleCount = 2000;
+            this.particleCount = 100; // Reduced for better performance
             this.canvas = null;
             this.ctx = null;
             this.width = window.innerWidth;
@@ -29,31 +29,32 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                z-index: 1;
+                z-index: -1;
                 pointer-events: none;
+                opacity: 0.6;
             `;
-            document.body.appendChild(this.canvas);
+            document.body.insertBefore(this.canvas, document.body.firstChild);
             
             this.ctx = this.canvas.getContext('2d');
             this.resize();
             
-            // Initialize gravity points
+            // Initialize gravity points with stronger forces
             this.gravityPoints = [
-                { x: this.width * 0.5, y: this.height * 0.3, strength: 80 },
-                { x: this.width * 0.2, y: this.height * 0.6, strength: 60 },
-                { x: this.width * 0.8, y: this.height * 0.7, strength: 60 },
-                { x: this.width * 0.5, y: this.height * 0.8, strength: 70 }
+                { x: this.width * 0.5, y: this.height * 0.3, strength: 200 },
+                { x: this.width * 0.2, y: this.height * 0.6, strength: 150 },
+                { x: this.width * 0.8, y: this.height * 0.7, strength: 150 },
+                { x: this.width * 0.5, y: this.height * 0.8, strength: 180 }
             ];
             
-            // Initialize particles
+            // Initialize particles with more initial velocity
             for (let i = 0; i < this.particleCount; i++) {
                 this.particles.push({
                     x: Math.random() * this.width,
                     y: Math.random() * this.height,
-                    vx: (Math.random() - 0.5) * 2,
-                    vy: (Math.random() - 0.5) * 2,
-                    size: Math.random() * 2 + 0.5,
-                    alpha: Math.random() * 0.5 + 0.5
+                    vx: (Math.random() - 0.5) * 2, // More initial velocity
+                    vy: (Math.random() - 0.5) * 2, // More initial velocity
+                    size: Math.random() * 2 + 1, // Bigger particles
+                    alpha: Math.random() * 0.3 + 0.7 // More visible
                 });
             }
             
@@ -84,9 +85,9 @@
         }
 
         updateParticles() {
-            const damping = 0.99;
-            const mouseStrength = 150;
-            const maxSpeed = 5;
+            const damping = 0.995; // Less damping to keep movement
+            const mouseStrength = 200;
+            const maxSpeed = 8; // Higher max speed
             
             this.particles.forEach(particle => {
                 // Apply gravity from fixed points
@@ -143,20 +144,32 @@
         }
 
         render() {
-            // Clear canvas
-            this.ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            // Clear canvas with solid black
+            this.ctx.fillStyle = 'black';
             this.ctx.fillRect(0, 0, this.width, this.height);
             
-            // Draw particles
-            this.ctx.fillStyle = 'white';
+            // Draw particles with glow effect
             this.particles.forEach(particle => {
-                this.ctx.globalAlpha = particle.alpha;
+                // Glow effect
+                const gradient = this.ctx.createRadialGradient(
+                    particle.x, particle.y, 0,
+                    particle.x, particle.y, particle.size * 3
+                );
+                gradient.addColorStop(0, `rgba(255, 255, 255, ${particle.alpha})`);
+                gradient.addColorStop(0.5, `rgba(255, 255, 255, ${particle.alpha * 0.5})`);
+                gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                
+                this.ctx.fillStyle = gradient;
+                this.ctx.beginPath();
+                this.ctx.arc(particle.x, particle.y, particle.size * 3, 0, Math.PI * 2);
+                this.ctx.fill();
+                
+                // Core particle
+                this.ctx.fillStyle = `rgba(255, 255, 255, ${particle.alpha})`;
                 this.ctx.beginPath();
                 this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
                 this.ctx.fill();
             });
-            
-            this.ctx.globalAlpha = 1;
         }
 
         animate() {

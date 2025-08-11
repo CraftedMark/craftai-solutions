@@ -1,0 +1,344 @@
+/* Simplified CSS - No animations, clean and minimal */
+
+:root {
+    --primary: #3b82f6;
+    --primary-dark: #2563eb;
+    --secondary: #6366f1;
+    --accent: #10b981;
+    --bg-dark: #0a0a0a;
+    --bg-card: rgba(255, 255, 255, 0.05);
+    --text-primary: rgba(255, 255, 255, 0.95);
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.5);
+    --border: rgba(255, 255, 255, 0.1);
+}
+
+/* Disable ALL animations globally */
+* {
+    animation: none !important;
+    transition: opacity 0.3s ease, transform 0.3s ease !important;
+}
+
+/* Remove all keyframe animations */
+@keyframes * {
+    display: none !important;
+}
+
+/* Base styles */
+body {
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.hero-section {
+    padding: 100px 0;
+    text-align: center;
+    background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(59, 130, 246, 0.05) 100%);
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+/* Cards */
+.service-card,
+.card-premium {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover,
+.card-premium:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 40px rgba(59, 130, 246, 0.1);
+}
+
+/* Service Icons - Static */
+.service-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.service-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: var(--primary);
+}
+
+/* Sections */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.section-header p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+/* Services Grid */
+.services-grid,
+.industry-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* Form Inputs */
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* Navigation */
+nav {
+    padding: 1rem 0;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--primary);
+}
+
+/* Footer */
+footer {
+    background: rgba(0, 0, 0, 0.5);
+    border-top: 1px solid var(--border);
+    padding: 3rem 0 2rem;
+    margin-top: 5rem;
+}
+
+/* Tech Badge */
+.tech-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 24px;
+    color: #ef4444;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Text Gradient */
+.text-gradient {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Hover Glow Effect - Subtle */
+.hover-glow {
+    position: relative;
+    transition: box-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+/* Remove all background animations */
+.animated-bg-layer,
+.gradient-orb,
+.particle,
+.floating-particle,
+.animated-dots,
+.dot {
+    display: none !important;
+}
+
+/* Disable GPU particles */
+#gpu-particles {
+    display: none !important;
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 5rem 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(59, 130, 246, 0.05) 100%);
+}
+
+.cta-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.cta-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.cta-benefits {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.cta-benefit {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .services-grid,
+    .industry-cards-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav-menu {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+/* Utility Classes */
+.reveal-up {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Override any animation classes */
+.animate-float,
+.animate-pulse,
+.animate-spin,
+.wave-path,
+.scan-box,
+.pulse-dot,
+.connection-line,
+.chart-line {
+    animation: none !important;
+}
+
+/* Static transforms only */
+.capability-demo,
+.workflow-demo,
+.vision-grid,
+.bar-chart {
+    position: relative;
+}
+
+/* Remove all pseudo-element animations */
+*::before,
+*::after {
+    animation: none !important;
+}

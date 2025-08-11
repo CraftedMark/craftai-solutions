@@ -5262,49 +5262,31 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); letter-spacing: -0.005em; margin-bo
     50% { transform: scale(1.05); }
 }
 
-/* SVG Animations */
+/* SVG Animations - Removed continuous animations for better UX */
 .wave-path {
-    animation: waveAnimation 3s ease-in-out infinite;
-}
-
-@keyframes waveAnimation {
-    0%, 100% { d: path("M30 50 Q50 30 70 50 T90 50"); }
-    50% { d: path("M30 50 Q50 70 70 50 T90 50"); }
+    /* Animation removed - was distracting */
 }
 
 .scan-box {
-    animation: scanMove 4s ease-in-out infinite;
-}
-
-@keyframes scanMove {
-    0%, 100% { transform: translate(0, 0); }
-    25% { transform: translate(10px, 10px); }
-    50% { transform: translate(-10px, 10px); }
-    75% { transform: translate(-10px, -10px); }
+    /* Animation removed - was distracting */
+    opacity: 0.6;
 }
 
 .chart-line {
     stroke-dasharray: 200;
-    stroke-dashoffset: 200;
-    animation: drawLine 2s ease forwards;
-}
-
-@keyframes drawLine {
-    to { stroke-dashoffset: 0; }
+    stroke-dashoffset: 0;
+    /* Now static - no animation */
 }
 
 .pulse-dot {
-    animation: pulseDot 2s ease-in-out infinite;
-}
-
-@keyframes pulseDot {
-    0%, 100% { r: 3; opacity: 1; }
-    50% { r: 6; opacity: 0.5; }
+    /* Animation removed - was distracting */
+    r: 4;
+    opacity: 0.8;
 }
 
 .connection-line {
     stroke-dasharray: 10 5;
-    animation: dashMove 1s linear infinite;
+    /* Animation removed - was distracting */
 }
 
 @keyframes dashMove {

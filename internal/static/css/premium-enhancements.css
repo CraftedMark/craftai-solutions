@@ -1,0 +1,689 @@
+/* Premium Website Enhancements - Going Above and Beyond */
+
+/* ============================================
+   1. ENHANCED HERO SECTION - Maximum Impact
+   ============================================ */
+
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(168, 139, 250, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 50% 100%, rgba(96, 165, 250, 0.1) 0%, transparent 50%),
+        linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 100%);
+}
+
+.hero-title {
+    font-size: clamp(3rem, 8vw, 7rem) !important;
+    line-height: 1.1 !important;
+    font-weight: 900 !important;
+    letter-spacing: -0.02em !important;
+    text-transform: none;
+    margin-bottom: 2rem !important;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: heroReveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.hero-title::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+    filter: blur(40px);
+    z-index: -1;
+}
+
+.hero-description {
+    font-size: clamp(1.1rem, 2vw, 1.4rem) !important;
+    max-width: 800px !important;
+    margin: 0 auto 3rem !important;
+    line-height: 1.7 !important;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.3s forwards;
+}
+
+/* Enhanced metrics display */
+.hero-metrics {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    margin: 3rem 0;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.5s forwards;
+}
+
+.metric-item {
+    text-align: center;
+    position: relative;
+    padding: 1.5rem 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.metric-value {
+    font-size: clamp(2.5rem, 4vw, 3.5rem) !important;
+    font-weight: 800 !important;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.metric-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+/* Enhanced CTA button */
+.hero-actions a,
+.btn-primary {
+    padding: 1rem 2.5rem !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    background: linear-gradient(135deg, #3b82f6, #6366f1) !important;
+    border: none !important;
+    border-radius: 12px !important;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 
+        0 4px 15px rgba(59, 130, 246, 0.3),
+        0 1px 3px rgba(0, 0, 0, 0.2) !important;
+    text-transform: none !important;
+    letter-spacing: 0.5px;
+}
+
+/* Hero button animation */
+.hero-actions {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.7s forwards;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: 
+        0 8px 25px rgba(59, 130, 246, 0.4),
+        0 2px 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+.btn-primary:hover::before {
+    opacity: 1;
+}
+
+.btn-primary:active {
+    transform: translateY(0) scale(0.98) !important;
+}
+
+/* ============================================
+   2. PREMIUM SERVICE CARDS
+   ============================================ */
+
+.service-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px !important;
+    padding: 2.5rem !important;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    backdrop-filter: blur(10px);
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.service-card:hover::before {
+    transform: translateX(100%);
+}
+
+.service-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.service-card:hover::after {
+    opacity: 1;
+}
+
+.service-card:hover {
+    transform: translateY(-8px) !important;
+    border-color: rgba(59, 130, 246, 0.3) !important;
+    box-shadow: 
+        0 20px 40px rgba(59, 130, 246, 0.2),
+        0 10px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+.service-icon {
+    width: 60px !important;
+    height: 60px !important;
+    margin-bottom: 1.5rem !important;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(168, 139, 250, 0.1));
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.service-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: #60a5fa;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(168, 139, 250, 0.2));
+    transform: scale(1.1);
+}
+
+.service-card h3 {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 1rem !important;
+    color: #fff !important;
+}
+
+.service-card p {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.service-card a {
+    color: #60a5fa !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.service-card a:hover {
+    gap: 1rem;
+    color: #93c5fd !important;
+}
+
+/* ============================================
+   3. ENHANCED INDUSTRY EXPERTISE CARDS
+   ============================================ */
+
+.industry-cards-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
+    gap: 2rem !important;
+    margin: 3rem 0 !important;
+}
+
+.industry-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.industry-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 40%, rgba(59, 130, 246, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.industry-card:hover::before {
+    opacity: 1;
+}
+
+.industry-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 
+        0 15px 30px rgba(59, 130, 246, 0.15),
+        0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.industry-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.industry-card h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #fff;
+}
+
+.industry-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ============================================
+   4. ENHANCED CTA SECTION
+   ============================================ */
+
+.cta-section {
+    padding: 6rem 0 !important;
+    position: relative;
+    background: 
+        radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+        linear-gradient(180deg, transparent 0%, rgba(59, 130, 246, 0.05) 100%);
+}
+
+.cta-wrapper {
+    max-width: 1000px !important;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.cta-badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 50px;
+    color: #10b981;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+}
+
+.cta-title {
+    font-size: clamp(2.5rem, 5vw, 4rem) !important;
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+    margin-bottom: 2rem !important;
+    background: linear-gradient(135deg, #fff 0%, #93c5fd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cta-benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin: 3rem auto;
+    max-width: 800px;
+}
+
+.cta-benefit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cta-benefit svg {
+    width: 20px;
+    height: 20px;
+    stroke: #10b981;
+    flex-shrink: 0;
+}
+
+.cta-benefit span {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* ============================================
+   5. MICRO-INTERACTIONS & POLISH
+   ============================================ */
+
+/* Smooth scroll with offset for fixed header */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+/* Enhanced link hover effect */
+a {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+a:not(.btn):hover {
+    color: #60a5fa !important;
+}
+
+/* Focus states for accessibility */
+*:focus-visible {
+    outline: 2px solid #60a5fa !important;
+    outline-offset: 4px !important;
+    border-radius: 4px;
+}
+
+/* Enhanced form inputs */
+input, textarea, select {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    padding: 1rem 1.25rem !important;
+    font-size: 1rem !important;
+    transition: all 0.3s ease !important;
+}
+
+input:hover, textarea:hover, select:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+input:focus, textarea:focus, select:focus {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: #60a5fa !important;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1) !important;
+    outline: none !important;
+}
+
+/* Enhanced navigation */
+.navbar {
+    backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(10, 10, 10, 0.8) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.25rem 0;
+}
+
+.navbar.scrolled {
+    background: rgba(10, 10, 10, 0.95) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.nav-link {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background: rgba(59, 130, 246, 0.1);
+    color: #60a5fa !important;
+}
+
+/* Enhanced footer */
+.footer-wave {
+    position: relative;
+    padding-top: 5rem;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.footer-content {
+    position: relative;
+    z-index: 1;
+    padding: 3rem 0;
+}
+
+.footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.3);
+    transform: translateY(-3px);
+}
+
+/* ============================================
+   6. PERFORMANCE OPTIMIZATIONS
+   ============================================ */
+
+/* Use GPU acceleration for transforms */
+.service-card,
+.industry-card,
+.btn-primary,
+.nav-link {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Optimize image rendering */
+img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* ============================================
+   7. RESPONSIVE DESIGN IMPROVEMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: clamp(2.5rem, 8vw, 4rem) !important;
+    }
+    
+    .hero-description {
+        font-size: 1.1rem !important;
+    }
+    
+    .service-card,
+    .industry-card {
+        padding: 1.75rem !important;
+    }
+    
+    .industry-cards-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .cta-benefits {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .metric-item {
+        padding: 1rem 1.5rem;
+    }
+    
+    .metric-value {
+        font-size: 2rem !important;
+    }
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px !important;
+    }
+    
+    .hero-title {
+        font-size: 6rem !important;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+/* ============================================
+   8. SPECIAL EFFECTS
+   ============================================ */
+
+/* Gradient text animation on hover */
+.gradient-text-hover {
+    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: background-position 0.5s ease;
+}
+
+.gradient-text-hover:hover {
+    background-position: 100% 0;
+}
+
+/* Glow effect for important elements */
+.glow-effect {
+    position: relative;
+}
+
+.glow-effect::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+    filter: blur(20px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.glow-effect:hover::after {
+    opacity: 1;
+}
+
+/* Premium divider */
+.section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+    margin: 5rem 0;
+}
+
+/* Enhanced scrollbar */
+::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #60a5fa, #a78bfa);
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+}
+
+/* Prevent text selection on UI elements */
+.btn,
+.nav-link,
+.service-card h3,
+.cta-title {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Text scramble effect */
+.scramble {
+    color: #60a5fa;
+    font-family: monospace;
+    opacity: 0.8;
+    display: inline-block;
+    min-width: 0.5ch;
+}
+
+/* Premium loading state */
+.loading {
+    position: relative;
+    color: transparent !important;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    border-top-color: #60a5fa;
+    border-radius: 50%;
+    animation: spin-once 0.6s linear;
+}
+
+@keyframes spin-once {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}

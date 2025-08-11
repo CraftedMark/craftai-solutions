@@ -1,0 +1,153 @@
+/* Animation Override - Stop distracting continuous animations only */
+
+/* Keep these one-time animations working */
+@keyframes heroReveal {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes expandWidth {
+    to { width: 100%; }
+}
+
+@keyframes slideIn {
+    to { transform: scaleX(1); }
+}
+
+/* Disable only the continuous/infinite animations */
+@keyframes wave-path { to { stroke-dashoffset: 0; } }
+@keyframes scan-box { to { transform: none; } }
+@keyframes pulse-dot { to { transform: scale(1); opacity: 1; } }
+@keyframes float { to { transform: translateY(0); } }
+@keyframes spin { to { transform: rotate(0); } }
+@keyframes gradientShift { to { background-position: 0% 50%; } }
+@keyframes pulse { to { transform: scale(1); } }
+@keyframes moveForever { to { transform: translate3d(0, 0, 0); } }
+@keyframes parallax-wave { to { transform: translateX(0); } }
+@keyframes floating { to { transform: translateY(0) translateX(0); } }
+@keyframes scanLine { to { top: 0; } }
+@keyframes dataFlow { to { stroke-dashoffset: 0; } }
+@keyframes twinkle { to { opacity: 1; } }
+
+/* Stop continuous SVG animations */
+.service-icon svg * {
+    animation: none !important;
+    animation-play-state: paused !important;
+}
+
+.wave-path,
+.scan-box,
+.pulse-dot,
+.connection-line,
+.chart-line,
+.animated-dots,
+.dot {
+    animation: none !important;
+    animation-play-state: paused !important;
+}
+
+/* Stop footer wave animation */
+.footer-waves .parallax > use {
+    animation: none !important;
+}
+
+/* Stop loading spinner */
+.loading-spinner {
+    animation: none !important;
+}
+
+/* Stop badge pulse */
+.badge,
+.tech-badge {
+    animation: none !important;
+}
+
+/* Stop particle animations */
+.particle,
+.floating-particle {
+    animation: none !important;
+}
+
+/* Keep these one-time animations for page load */
+/* heroReveal, fadeInUp, expandWidth, slideIn - these run once and stop */
+
+/* Stop icon continuous animations in service cards */
+.capability-demo svg *,
+.workflow-demo svg *,
+.vision-grid svg *,
+.bar-chart svg * {
+    animation: none !important;
+}
+
+/* Remove hover rotation on cards to reduce motion */
+.service-card:hover,
+.work-card:hover,
+.capability-card:hover {
+    transform: translateY(-4px) !important; /* Keep lift effect but no rotation */
+}
+
+/* Keep GPU particles background subtle but visible */
+.gpu-gravity-container {
+    opacity: 0.4 !important; /* Subtle but visible background animation */
+    z-index: -1 !important; /* Ensure it stays in background */
+}
+
+/* Stop any WebGL animations */
+canvas {
+    animation: none !important;
+}
+
+/* Override continuous animations in exceptional-enhancements.css */
+.loading-spinner {
+    border: 3px solid rgba(96, 165, 250, 0.3) !important;
+    border-top-color: #60a5fa !important;
+    animation: none !important;
+}
+
+/* Keep text gradients but stop shifting animation */
+.hero-title,
+.text-gradient,
+.gradient-text {
+    animation-name: heroReveal !important; /* Keep reveal, stop gradientShift */
+    animation-iteration-count: 1 !important;
+}
+
+/* Stop any ::before or ::after pseudo-element animations */
+*::before,
+*::after {
+    animation-iteration-count: 1 !important; /* Allow one-time animations only */
+}
+
+/* Specific overrides for known problem animations */
+.logo-icon-box svg {
+    animation: none !important;
+}
+
+.footer-logo .bar {
+    animation: none !important;
+}
+
+/* Ensure static positioning for animated elements */
+.animate-float,
+.animate-pulse,
+.animate-spin {
+    animation: none !important;
+    transform: none !important;
+}
