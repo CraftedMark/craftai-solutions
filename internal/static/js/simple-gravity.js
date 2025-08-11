@@ -46,15 +46,19 @@
                 { x: this.width * 0.5, y: this.height * 0.8, strength: 180 }
             ];
             
-            // Initialize particles with more initial velocity
+            // Initialize particles with orbital motion
             for (let i = 0; i < this.particleCount; i++) {
+                const angle = (i / this.particleCount) * Math.PI * 2;
+                const radius = Math.random() * Math.min(this.width, this.height) * 0.4;
                 this.particles.push({
                     x: Math.random() * this.width,
                     y: Math.random() * this.height,
-                    vx: (Math.random() - 0.5) * 2, // More initial velocity
-                    vy: (Math.random() - 0.5) * 2, // More initial velocity
+                    vx: Math.cos(angle) * 2, // Circular initial velocity
+                    vy: Math.sin(angle) * 2, // Circular initial velocity
                     size: Math.random() * 2 + 1, // Bigger particles
-                    alpha: Math.random() * 0.3 + 0.7 // More visible
+                    alpha: Math.random() * 0.3 + 0.7, // More visible
+                    angle: Math.random() * Math.PI * 2, // For orbital motion
+                    orbitSpeed: 0.002 + Math.random() * 0.003 // Individual orbit speeds
                 });
             }
             
@@ -85,22 +89,34 @@
         }
 
         updateParticles() {
-            const damping = 0.995; // Less damping to keep movement
-            const mouseStrength = 200;
-            const maxSpeed = 8; // Higher max speed
+            const damping = 0.98; // More damping but with continuous force
+            const mouseStrength = 100;
+            const maxSpeed = 10; // Higher max speed
             
             this.particles.forEach(particle => {
-                // Apply gravity from fixed points
+                // Update orbital angle for continuous circular motion
+                particle.angle += particle.orbitSpeed;
+                
+                // Add orbital force for continuous movement
+                const orbitForce = 0.3;
+                particle.vx += Math.cos(particle.angle) * orbitForce;
+                particle.vy += Math.sin(particle.angle) * orbitForce;
+                
+                // Add some random drift for organic movement
+                particle.vx += (Math.random() - 0.5) * 0.1;
+                particle.vy += (Math.random() - 0.5) * 0.1;
+                
+                // Apply gravity from fixed points (weaker but continuous)
                 this.gravityPoints.forEach(point => {
                     const dx = point.x - particle.x;
                     const dy = point.y - particle.y;
                     const distSq = dx * dx + dy * dy;
                     const dist = Math.sqrt(distSq);
                     
-                    if (dist > 10 && dist < 500) {
-                        const force = point.strength / distSq;
-                        particle.vx += (dx / dist) * force;
-                        particle.vy += (dy / dist) * force;
+                    if (dist > 10 && dist < 800) {
+                        const force = point.strength / (distSq + 100); // Add minimum to prevent extreme forces
+                        particle.vx += (dx / dist) * force * 0.5;
+                        particle.vy += (dy / dist) * force * 0.5;
                     }
                 });
                 
