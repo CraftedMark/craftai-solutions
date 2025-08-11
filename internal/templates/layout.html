@@ -3,13 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Primary Meta Tags -->
     <title>{{.Title}} | CraftAI Solutions - AI Development & Automation Services | Newport Beach</title>
+    <meta name="title" content="{{.Title}} | CraftAI Solutions - AI Development & Automation">
     <meta name="description" content="{{.Description}}">
-    <meta name="keywords" content="AI development, automation, machine learning, Newport Beach, Orange County, intelligent systems, process automation">
+    <meta name="keywords" content="AI development, automation, machine learning, Newport Beach, Orange County, intelligent systems, process automation, artificial intelligence, custom AI solutions, business automation, AI consulting">
+    <meta name="author" content="CraftAI Solutions">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://craftai.solutions/">
+    <meta property="og:title" content="{{.Title}} | CraftAI Solutions - AI Development & Automation">
+    <meta property="og:description" content="{{.Description}}">
+    <meta property="og:image" content="https://craftai.solutions/static/images/og-image.jpg">
+    <meta property="og:site_name" content="CraftAI Solutions">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://craftai.solutions/">
+    <meta property="twitter:title" content="{{.Title}} | CraftAI Solutions">
+    <meta property="twitter:description" content="{{.Description}}">
+    <meta property="twitter:image" content="https://craftai.solutions/static/images/twitter-card.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://craftai.solutions{{if ne .Path "/"}}{{.Path}}{{end}}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/static/images/favicon.svg">
+    <link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png">
     
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://client.crisp.chat">
+    
+    <!-- Critical CSS for above-the-fold content -->
+    <style>
+        /* Critical CSS for immediate rendering */
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{font-family:'Inter',system-ui,-apple-system,sans-serif;scroll-behavior:smooth}
+        body{background:#000;color:#fff;line-height:1.6;min-height:100vh}
+        .navbar{position:fixed;top:0;width:100%;background:rgba(0,0,0,0.9);backdrop-filter:blur(10px);z-index:1000;padding:1rem 0}
+        .container{max-width:1200px;margin:0 auto;padding:0 2rem}
+        .hero-section{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative}
+        .loading{display:none}
+    </style>
     
     <!-- Inter font for modern typography -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -31,6 +75,126 @@
     
     <!-- Premium enhancements - going above and beyond -->
     <link rel="stylesheet" href="/static/css/premium-enhancements.css?v=1.0">
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "CraftAI Solutions",
+        "alternateName": "CraftAI",
+        "url": "https://craftai.solutions",
+        "logo": "https://craftai.solutions/static/images/logo.svg",
+        "description": "Leading AI development and automation company specializing in custom machine learning solutions, intelligent process automation, and AI consulting services.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Newport Beach",
+            "addressRegion": "CA",
+            "postalCode": "92660",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 33.6189,
+            "longitude": -117.9289
+        },
+        "telephone": "+1-949-555-0100",
+        "email": "hello@craftai.solutions",
+        "sameAs": [
+            "https://github.com/CraftedMark",
+            "https://www.linkedin.com/company/craftai-solutions",
+            "https://twitter.com/craftaisolutions"
+        ],
+        "foundingDate": "2023",
+        "founder": {
+            "@type": "Person",
+            "name": "Mark Nash"
+        },
+        "areaServed": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": 33.6189,
+                "longitude": -117.9289
+            },
+            "geoRadius": "50000"
+        },
+        "serviceArea": {
+            "@type": "Place",
+            "name": "Orange County, California"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://craftai.solutions",
+        "name": "CraftAI Solutions",
+        "description": "AI Development & Automation Services",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://craftai.solutions/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "CraftAI Solutions",
+        "image": "https://craftai.solutions/static/images/hero-bg.jpg",
+        "url": "https://craftai.solutions",
+        "telephone": "+1-949-555-0100",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Newport Beach",
+            "addressRegion": "CA",
+            "postalCode": "92660",
+            "addressCountry": "US"
+        },
+        "priceRange": "$$$$",
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "18:00"
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "AI Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Custom AI Development",
+                        "description": "Custom machine learning models and neural networks tailored to your business"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Process Automation",
+                        "description": "Intelligent workflow automation that reduces manual tasks"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "AI Consulting",
+                        "description": "Strategic guidance for AI adoption and implementation"
+                    }
+                }
+            ]
+        }
+    }
+    </script>
     
     <!-- Google Analytics - Disabled until configured -->
     <!-- To enable: Replace G-YOUR_ID with your actual Google Analytics ID

@@ -602,18 +602,10 @@
                     
                     <!-- Contact Form -->
                     <form id="contact-form" action="/api/contact" method="post" class="card-premium" aria-describedby="contact-result" style="padding: 2rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; backdrop-filter: blur(10px);">
-                        <div style="display:grid; grid-template-columns:1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="display:grid; grid-template-columns:1fr; gap: 1rem; margin-bottom: 1rem;">
                             <input name="name" placeholder="Full Name *" autocomplete="name" aria-label="Full name" required style="padding:1rem 1.25rem; border-radius:12px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:#fff; font-size: 1rem; transition: all 0.3s;">
                             <input name="email" type="email" placeholder="Work Email *" autocomplete="email" aria-label="Email" required style="padding:1rem 1.25rem; border-radius:12px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:#fff; font-size: 1rem; transition: all 0.3s;">
                             <input name="company" placeholder="Company Name" autocomplete="organization" aria-label="Company" style="padding:1rem 1.25rem; border-radius:12px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:#fff; font-size: 1rem; transition: all 0.3s;">
-                            <select name="budget" aria-label="Project Budget" style="padding:1rem 1.25rem; border-radius:12px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:#fff; font-size: 1rem; transition: all 0.3s; cursor: pointer;">
-                                <option value="" disabled selected style="color: rgba(255, 255, 255, 0.5);">Project Budget</option>
-                                <option value="<25k">Under $25,000</option>
-                                <option value="25-50k">$25,000 - $50,000</option>
-                                <option value="50-100k">$50,000 - $100,000</option>
-                                <option value="100k+">$100,000+</option>
-                                <option value="enterprise">Enterprise</option>
-                            </select>
                         </div>
                         <textarea name="message" placeholder="Tell us about your AI project goals and challenges *" aria-label="Project details" required rows="5" style="width: 100%; padding:1rem 1.25rem; border-radius:12px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:#fff; font-size: 1rem; margin-bottom: 1.5rem; transition: all 0.3s; resize: vertical;"></textarea>
                         
