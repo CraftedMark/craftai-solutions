@@ -1,0 +1,260 @@
+#!/usr/bin/env bash
+
+################################################################################
+# CraftAI Website Agent Configuration
+# Generated: 2025-09-06
+################################################################################
+
+# WEBSITE IDENTIFICATION
+export WEBSITE_NAME="CraftAI Solutions"
+export WEBSITE_VERSION="1.0.0"
+export WEBSITE_ENV="development"
+
+# SERVER LOCATIONS
+export PRODUCTION_SERVER="10.10.1.229"
+export PRODUCTION_PORT="3001"
+export PRODUCTION_PATH="/opt/craftai-website/"
+export VPS_SERVER="72.60.28.31"
+export VPS_PORT="3000"
+export LOCAL_DEV_PORT="8080"
+
+# GIT CONFIGURATION
+export GIT_REMOTE="root@10.10.1.229:/opt/git-repos/craftai-website.git"
+export GIT_BRANCH="main"
+
+# DOCKER CONFIGURATION
+export DOCKER_IMAGE="craftai-website:latest"
+export DOCKER_CONTAINER="craftai-website"
+export DOCKER_NETWORK="bridge"
+
+# DATABASE CONFIGURATION (if needed)
+export DB_HOST="100.74.10.96"  # Tailscale
+export DB_HOST_PUBLIC="72.60.28.31"
+export DB_PORT="5432"
+export DB_NAME="crafted"
+export DB_USER="ios_app"
+
+# SERVICE CONFIGURATION
+export SERVICE_NAME="craftai-website.service"
+export SERVICE_TYPE="systemd"
+export SERVICE_USER="root"
+
+# TECHNOLOGY STACK
+export FRAMEWORK="Go"
+export TEMPLATE_ENGINE="html/template"
+export ROUTER="gorilla/mux"
+export LIVE_RELOAD="WebSocket-based"
+export CSS_FRAMEWORK="Tailwind CSS"
+export JS_FRAMEWORK="Vanilla JS"
+
+# PROJECT STRUCTURE
+cat << 'EOF'
+
+PROJECT STRUCTURE:
+==================
+/Users/m/Desktop/craftai-website-copy/
+├── app/
+│   ├── internal/
+│   │   ├── templates/       # Go HTML templates
+│   │   │   ├── layout.html  # Base layout
+│   │   │   ├── home.html    # Homepage
+│   │   │   ├── projects.html
+│   │   │   ├── contact.html
+│   │   │   ├── blog.html
+│   │   │   ├── case-studies.html
+│   │   │   └── services/
+│   │   │       └── apa.html
+│   │   ├── static/          # Static assets
+│   │   │   ├── css/
+│   │   │   ├── js/
+│   │   │   └── images/
+│   │   ├── handlers/        # HTTP handlers
+│   │   └── routes/          # Route definitions
+│   └── cmd/
+│       └── server/
+│           └── main.go      # Main server entry
+├── live-server.go           # Live reload dev server
+├── run-live.sh             # Script to start live reload
+├── docker-compose.yml      # Docker configuration
+├── Dockerfile              # Container definition
+├── go.mod                  # Go dependencies
+└── go.sum                  # Go dependency locks
+
+EOF
+
+# TEMPLATE PAGES
+cat << 'EOF'
+
+AVAILABLE PAGES:
+================
+/ ........................ Home page
+/projects ................ Projects showcase
+/projects/crafted ........ Crafted app details
+/projects/craftaidashboard CraftAI Dashboard details
+/projects/emailagent ..... Email Agent details
+/projects/mindlattice .... Mind Lattice details
+/contact ................. Contact form
+/blog .................... Blog posts
+/case-studies ............ Case studies
+/services/apa ............ APA service details
+/gravity ................. Gravity page
+
+EOF
+
+# DEVELOPMENT COMMANDS
+cat << 'EOF'
+
+DEVELOPMENT COMMANDS:
+=====================
+# Start live reload server (auto-refresh on changes)
+./run-live.sh
+
+# Manual server start
+go run live-server.go
+
+# Build for production
+go build -o craftai-website app/cmd/server/main.go
+
+# Run production build
+./craftai-website
+
+# Docker commands
+docker build -t craftai-website .
+docker run -p 3001:3001 craftai-website
+
+# Deploy to production
+git add .
+git commit -m "Update website"
+git push production main
+
+EOF
+
+# LIVE RELOAD FEATURES
+cat << 'EOF'
+
+LIVE RELOAD FEATURES:
+=====================
+✅ WebSocket connection at ws://localhost:8080/ws
+✅ Automatic browser refresh on file changes
+✅ Watches: templates/, static/css/, static/js/, static/images/
+✅ Live reload script auto-injected into all pages
+✅ Console logging for connection status
+✅ Instant updates without manual refresh
+
+EOF
+
+# ACCESS INFORMATION
+cat << 'EOF'
+
+ACCESS URLS:
+============
+Development:
+  http://localhost:8080 (with live reload)
+
+Production:
+  Internal: http://10.10.1.229:3001
+  VPS: http://72.60.28.31:3000
+  
+Dokploy Dashboard:
+  http://72.60.28.31:3000
+  Username: marktnashed@icloud.com
+
+EOF
+
+# DEPLOYMENT VERIFICATION
+cat << 'EOF'
+
+DEPLOYMENT VERIFICATION:
+========================
+To verify this is the official CraftAI website:
+
+From local network (10.10.1.x):
+  curl http://10.10.1.229:3001/version
+  
+Check HTML source for meta tags:
+  curl -s http://10.10.1.229:3001 | grep "craftai-version"
+  
+Look for footer comment block:
+  curl -s http://10.10.1.229:3001 | grep "OFFICIAL CRAFTAI WEBSITE VERIFICATION"
+
+EOF
+
+# KEY FEATURES
+cat << 'EOF'
+
+KEY FEATURES:
+=============
+1. Live Development Server
+   - Hot reload on file changes
+   - WebSocket-based refresh
+   - Template reloading
+   - Static file serving
+
+2. Go Template System
+   - Layout inheritance
+   - Partial templates
+   - Dynamic content blocks
+   - Clean URL routing
+
+3. Production Ready
+   - Docker containerized
+   - Systemd service
+   - SSL/TLS support
+   - Performance optimized
+
+4. Project Showcase
+   - Crafted iOS app
+   - CraftAI Dashboard
+   - Email Agent
+   - Mind Lattice
+   - APA services
+
+EOF
+
+# TROUBLESHOOTING
+cat << 'EOF'
+
+TROUBLESHOOTING:
+================
+Port 8080 already in use:
+  lsof -i :8080
+  kill -9 <PID>
+
+Template not loading:
+  - Check template syntax
+  - Verify file permissions
+  - Check console for errors
+
+Live reload not working:
+  - Check WebSocket connection
+  - Verify port 8080 is open
+  - Check browser console
+
+Production deployment issues:
+  - Verify git remote
+  - Check service status: systemctl status craftai-website
+  - Check logs: journalctl -u craftai-website -f
+
+EOF
+
+# Function to display all info
+show_info() {
+    echo "🌐 CraftAI Website Configuration"
+    echo "================================"
+    echo "Environment: $WEBSITE_ENV"
+    echo "Local Dev: http://localhost:$LOCAL_DEV_PORT"
+    echo "Production: http://$PRODUCTION_SERVER:$PRODUCTION_PORT"
+    echo "VPS: http://$VPS_SERVER:$VPS_PORT"
+    echo ""
+    echo "Live reload server status:"
+    if lsof -i :8080 > /dev/null 2>&1; then
+        echo "✅ Running on port 8080"
+    else
+        echo "❌ Not running - start with: ./run-live.sh"
+    fi
+}
+
+# Execute if run directly
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    show_info
+fi

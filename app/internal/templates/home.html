@@ -1,0 +1,631 @@
+{{define "content"}}
+<main class="main-content" aria-labelledby="page-title">
+    <!-- Hero Section -->
+    <section class="hero-section" data-hero-animation="floating" data-animate-when-visible="true" aria-label="Hero">
+
+        <div class="hero-content">
+            <!-- Badge -->
+            <div class="tech-badge">
+                15+ YEARS OF TECHNOLOGY EXCELLENCE
+            </div>
+            
+            <h1 id="page-title" class="hero-title">
+                Bespoke AI solutions,<br>
+                automation &<br>
+                <strong>intelligent systems</strong>
+            </h1>
+            
+            <p class="hero-description">
+                You dream it, we'll make it a reality with intelligent solutions that
+                transform businesses across industries. Located in Newport
+                Beach, CA, we serve businesses nationwide with cutting-edge
+                AI development and automation services.
+            </p>
+            
+            <!-- Stats -->
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number metric-value">150+</div>
+                    <div class="stat-label metric-label">AI Solutions Deployed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number metric-value">98%</div>
+                    <div class="stat-label metric-label">Client Satisfaction</div>
+                </div>
+            </div>
+            
+            <a href="#contact" class="hero-cta" aria-label="Start your AI project — jump to contact section" title="Start your AI project">
+                Start Your AI Project
+            </a>
+        </div>
+        <div class="hero-decoration hero-decoration-2 hero-layer" data-depth="0.4" aria-hidden="true"></div>
+        <noscript>
+            <div class="hero-nojs-fallback" aria-hidden="true"></div>
+        </noscript>
+    </section>
+
+    <!-- Trusted By Marquee -->
+    <section class="client-marquee" aria-label="Trusted by">
+        <div class="container">
+            <div class="marquee-header">
+                <span class="section-label">TRUSTED BY</span>
+            </div>
+        </div>
+        <div class="marquee">
+            <div class="marquee-track">
+                <div class="marquee-item"><img src="/static/images/clients/altamed.svg" alt="AltaMed"></div>
+                <div class="marquee-item"><img src="/static/images/clients/hoag.svg" alt="Hoag"></div>
+                <div class="marquee-item"><img src="/static/images/clients/providence.svg" alt="Providence"></div>
+                <div class="marquee-item"><img src="/static/images/clients/world-wide-love.avif" alt="World Wide Love"></div>
+                <!-- duplicate sequence for seamless loop -->
+                <div class="marquee-item" data-duplicate="true" aria-hidden="true"><img src="/static/images/clients/altamed.svg" alt="AltaMed"></div>
+                <div class="marquee-item" data-duplicate="true" aria-hidden="true"><img src="/static/images/clients/hoag.svg" alt="Hoag"></div>
+                <div class="marquee-item" data-duplicate="true" aria-hidden="true"><img src="/static/images/clients/providence.svg" alt="Providence"></div>
+                <div class="marquee-item" data-duplicate="true" aria-hidden="true"><img src="/static/images/clients/world-wide-love.avif" alt="World Wide Love"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Work Section -->
+    <section id="work" class="work-section section-fullbleed">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <h2>Our AI Development Work</h2>
+                <span class="section-label">FEATURED PROJECTS</span>
+            </div>
+            
+            <div class="projects-grid projects-grid-modern" data-scroll-animate="cards" data-animate-when-visible="true">
+                <!-- Crafted -->
+                <div class="project-card modern-card reveal-up">
+                    <div class="project-header">
+                        <h3 class="project-title">Crafted</h3>
+                        <span class="project-status">AI-Enhanced Operations Platform</span>
+                    </div>
+                    <p class="project-description">
+                        An end-to-end operations platform for makers and small manufacturers: inventory, order processing, invoicing,
+                        production tracking, and voice assistance. Offline-first with distributed sync.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Swift</span>
+                        <span class="tech-tag">SwiftUI</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">CRDT</span>
+                        <span class="tech-tag">Voice</span>
+                    </div>
+                </div>
+                
+                <!-- Mind Lattice AI -->
+                <div class="project-card modern-card reveal-up">
+                    <div class="project-header">
+                        <h3 class="project-title">Mind Lattice AI</h3>
+                        <span class="project-status">Voice-First Memory Augmentation</span>
+                    </div>
+                    <p class="project-description">
+                        Transforms spoken thoughts into structured, actionable data with intelligent lattice connection discovery,
+                        fast recall, and context-driven suggestions on iOS.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Swift</span>
+                        <span class="tech-tag">SwiftUI</span>
+                        <span class="tech-tag">Speech</span>
+                        <span class="tech-tag">LLM APIs</span>
+                    </div>
+                </div>
+                
+                <!-- Email Agent -->
+                <div class="project-card modern-card reveal-up">
+                    <div class="project-header">
+                        <h3 class="project-title">Email Agent</h3>
+                        <span class="project-status">Intelligent Email Automation</span>
+                    </div>
+                    <p class="project-description">
+                        Advanced email processing system that scans multiple inboxes for receipts, orders, and spam with parallel
+                        processing and smart classification.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">IMAP</span>
+                        <span class="tech-tag">NLP</span>
+                        <span class="tech-tag">Async</span>
+                    </div>
+                </div>
+                
+                <!-- CraftAI Dashboard -->
+                <div class="project-card modern-card reveal-up">
+                    <div class="project-header">
+                        <h3 class="project-title">CraftAI Dashboard</h3>
+                        <span class="project-status">Modern iOS Architecture Template</span>
+                    </div>
+                    <p class="project-description">
+                        A production-grade iOS template using workspace + SPM modules, AI assistant rules, and modern Swift 6
+                        patterns for rapid feature development.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Swift 6</span>
+                        <span class="tech-tag">SwiftUI</span>
+                        <span class="tech-tag">SPM</span>
+                        <span class="tech-tag">Testing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <h2>AI Development & Automation Services</h2>
+                <p class="section-description">
+                    Comprehensive AI solutions designed to transform your business operations and drive<br>
+                    measurable results. From machine learning development to intelligent automation, we<br>
+                    deliver cutting-edge technology solutions in Newport Beach and nationwide.
+                </p>
+            </div>
+
+            <div class="services-grid" data-animate-when-visible="true" style="grid-template-columns: repeat(3, minmax(0,1fr)); gap: 2rem;">
+                <div class="service-card reveal-up hover-glow">
+                    <div class="service-icon service-icon-gradient">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#icon-gradient-1)" stroke-width="1.5">
+                            <defs>
+                                <linearGradient id="icon-gradient-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 8h6M9 11h3" />
+                        </svg>
+                    </div>
+                    <h3>Custom AI Development</h3>
+                    <p>Custom machine learning models, neural networks, and intelligent systems tailored to your specific business requirements and challenges.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+
+                <div class="service-card reveal-up hover-glow">
+                    <div class="service-icon service-icon-gradient">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#icon-gradient-2)" stroke-width="1.5">
+                            <defs>
+                                <linearGradient id="icon-gradient-2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                    </div>
+                    <h3>AI Strategy Consulting</h3>
+                    <p>Strategic guidance for AI adoption, from feasibility studies to implementation roadmaps and organizational transformation.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+
+                <div class="service-card reveal-up hover-glow">
+                    <div class="service-icon service-icon-gradient">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#icon-gradient-3)" stroke-width="1.5">
+                            <defs>
+                                <linearGradient id="icon-gradient-3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3>Process Automation</h3>
+                    <p>Intelligent workflow automation that reduces manual tasks, eliminates errors, and dramatically improves operational efficiency.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+
+                <div class="service-card reveal-up hover-glow">
+                    <div class="service-icon service-icon-gradient">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#icon-gradient-4)" stroke-width="1.5">
+                            <defs>
+                                <linearGradient id="icon-gradient-4" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#60a5fa;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                    <h3>Integration & Support</h3>
+                    <p>Seamless integration with existing systems plus ongoing support and maintenance to ensure optimal AI performance.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+
+                <div class="service-card reveal-up hover-glow">
+                    <div class="service-icon service-icon-gradient">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#icon-gradient-5)" stroke-width="1.5">
+                            <defs>
+                                <linearGradient id="icon-gradient-5" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#38bdf8;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                        </svg>
+                    </div>
+                    <h3>Data Intelligence</h3>
+                    <p>Advanced analytics, predictive modeling, and business intelligence solutions that transform raw data into strategic insights.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+            </div>
+
+            <!-- Industry Expertise - Redesigned as Premium Cards -->
+            <div class="industry-expertise-section reveal-up">
+                <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+                    <h3 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem; background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Industry Expertise</h3>
+                    <p style="color: rgba(255, 255, 255, 0.6); font-size: 1.1rem;">Transforming industries with AI-powered solutions tailored to your sector</p>
+                </div>
+                <div class="industry-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                    <div class="service-card reveal-up hover-glow" style="text-align: left;">
+                        <div class="service-icon service-icon-gradient" style="margin-bottom: 1rem;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="url(#health-gradient)" stroke-width="1.5">
+                                <defs>
+                                    <linearGradient id="health-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                            </svg>
+                        </div>
+                        <h4 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.9);">Healthcare & MedTech</h4>
+                        <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.95rem;">Intelligent diagnostics, patient analytics, and operational efficiency</p>
+                    </div>
+                    <div class="service-card reveal-up hover-glow" style="text-align: left;">
+                        <div class="service-icon service-icon-gradient" style="margin-bottom: 1rem;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="url(#finance-gradient)" stroke-width="1.5">
+                                <defs>
+                                    <linearGradient id="finance-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                        </div>
+                        <h4 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.9);">Financial Services</h4>
+                        <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.95rem;">Risk assessment, fraud detection, and algorithmic trading systems</p>
+                    </div>
+                    <div class="service-card reveal-up hover-glow" style="text-align: left;">
+                        <div class="service-icon service-icon-gradient" style="margin-bottom: 1rem;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="url(#manufacturing-gradient)" stroke-width="1.5">
+                                <defs>
+                                    <linearGradient id="manufacturing-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#ef4444;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <path d="M9 9h6v6h-6z"/>
+                            </svg>
+                        </div>
+                        <h4 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.9);">Manufacturing</h4>
+                        <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.95rem;">Predictive maintenance, quality control, and supply chain optimization</p>
+                    </div>
+                    <div class="service-card reveal-up hover-glow" style="text-align: left;">
+                        <div class="service-icon service-icon-gradient" style="margin-bottom: 1rem;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="url(#retail-gradient)" stroke-width="1.5">
+                                <defs>
+                                    <linearGradient id="retail-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <path d="M3 3h18v5H3zM21 8v13H3V8M10 12h4"/>
+                            </svg>
+                        </div>
+                        <h4 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.9);">Retail & E-commerce</h4>
+                        <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.95rem;">Personalization engines, inventory management, and customer insights</p>
+                    </div>
+                    <div class="service-card reveal-up hover-glow" style="text-align: left;">
+                        <div class="service-icon service-icon-gradient" style="margin-bottom: 1rem;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="url(#legal-gradient)" stroke-width="1.5">
+                                <defs>
+                                    <linearGradient id="legal-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <h4 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.9);">Legal & Compliance</h4>
+                        <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.95rem;">Contract analysis, regulatory compliance, and risk mitigation</p>
+                    </div>
+                    <div class="service-card reveal-up hover-glow" style="text-align: left;">
+                        <div class="service-icon service-icon-gradient" style="margin-bottom: 1rem;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="url(#energy-gradient)" stroke-width="1.5">
+                                <defs>
+                                    <linearGradient id="energy-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <h4 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.9);">Energy & Utilities</h4>
+                        <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.95rem;">Grid optimization, demand forecasting, and renewable energy management</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Capabilities Showcase -->
+    <section id="ai-capabilities" class="capabilities-section">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <h2>AI Capabilities in Action</h2>
+                <p class="section-description">
+                    Experience our cutting-edge AI technologies through interactive demonstrations.<br>
+                    Click on any capability to see it in action.
+                </p>
+            </div>
+            
+            <div class="capabilities-showcase">
+                <!-- Natural Language Processing -->
+                <div class="capability-card interactive-demo" data-capability="nlp">
+                    <div class="capability-icon">
+                        <svg class="ai-icon" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                            <path d="M30 50 Q50 30 70 50 T90 50" stroke="currentColor" stroke-width="2" fill="none" class="wave-path"/>
+                        </svg>
+                    </div>
+                    <h3>Natural Language Processing</h3>
+                    <div class="capability-demo">
+                        <div class="demo-input">
+                            <span class="typing-demo" data-text="Transform unstructured text into actionable insights..."></span>
+                        </div>
+                        <div class="demo-output">
+                            <div class="analysis-result">
+                                <span class="tag">Sentiment: Positive</span>
+                                <span class="tag">Intent: Information Request</span>
+                                <span class="tag">Entities: 3 detected</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="capability-description">
+                        Advanced text analysis, entity extraction, and sentiment analysis powered by state-of-the-art language models.
+                    </p>
+                </div>
+
+                <!-- Computer Vision -->
+                <div class="capability-card interactive-demo" data-capability="vision">
+                    <div class="capability-icon">
+                        <svg class="ai-icon" viewBox="0 0 100 100">
+                            <rect x="20" y="20" width="60" height="60" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                            <rect x="30" y="30" width="15" height="15" fill="currentColor" opacity="0.6" class="scan-box"/>
+                            <rect x="55" y="55" width="15" height="15" fill="currentColor" opacity="0.6" class="scan-box"/>
+                        </svg>
+                    </div>
+                    <h3>Computer Vision</h3>
+                    <div class="capability-demo">
+                        <div class="vision-grid">
+                            <div class="vision-cell detected"></div>
+                            <div class="vision-cell"></div>
+                            <div class="vision-cell detected"></div>
+                            <div class="vision-cell"></div>
+                            <div class="vision-cell detected"></div>
+                            <div class="vision-cell"></div>
+                            <div class="vision-cell detected"></div>
+                            <div class="vision-cell"></div>
+                            <div class="vision-cell detected"></div>
+                        </div>
+                        <div class="vision-stats">
+                            <span>Objects: 5</span>
+                            <span>Accuracy: 98.7%</span>
+                        </div>
+                    </div>
+                    <p class="capability-description">
+                        Real-time object detection, image classification, and visual pattern recognition for automated quality control.
+                    </p>
+                </div>
+
+                <!-- Predictive Analytics -->
+                <div class="capability-card interactive-demo" data-capability="analytics">
+                    <div class="capability-icon">
+                        <svg class="ai-icon" viewBox="0 0 100 100">
+                            <polyline points="10,70 30,50 50,60 70,30 90,40" fill="none" stroke="currentColor" stroke-width="2" class="chart-line"/>
+                            <circle cx="70" cy="30" r="3" fill="currentColor" class="pulse-dot"/>
+                        </svg>
+                    </div>
+                    <h3>Predictive Analytics</h3>
+                    <div class="capability-demo">
+                        <div class="chart-container">
+                            <div class="bar-chart">
+                                <div class="bar" style="height: 40%"></div>
+                                <div class="bar" style="height: 60%"></div>
+                                <div class="bar" style="height: 45%"></div>
+                                <div class="bar predicted" style="height: 75%"></div>
+                                <div class="bar predicted" style="height: 85%"></div>
+                            </div>
+                            <div class="prediction-label">Future Trend →</div>
+                        </div>
+                    </div>
+                    <p class="capability-description">
+                        Machine learning models that forecast trends, identify patterns, and optimize decision-making processes.
+                    </p>
+                </div>
+
+                <!-- Intelligent Automation -->
+                <div class="capability-card interactive-demo" data-capability="automation">
+                    <div class="capability-icon">
+                        <svg class="ai-icon" viewBox="0 0 100 100">
+                            <circle cx="25" cy="50" r="8" fill="currentColor" opacity="0.6"/>
+                            <circle cx="50" cy="50" r="8" fill="currentColor" opacity="0.6"/>
+                            <circle cx="75" cy="50" r="8" fill="currentColor" opacity="0.6"/>
+                            <path d="M33 50 L42 50 M58 50 L67 50" stroke="currentColor" stroke-width="2" class="connection-line"/>
+                        </svg>
+                    </div>
+                    <h3>Intelligent Automation</h3>
+                    <div class="capability-demo">
+                        <div class="workflow-demo">
+                            <div class="workflow-step active">Input</div>
+                            <div class="workflow-arrow">→</div>
+                            <div class="workflow-step active">Process</div>
+                            <div class="workflow-arrow">→</div>
+                            <div class="workflow-step active">Output</div>
+                        </div>
+                        <div class="automation-stats">
+                            <span class="stat-value">87%</span>
+                            <span class="stat-label">Time Saved</span>
+                        </div>
+                    </div>
+                    <p class="capability-description">
+                        End-to-end workflow automation with intelligent decision-making and adaptive process optimization.
+                    </p>
+                </div>
+            </div>
+
+            <div class="capabilities-cta reveal-up">
+                <p>Ready to leverage these capabilities for your business?</p>
+                <a href="#contact" class="btn btn-primary">Start Your AI Journey</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Strip: slim highlights -->
+    <section class="case-strip" aria-label="Case highlights">
+        <div class="container">
+            <div class="track" role="list">
+                <a class="chip" href="#work" role="listitem">Crafted <small>Operations Platform</small></a>
+                <a class="chip" href="#work" role="listitem">Mind Lattice AI <small>Memory Augmentation</small></a>
+                <a class="chip" href="#work" role="listitem">Email Agent <small>Automation</small></a>
+                <a class="chip" href="#work" role="listitem">CraftAI Dashboard <small>iOS Template</small></a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="work-section about-section">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <h2>Why Choose CraftAI</h2>
+                <p class="section-description">
+                    We craft high-performance AI products and automation systems with measurable business impact.
+                    Senior-only team, clear communication, and delivery you can trust.
+                </p>
+            </div>
+            <div class="services-grid" data-animate-when-visible="true" style="grid-template-columns: repeat(3, minmax(0,1fr)); gap: 2rem;">
+                <div class="service-card reveal-up hover-glow">
+                    <div class="service-icon service-icon-gradient">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#about-gradient-1)" stroke-width="1.5">
+                            <defs>
+                                <linearGradient id="about-gradient-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                        </svg>
+                    </div>
+                    <h3>Senior-Only Team</h3>
+                    <p>Architects and principal engineers on every project. No handoffs, no learning on your dime.</p>
+                </div>
+                <div class="service-card reveal-up hover-glow">
+                    <div class="service-icon service-icon-gradient">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#about-gradient-2)" stroke-width="1.5">
+                            <defs>
+                                <linearGradient id="about-gradient-2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                        </svg>
+                    </div>
+                    <h3>Outcome-Focused</h3>
+                    <p>We align roadmaps to business goals—reduce costs, increase throughput, and ship faster.</p>
+                </div>
+                <div class="service-card reveal-up hover-glow">
+                    <div class="service-icon service-icon-gradient">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#about-gradient-3)" stroke-width="1.5">
+                            <defs>
+                                <linearGradient id="about-gradient-3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#4f46e5;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                        </svg>
+                    </div>
+                    <h3>Enterprise-Grade</h3>
+                    <p>Security-first, scalable architectures with rigorous QA, observability, and documentation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section - Redesigned -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <div class="cta-wrapper" style="max-width: 900px; margin: 0 auto;">
+                <!-- Main CTA Content -->
+                <div class="cta-content reveal-up">
+                    <div class="cta-header" style="text-align: center; margin-bottom: 3rem;">
+                        <div class="tech-badge" style="display: inline-block; margin-bottom: 1rem;">Get Started Today</div>
+                        <h2 class="cta-title" style="font-size: 3rem; font-weight: 700; margin-bottom: 1rem;">
+                            Ready to Transform Your Business
+                            <span class="text-gradient" style="display: block;"> with AI?</span>
+                        </h2>
+                        <p class="cta-description" style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.7); max-width: 600px; margin: 0 auto;">
+                            Join leading enterprises who trust CraftAI to deliver cutting-edge AI solutions.
+                            Let's discuss how we can accelerate your digital transformation.
+                        </p>
+                    </div>
+                    
+                    <!-- Value Props -->
+                    <div class="cta-benefits" style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap;">
+                        <div class="cta-benefit" style="display: flex; align-items: center; gap: 0.5rem;">
+                            <svg style="width: 20px; height: 20px; color: #3b82f6;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span style="color: rgba(255, 255, 255, 0.8);">24-Hour Response</span>
+                        </div>
+                        <div class="cta-benefit" style="display: flex; align-items: center; gap: 0.5rem;">
+                            <svg style="width: 20px; height: 20px; color: #10b981;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span style="color: rgba(255, 255, 255, 0.8);">Free Consultation</span>
+                        </div>
+                        <div class="cta-benefit" style="display: flex; align-items: center; gap: 0.5rem;">
+                            <svg style="width: 20px; height: 20px; color: #6366f1;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                            </svg>
+                            <span style="color: rgba(255, 255, 255, 0.8);">NDA Protected</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <form id="contact-form" action="/api/contact" method="post" class="card-premium" aria-describedby="contact-result" style="padding: 2rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; backdrop-filter: blur(10px);">
+                        <div style="display:grid; grid-template-columns:1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <input name="name" placeholder="Full Name *" autocomplete="name" aria-label="Full name" required style="padding:1rem 1.25rem; border-radius:12px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:#fff; font-size: 1rem; transition: all 0.3s;">
+                            <input name="email" type="email" placeholder="Work Email *" autocomplete="email" aria-label="Email" required style="padding:1rem 1.25rem; border-radius:12px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:#fff; font-size: 1rem; transition: all 0.3s;">
+                            <input name="company" placeholder="Company Name" autocomplete="organization" aria-label="Company" style="padding:1rem 1.25rem; border-radius:12px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:#fff; font-size: 1rem; transition: all 0.3s;">
+                        </div>
+                        <textarea name="message" placeholder="Tell us about your AI project goals and challenges *" aria-label="Project details" required rows="5" style="width: 100%; padding:1rem 1.25rem; border-radius:12px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:#fff; font-size: 1rem; margin-bottom: 1.5rem; transition: all 0.3s; resize: vertical;"></textarea>
+                        
+                        <div style="text-align: center;">
+                            <button type="submit" class="btn btn-primary btn-magnetic" aria-label="Send message" style="padding: 1rem 3rem; font-size: 1.1rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+                                <span>Start Your AI Journey</span>
+                                <svg style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                            <p style="margin-top: 1rem; color: rgba(255, 255, 255, 0.6); font-size: 0.95rem;">
+                                or email us directly at <a href="mailto:hello@craftai.solutions" class="text-gradient" style="font-weight: 600;">hello@craftai.solutions</a>
+                            </p>
+                        </div>
+                        
+                        <div id="contact-result" role="status" aria-live="polite" style="margin-top:1rem; font-size:0.95rem; text-align: center; color:#cbd5e1;"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{{end}}
