@@ -64,6 +64,19 @@ func main() {
 	r.HandleFunc("/api/contact", handlers.ContactFormHandler).Methods("POST")
 	r.HandleFunc("/api/newsletter", handlers.NewsletterHandler).Methods("POST")
 
+	// SEO files
+	r.HandleFunc("/robots.txt", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, filepath.Join("internal", "static", "robots.txt"))
+	}).Methods("GET")
+	
+	r.HandleFunc("/sitemap.xml", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, filepath.Join("internal", "static", "sitemap.xml"))
+	}).Methods("GET")
+	
+	r.HandleFunc("/llms.txt", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, filepath.Join("internal", "static", "llms.txt"))
+	}).Methods("GET")
+
 	// Health check endpoint
 	r.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)

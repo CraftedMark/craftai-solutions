@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <!-- Primary Meta Tags -->
-    <title>{{.Title}} | CraftAI Solutions - AI Development & Automation Services | Newport Beach</title>
-    <meta name="title" content="{{.Title}} | CraftAI Solutions - AI Development & Automation">
+    <title>{{.Title}}</title>
+    <meta name="title" content="{{.Title}}">
     <meta name="description" content="{{.Description}}">
-    <meta name="keywords" content="AI development, automation, machine learning, Newport Beach, Orange County, intelligent systems, process automation, artificial intelligence, custom AI solutions, business automation, AI consulting">
+    <meta name="keywords" content="{{.Keywords}}">
     <meta name="author" content="CraftAI Solutions">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
@@ -17,22 +17,22 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://craftai.solutions/">
-    <meta property="og:title" content="{{.Title}} | CraftAI Solutions - AI Development & Automation">
+    <meta property="og:url" content="{{.PageURL}}">
+    <meta property="og:title" content="{{.Title}}">
     <meta property="og:description" content="{{.Description}}">
-    <meta property="og:image" content="https://craftai.solutions/static/images/og-image.jpg">
+    <meta property="og:image" content="{{.OGImage}}">
     <meta property="og:site_name" content="CraftAI Solutions">
     <meta property="og:locale" content="en_US">
     
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://craftai.solutions/">
-    <meta property="twitter:title" content="{{.Title}} | CraftAI Solutions">
-    <meta property="twitter:description" content="{{.Description}}">
-    <meta property="twitter:image" content="https://craftai.solutions/static/images/twitter-card.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{.PageURL}}">
+    <meta name="twitter:title" content="{{.Title}}">
+    <meta name="twitter:description" content="{{.Description}}">
+    <meta name="twitter:image" content="{{.OGImage}}">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://craftai.solutions/">
+    <link rel="canonical" href="{{.PageURL}}">
     
     <!-- LLMs.txt for AI agents -->
     <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt - AI Agent Information">
