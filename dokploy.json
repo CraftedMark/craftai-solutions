@@ -1,0 +1,20 @@
+{
+  "name": "craftai-solutions",
+  "type": "docker",
+  "buildContext": ".",
+  "dockerfile": "Dockerfile",
+  "port": 3000,
+  "env": {
+    "PORT": "3000",
+    "NODE_ENV": "production"
+  },
+  "healthCheck": {
+    "path": "/health",
+    "interval": 30,
+    "timeout": 10
+  },
+  "domains": [
+    "craftai.solutions",
+    "www.craftai.solutions"
+  ]
+}

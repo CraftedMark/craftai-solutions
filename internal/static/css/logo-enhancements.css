@@ -1,0 +1,226 @@
+/* Enhanced Logo Styling */
+
+/* Logo container improvements */
+.logo-modern, .footer-logo-modern {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.logo-modern:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+/* Enhanced icon box with better gradients and effects */
+.logo-icon-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #5ac8ff 0%, #8c5aff 100%);
+    position: relative;
+    box-shadow: 
+        0 4px 12px rgba(90, 200, 255, 0.3),
+        0 0 24px rgba(90, 200, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* Animated gradient background */
+.logo-icon-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+/* SVG icon styling */
+.logo-svg {
+    position: relative;
+    z-index: 1;
+    color: #ffffff;
+    width: 24px;
+    height: 24px;
+    animation: pulse-nodes 4s ease-in-out infinite;
+}
+
+/* Animate the neural network nodes */
+@keyframes pulse-nodes {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Individual node animations */
+.logo-svg circle {
+    animation: node-glow 3s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 0.2s);
+}
+
+.logo-svg circle:nth-child(1) { --i: 0; }
+.logo-svg circle:nth-child(2) { --i: 1; }
+.logo-svg circle:nth-child(3) { --i: 2; }
+.logo-svg circle:nth-child(4) { --i: 3; }
+.logo-svg circle:nth-child(5) { --i: 4; }
+
+@keyframes node-glow {
+    0%, 100% {
+        filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.6));
+    }
+    50% {
+        filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9));
+    }
+}
+
+/* Logo text improvements */
+.logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--fg-100);
+    position: relative;
+}
+
+/* Gradient text effect */
+.gradient-text {
+    background: linear-gradient(135deg, #5ac8ff, #8c5aff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+    position: relative;
+    display: inline-block;
+}
+
+/* Glow effect on hover */
+.logo-modern:hover .gradient-text {
+    filter: drop-shadow(0 0 8px rgba(90, 200, 255, 0.5));
+}
+
+/* 3D effect on hover */
+.logo-modern:hover .logo-icon-box {
+    transform: translateZ(10px) rotateY(5deg);
+    box-shadow: 
+        0 8px 24px rgba(90, 200, 255, 0.4),
+        0 0 40px rgba(90, 200, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .logo-icon-box {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .logo-text {
+        font-size: 20px;
+    }
+    
+    .logo-svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+    .logo-icon-box {
+        box-shadow: 
+            0 4px 16px rgba(90, 200, 255, 0.4),
+            0 0 32px rgba(140, 90, 255, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* Premium glass effect variant */
+.logo-icon-box.glass {
+    background: rgba(90, 200, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Animated border variant */
+.logo-icon-box.animated-border {
+    position: relative;
+    background: linear-gradient(135deg, #5ac8ff, #8c5aff);
+}
+
+.logo-icon-box.animated-border::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #5ac8ff, #8c5aff, #5ac8ff);
+    border-radius: 12px;
+    opacity: 0.8;
+    z-index: -1;
+    animation: rotate-gradient 3s linear infinite;
+}
+
+@keyframes rotate-gradient {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Footer logo specific styling */
+.footer-logo-modern .logo-icon-box {
+    width: 36px;
+    height: 36px;
+}
+
+.footer-logo-modern .logo-text {
+    font-size: 20px;
+}
+
+/* Loading animation for logo */
+.logo-loading {
+    animation: logo-load 1s ease-out;
+}
+
+@keyframes logo-load {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) rotate(-10deg);
+    }
+    50% {
+        transform: scale(1.1) rotate(5deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
