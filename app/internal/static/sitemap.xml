@@ -51,35 +51,28 @@
     <!-- Project Pages -->
     <url>
         <loc>https://craftai.solutions/projects</loc>
-        <lastmod>2025-09-06</lastmod>
+        <lastmod>2025-01-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
-        <loc>https://craftai.solutions/projects/crafted</loc>
-        <lastmod>2025-09-06</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://craftai.solutions/projects/craftaidashboard</loc>
-        <lastmod>2025-09-06</lastmod>
+        <loc>https://craftai.solutions/projects/craftai-dashboard</loc>
+        <lastmod>2025-01-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     
     <url>
-        <loc>https://craftai.solutions/projects/mindlattice</loc>
-        <lastmod>2025-09-06</lastmod>
+        <loc>https://craftai.solutions/projects/mind-lattice</loc>
+        <lastmod>2025-01-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     
     <url>
-        <loc>https://craftai.solutions/projects/emailagent</loc>
-        <lastmod>2025-09-06</lastmod>
+        <loc>https://craftai.solutions/projects/email-agent</loc>
+        <lastmod>2025-01-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>

@@ -1,196 +1,72 @@
-# CLAUDE.md
+                                      ## Role Understanding
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+- You are the Users Agentic Assistant, the User Mark, User will talk to you about the projhect then assing tasks to you , you will work with them to decide on the ebst technologies, features and other infomation
+- You don't ask the user to complete the task if there is an issue; the user will help you, normall you have access to whatever you need , the information about it is in the Claude Code Vault
+-You have a horrible memory. So, you document everything in Claude Code Vault that is located at /users/m/desktop/Claude Code Vault.
+- You are the agentic assistant .. the user will give you tasks with the expectation that they will be completed from A to Z
 
-**## NOTES FROM MARK **
+## Configuration
 
-- When making changes to the site .. or even creating new sites , you need to use puppeteeer to "See" what the changes look like
-- The changes should be there at the following:
-1. Local
-2. Pushed to Git
-3. Pre-lived at 10.10.1.229
-4. Verified by User Live to Production Via Dokploy
+### CraftAI Website Infrastructure (UPDATED)
+- **VPS Server**: 72.60.28.31 (Dokploy platform)
+- **Domain**: craftai.solutions (and www.craftai.solutions)
+- **Cloudflare Tunnel ID**: c2dcd83c-bd5a-4a25-b39d-ee88e0f36196
+- **GitHub Repository**: CraftedMark/craftai-solutions
+- **Deployment Method**: GitHub webhook to Dokploy (auto-deploy enabled)
+- **SSL Certificate**: Let's Encrypt via Cloudflare
+- **Platform**: Dokploy at http://72.60.28.31:3000
+- **User**: marktnashed@icloud.com
 
-##Design
+### Website Verification Methods:
 
-1. The Designs should be mordern clean and Elegent , using all of the latest and great technologies, WEbGl , 3d Design , Blender rednering , Animations , etc. But we also need to make sure that it doesnt look childish . the pages , and templates shoudl be full width responsive and expertly seo optimized.
+  🔍 How to Verify This is the Correct Site:
 
-2. the project pages , when developing a page for apps that we have built it would be required to build interactive UI screens of the app , so we can show the potential users functionality and styling. What tecnologies to use will be upt o the developer ( Claude Code)
+  From any location (public access via Cloudflare):
+  # Check the live website
+  curl -I https://craftai.solutions
+  curl -I https://www.craftai.solutions
 
-3. Deployment and Changes - you need to visually inspect the pages before turning over to the user. its not complete till the changes are approved and inspected by you and the user. via puppeteer.
+  # Check HTML source for meta tags and identifiers
+  curl -s https://craftai.solutions | grep -i "craftai"
 
-4. Keep the codebase clean and orginized , there shouldnt be code in the filesystem that isnt being useed . if ther is rempve it . we dont want to have things runing all over the place . 
+  # Verify SSL certificate (issued by Let's Encrypt)
+  openssl s_client -connect craftai.solutions:443 -servername craftai.solutions < /dev/null
 
-## Project Overview
+  # Check DNS resolution (should point to Cloudflare)
+  nslookup craftai.solutions
+  
+  # Access Dokploy platform for deployment management
+  # URL: http://72.60.28.31:3000
+  # Login: marktnashed@icloud.com
 
-CraftAI.Solutions - Go-based business website for AI automation services showcasing AI capabilities, projects, and services. 
+  Note: The website is accessible globally through Cloudflare tunnel, not limited to local network!
 
-**Production**: https://craftai.solutions (via Cloudflare tunnel → Dokploy at 72.60.28.31)  
-**GitHub**: https://github.com/CraftedMark/craftai-solutions
 
-## Essential Commands
 
-### Development
-```bash
-# Run locally (default port 3000)
-go run cmd/server/main.go
 
-# Run with hot reload (requires air)
-go install github.com/cosmtrek/air@latest
-air
+## Learning and Knowledge Management
 
-# Build executable
-go build -o craftai-server cmd/server/main.go
-```
+- If you figure something out, have a hard time connecting to something, or learn something new, create a reference in cloud.md and the vault's learning/learnings section
+- Document new learnings, insights, and problem-solving experiences in these designated areas
 
-### Deployment
-```bash
-# Deploy to production via GitHub push (triggers Dokploy)
-./deploy.sh "commit message"
+## SSH and Proxmox Access
 
-# Or manually:
-git add -A
-git commit -m "your message"
-git push dokploy master  # or: git push github master
+- When unable to SSH directly into a container/host, ALWAYS first SSH to the HOST NODE (ProxMOX nodes)
+- Once on the host node, configure SSH to the standard we use (Proxmox_key etc.)
+- Complete your work after establishing proper SSH access
 
-# Build for Linux server
-GOOS=linux GOARCH=amd64 go build -o craftai-website-linux cmd/server/main.go
-```
+## Troubleshooting Access
 
-### Docker Operations
-```bash
-# Build and run locally
-docker build -t craftai-solutions .
-docker run -p 3000:3000 -e PORT=3000 craftai-solutions
+- If all else fails, use Playwright to connect to the web GUI of one of the cluster nodes, then find what you need to connect to and configure it correctly so that you can connect by SSH
 
-# Docker Compose
-docker-compose up -d
-docker-compose logs -f
-```
+## Web Testing Principles
 
-### Health Checks
-```bash
-# Local
-curl http://localhost:3000/health
+- When testing anything for a website or web-related project, always test with the public host address
+- Verify that the site works correctly with the full hostname (e.g., CraftAI.Solutions)
+- Test and compare behavior between local IP (e.g., 10.10.1.299) and the hostname to identify potential configuration issues
 
-# Production (via Cloudflare)
-curl https://craftai.solutions/health
-```
+## Playwright MCP Troubleshooting
 
-## Architecture
-
-### Request Flow
-1. **Entry**: `cmd/server/main.go` - Gorilla Mux router setup
-2. **Routing**: All routes defined in main.go (no separate router package)
-3. **Handlers**: `internal/handlers/` - Each handler renders templates directly
-4. **Templates**: `internal/templates/` - Go html/template with layout inheritance
-5. **Static**: `internal/static/` - CSS, JS, images served with cache headers
-
-### Key Implementation Details
-
-**Static File Serving Fix** (main.go:33-34):
-```go
-// Strip query parameters for file serving (fixes production CSS loading)
-r.URL.RawQuery = ""
-```
-This prevents 404s when CSS files are requested with version query strings.
-
-**Template Rendering Pattern**:
-```go
-tmpl := template.Must(template.ParseFiles(
-    "internal/templates/layout.html",
-    "internal/templates/home.html",
-))
-tmpl.ExecuteTemplate(w, "layout", data)
-```
-
-**No centralized PageData struct** - Each handler defines its own data structure.
-
-## Production Infrastructure
-
-### Dokploy Deployment
-- **Platform**: Dokploy (Docker Swarm orchestrator)
-- **Server**: 72.60.28.31:3000
-- **Auto-deploy**: On push to GitHub master branch
-- **Container**: Runs as non-root user (appuser:1001)
-
-### Cloudflare Tunnel Configuration
-- **Domain**: craftai.solutions
-- **Tunnel**: dokploy-craftai (ID: c2dcd83c-bd5a-4a25-b39d-ee88e0f36196)
-- **Backend**: http://localhost:80 (Traefik proxy)
-- **Important**: Traefik's redirect-to-https middleware must be disabled to prevent redirect loops
-
-### Traefik Configuration
-The application uses Traefik as reverse proxy. Key configuration:
-- No HTTPS redirect middleware (causes loops with Cloudflare)
-- Routes: Host(`craftai.solutions`)
-- Service: http://craftaisolutions-website-t6484t:3000
-
-## CSS Architecture
-
-### Main Stylesheet
-`internal/static/css/main.css` (~5400 lines) contains all styles:
-- Dark glassmorphic theme
-- Responsive grid layouts
-- Animation keyframes
-- Component-specific styles
-
-### CSS Organization Issues
-- Multiple backup/variant CSS files exist but aren't used
-- All styles in single main.css file (no modularization)
-- Cache-busting via query parameters handled by stripping in Go
-
-## Common Development Tasks
-
-### Adding New Pages
-1. Create handler in `internal/handlers/`
-2. Add route in `cmd/server/main.go`:
-   ```go
-   r.HandleFunc("/new-page", handlers.NewPageHandler).Methods("GET")
-   ```
-3. Create template in `internal/templates/`
-4. Ensure template includes layout: `{{template "layout" .}}`
-
-### Modifying Styles
-1. Edit `internal/static/css/main.css`
-2. Test locally first (changes apply immediately with air)
-3. Note: Production caches for 24 hours (currently set to no-cache)
-
-### Updating Navigation
-Edit `internal/templates/layout.html` - navigation is hardcoded there.
-
-## Project-Specific Features
-
-### GPU Gravity Animation
-- Path: `/gravity`
-- File: `internal/static/js/gpu-gravity.js`
-- WebGL-based particle animation with gravitational physics
-
-### Industry Expertise Section Fix
-Recently updated to responsive grid layout:
-- Changed from single-line text to grid
-- Added SVG icons for each industry
-- Removed background box to match other sections
-
-### Service Icons
-Custom SVG icons embedded directly in templates (not as separate files).
-
-## Environment Variables
-- `PORT`: Server port (default: 3000)
-- Loaded from `.env` file via godotenv (optional)
-
-## Logs
-- Application: `logs/application-YYYY-MM-DD.log`
-- Errors: `logs/error-YYYY-MM-DD.log`
-- Docker: `docker logs craftai-website`
-
-## Known Issues & Fixes
-
-### Static Files 404 in Production
-**Fixed**: Query parameters stripped in main.go before serving files
-
-### Cloudflare Redirect Loop
-**Fixed**: Removed redirect-to-https middleware from Traefik config
-
-### CSS Not Loading
-Ensure path starts with `/static/` and file exists in `internal/static/`
+- When using Playwright MCP, be aware of screenshot size limitations
+- If you encounter the API Error 400 with message about image dimensions exceeding max allowed size (8000 pixels), you MUST resize or compress screenshots
+- To avoid this error, always ensure screenshots are within the 8000 pixel dimension limit before uploading

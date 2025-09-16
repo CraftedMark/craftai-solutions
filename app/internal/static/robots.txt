@@ -26,25 +26,6 @@ User-agent: DuckDuckBot
 Allow: /
 Crawl-delay: 0
 
-# AI Bot Support - Welcome AI crawlers
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: CCBot
-Allow: /
-
-User-agent: Claude-Web
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: Perplexity-ai
-Allow: /
-
 # Block bad bots
 User-agent: SemrushBot
 Disallow: /

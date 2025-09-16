@@ -1,0 +1,552 @@
+/* ===============================================
+   CraftAI Website - Polish Improvements
+   Professional refinements for production quality
+   =============================================== */
+
+/* ==============================================
+   1. TYPOGRAPHY & SPACING IMPROVEMENTS
+   ============================================== */
+
+/* Hero Title - Better line breaks and spacing */
+.hero-title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.hero-title strong {
+    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+}
+
+/* Tech Badge - Better visibility */
+.tech-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1.25rem;
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.15), rgba(167, 139, 250, 0.15));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.tech-badge::before {
+    content: '•';
+    margin-right: 0.5rem;
+    color: #60a5fa;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Hero Description - Better readability */
+.hero-description {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 42rem;
+    margin: 0 auto 2.5rem;
+    font-weight: 400;
+}
+
+/* ==============================================
+   2. STATS COUNTER ANIMATIONS
+   ============================================== */
+
+.hero-stats {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    margin: 3rem 0;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.stat-number[data-counting="true"] {
+    animation: countUp 2s ease-out forwards;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==============================================
+   3. BUTTONS & INTERACTIVE ELEMENTS
+   ============================================== */
+
+/* Primary CTA Button */
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    color: white;
+    text-decoration: none;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.025em;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.hero-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.hero-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+}
+
+.hero-cta:hover::before {
+    opacity: 1;
+}
+
+.hero-cta span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Service Links - Fix href="#" issue */
+.service-link {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 1rem;
+    color: #60a5fa;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.service-link::after {
+    content: '→';
+    margin-left: 0.5rem;
+    transition: transform 0.2s ease;
+}
+
+.service-link:hover {
+    color: #a78bfa;
+}
+
+.service-link:hover::after {
+    transform: translateX(4px);
+}
+
+/* Sound Toggle Button - Better positioning */
+button[aria-label*="Toggle sound"] {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+button[aria-label*="Toggle sound"]:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.1);
+}
+
+/* Chat Button Styling */
+button[aria-label*="Open chat"] {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+button[aria-label*="Open chat"]:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5);
+}
+
+/* ==============================================
+   4. CARD IMPROVEMENTS
+   ============================================== */
+
+.service-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,
+        rgba(96, 165, 250, 0.05) 0%,
+        rgba(167, 139, 250, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(96, 165, 250, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.project-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle,
+        rgba(96, 165, 250, 0.1) 0%,
+        transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.project-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    border-color: rgba(96, 165, 250, 0.3);
+    box-shadow: 0 20px 50px rgba(59, 130, 246, 0.15);
+}
+
+.project-card:hover::after {
+    opacity: 1;
+}
+
+/* Tech Tags Enhancement */
+.tech-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(96, 165, 250, 0.1);
+    border: 1px solid rgba(96, 165, 250, 0.2);
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    color: #60a5fa;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.tech-tag:hover {
+    background: rgba(96, 165, 250, 0.2);
+    border-color: rgba(96, 165, 250, 0.3);
+    transform: translateY(-1px);
+}
+
+/* ==============================================
+   5. NAVIGATION IMPROVEMENTS
+   ============================================== */
+
+.navbar {
+    backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #60a5fa, #a78bfa);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-link:hover::after {
+    width: 80%;
+}
+
+/* ==============================================
+   6. SECTION HEADERS
+   ============================================== */
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-label {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #60a5fa;
+    position: relative;
+    padding: 0 1.5rem;
+}
+
+.section-label::before,
+.section-label::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 3rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #60a5fa);
+}
+
+.section-label::before {
+    right: 100%;
+}
+
+.section-label::after {
+    left: 100%;
+    background: linear-gradient(90deg, #60a5fa, transparent);
+}
+
+/* ==============================================
+   7. MARQUEE ENHANCEMENTS
+   ============================================== */
+
+.marquee-track {
+    display: flex;
+    animation: marquee 30s linear infinite;
+}
+
+.marquee-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 200px;
+    padding: 0 2rem;
+}
+
+.marquee-item img {
+    max-height: 60px;
+    width: auto;
+    opacity: 0.7;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
+}
+
+.marquee-item:hover img {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* ==============================================
+   8. FOOTER IMPROVEMENTS
+   ============================================== */
+
+footer {
+    background: linear-gradient(180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(15, 23, 42, 0.3) 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 4rem 0 2rem;
+}
+
+/* ==============================================
+   9. SCROLL ANIMATIONS
+   ============================================== */
+
+.reveal-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-up.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger animation for grid items */
+.projects-grid .project-card {
+    transition-delay: calc(var(--card-index, 0) * 0.1s);
+}
+
+.services-grid .service-card {
+    transition-delay: calc(var(--card-index, 0) * 0.1s);
+}
+
+/* ==============================================
+   10. MOBILE OPTIMIZATIONS
+   ============================================== */
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    button[aria-label*="Toggle sound"] {
+        bottom: 1rem;
+        left: 1rem;
+    }
+
+    button[aria-label*="Open chat"] {
+        bottom: 1rem;
+        right: 1rem;
+    }
+}
+
+/* ==============================================
+   11. PERFORMANCE OPTIMIZATIONS
+   ============================================== */
+
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==============================================
+   12. PARTICLE EFFECT REFINEMENTS
+   ============================================== */
+
+.hero-decoration {
+    opacity: 0.3;
+    filter: blur(100px);
+    mix-blend-mode: screen;
+}
+
+/* GPU optimization for particles */
+canvas {
+    will-change: transform;
+    transform: translateZ(0);
+}

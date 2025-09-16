@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Users/m/Desktop/craftai-website-copy/logs/.19393d2c5c33195e9e507fd3aa5908e9ccf8e2f7-audit.json",
+    "files": [
+        {
+            "date": 1758062901476,
+            "name": "/Users/m/Desktop/craftai-website-copy/logs/application-2025-09-16.log",
+            "hash": "a1f68e17a9cc2a31951ae84a1700e20fbbc322c181b896f75f0c2723f7f4ac86"
+        }
+    ],
+    "hashType": "sha256"
+}
