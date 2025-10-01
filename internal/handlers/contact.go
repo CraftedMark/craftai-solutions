@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"database/sql"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -8,6 +9,9 @@ import (
 	"net/smtp"
 	"os"
 	"strings"
+	"time"
+
+	_ "github.com/lib/pq"
 )
 
 // ContactForm represents the contact form data
@@ -70,18 +74,21 @@ func ContactFormHandler(w http.ResponseWriter, r *http.Request) {
 		}, http.StatusBadRequest)
 		return
 	}
-	
+
+	// Save to database
+	err = saveContactToDatabase(form)
+	if err != nil {
+		log.Printf("Failed to save to database: %v", err)
+		// Continue anyway - we still want to send the email
+	}
+
 	// Send email notification
 	err = sendContactEmail(form)
 	if err != nil {
 		log.Printf("Failed to send email: %v", err)
-		sendJSONResponse(w, ContactResponse{
-			Success: false,
-			Message: "Failed to send message. Please try again later.",
-		}, http.StatusInternalServerError)
-		return
+		// Don't fail if email doesn't work - data is in database
 	}
-	
+
 	// Send success response
 	sendJSONResponse(w, ContactResponse{
 		Success: true,
@@ -206,4 +213,64 @@ func NewsletterHandler(w http.ResponseWriter, r *http.Request) {
 		Success: true,
 		Message: "Thank you for subscribing! Check your email for confirmation.",
 	}, http.StatusOK)
+}
+// saveContactToDatabase saves the contact form submission to PostgreSQL
+func saveContactToDatabase(form ContactForm) error {
+	// Get database URL from environment
+	dbURL := os.Getenv("DATABASE_URL")
+	if dbURL == "" {
+		// Default to local database for development
+		dbURL = "postgres://localhost/craftai?sslmode=disable"
+	}
+	
+	// Connect to database
+	db, err := sql.Open("postgres", dbURL)
+	if err != nil {
+		return fmt.Errorf("failed to connect to database: %w", err)
+	}
+	defer db.Close()
+	
+	// Create table if it doesn't exist
+	createTableSQL := `
+	CREATE TABLE IF NOT EXISTS contact_submissions (
+		id SERIAL PRIMARY KEY,
+		name VARCHAR(255) NOT NULL,
+		email VARCHAR(255) NOT NULL,
+		company VARCHAR(255),
+		phone VARCHAR(50),
+		service VARCHAR(255),
+		message TEXT NOT NULL,
+		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+		ip_address VARCHAR(50),
+		user_agent TEXT
+	);
+	`
+	
+	_, err = db.Exec(createTableSQL)
+	if err != nil {
+		return fmt.Errorf("failed to create table: %w", err)
+	}
+	
+	// Insert the submission
+	insertSQL := `
+	INSERT INTO contact_submissions (name, email, company, phone, service, message, created_at)
+	VALUES ($1, $2, $3, $4, $5, $6, $7)
+	`
+	
+	_, err = db.Exec(insertSQL,
+		form.Name,
+		form.Email,
+		form.Company,
+		form.Phone,
+		form.Service,
+		form.Message,
+		time.Now(),
+	)
+	
+	if err != nil {
+		return fmt.Errorf("failed to insert submission: %w", err)
+	}
+	
+	log.Printf("✅ Saved contact submission from %s (%s) to database", form.Name, form.Email)
+	return nil
 }

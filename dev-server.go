@@ -13,6 +13,7 @@ import (
 
 	"github.com/fsnotify/fsnotify"
 	"github.com/gorilla/mux"
+	"craftai.solutions/internal/handlers"
 )
 
 type Server struct {
@@ -232,9 +233,15 @@ func main() {
 	r.HandleFunc("/blog", server.genericHandler("blog"))
 	r.HandleFunc("/case-studies", server.genericHandler("case-studies"))
 	r.HandleFunc("/apa", server.genericHandler("apa"))
+	r.HandleFunc("/about", server.genericHandler("about"))
+	r.HandleFunc("/privacy", server.genericHandler("privacy"))
+	r.HandleFunc("/terms", server.genericHandler("terms"))
 	r.HandleFunc("/project/{project}", server.projectHandler)
 	r.HandleFunc("/services/{service}", server.serviceHandler)
 	
+	// API endpoints
+	r.HandleFunc("/api/contact", handlers.ContactFormHandler).Methods("POST", "OPTIONS")
+
 	// Admin reload endpoint
 	r.HandleFunc("/admin/reload", func(w http.ResponseWriter, r *http.Request) {
 		if err := server.loadTemplates(); err != nil {
