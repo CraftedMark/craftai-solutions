@@ -1,12 +1,30 @@
 # CraftAI Solutions - Deployment Guide
 
+## Overview
+
+This project uses automated deployment safeguards to prevent broken deployments. Claude (your AI assistant) will use these scripts before deploying any changes.
+
 ## Quick Start
 
-**Always use the safe deployment script:**
+**For Claude to deploy safely:**
 
 ```bash
 ./scripts/deploy.sh
 ```
+
+**For Claude to validate before committing:**
+
+```bash
+./scripts/pre-deploy-check.sh
+```
+
+## How Claude Uses These Scripts
+
+When you ask Claude to deploy changes, Claude will:
+1. Run `./scripts/pre-deploy-check.sh` to validate everything
+2. If checks pass, use `./scripts/deploy.sh` to deploy
+3. If checks fail, Claude will fix the issues before deploying
+4. Never deploy without validation
 
 This script automatically:
 1. Runs pre-deployment validation
@@ -187,6 +205,58 @@ When adding a new page, follow this checklist:
 - [ ] Test locally: `go run cmd/server/main.go`
 - [ ] Commit changes
 - [ ] Run `./scripts/deploy.sh`
+
+## For Mark (User)
+
+You don't need to manually run these scripts. When you ask Claude to deploy changes, Claude will automatically:
+
+1. **Run validation first** - Claude runs `./scripts/pre-deploy-check.sh`
+2. **Fix any issues** - If validation fails, Claude fixes the problems
+3. **Deploy safely** - Claude runs `./scripts/deploy.sh`
+4. **Verify deployment** - Claude checks all pages are live
+
+Just tell Claude "deploy the changes" and Claude handles everything.
+
+## For Claude (AI Assistant)
+
+**IMPORTANT: Always follow this workflow when deploying:**
+
+### Before Every Deployment:
+```bash
+cd ~/Dev/craftai-temp
+./scripts/pre-deploy-check.sh
+```
+
+- If this fails, **DO NOT DEPLOY**
+- Fix all errors first
+- Re-run until all checks pass
+
+### To Deploy:
+```bash
+cd ~/Dev/craftai-temp
+./scripts/deploy.sh
+```
+
+- This handles everything: validation, push, deploy, verification
+- If verification fails, investigate and report to user
+
+### When Adding New Pages:
+1. Create template in `internal/templates/yourpage.html`
+2. Ensure template has `</main>` before `{{end}}`
+3. Create handler in `internal/handlers/handlers.go`
+4. Add route in `cmd/server/main.go`
+5. Run `./scripts/pre-deploy-check.sh`
+6. Only deploy if checks pass
+
+### If Pre-Deploy Check Fails:
+- Read the error messages carefully
+- Fix each error mentioned
+- Common fixes:
+  - Copy template from `app/internal/templates/` to `internal/templates/`
+  - Add missing `</main>` tag before `{{end}}`
+  - Create missing handler function
+  - Add missing route registration
+- Re-run check after each fix
 
 ## Emergency Contacts
 

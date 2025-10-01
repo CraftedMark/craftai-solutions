@@ -43,7 +43,25 @@
 
   Note: The website is accessible globally through Cloudflare tunnel, not limited to local network!
 
-### Deployment via API:
+### Deployment Workflow (FOR CLAUDE):
+
+**CRITICAL: Always use the safe deployment script. Never deploy without validation.**
+
+  # Step 1: ALWAYS validate first (in ~/Dev/craftai-temp directory)
+  cd ~/Dev/craftai-temp
+  ./scripts/pre-deploy-check.sh
+
+  # Step 2: If validation passes, use the safe deploy script
+  ./scripts/deploy.sh
+
+  # This script handles:
+  # - Pre-deployment validation
+  # - Git push to GitHub
+  # - Dokploy deployment trigger
+  # - Waiting for deployment
+  # - Verification of live pages
+
+### Manual Deployment via API (only if script fails):
 
   # Trigger deployment programmatically
   curl -X POST "http://72.60.28.31:3000/api/application.deploy" \
@@ -56,6 +74,30 @@
   curl -X GET "http://72.60.28.31:3000/api/project.all" \
     -H "accept: application/json" \
     -H "x-api-key: sstKAFklVKwrGgOcHTTVEPXAeBuvMpuJDDiWFvpGoQuckFYrrBvhzCudZsvwqLwn"
+
+### What Can Go Wrong (and how to prevent it):
+
+**Issue: Templates in wrong directory**
+- Production looks in `internal/templates/`
+- Dev looks in `app/internal/templates/`
+- ALWAYS create templates in `internal/templates/`
+- Pre-deploy script checks this
+
+**Issue: Missing closing tags**
+- Templates MUST have `</main>` before `{{end}}`
+- Pre-deploy script validates this
+- Never deploy without this check
+
+**Issue: Missing handlers or routes**
+- Handler function must exist in `internal/handlers/handlers.go`
+- Route must be registered in `cmd/server/main.go`
+- Pre-deploy script verifies both
+
+**If pre-deploy check fails:**
+1. Read error messages carefully
+2. Fix ALL errors
+3. Re-run check
+4. Only deploy when checks pass
 
 
 
