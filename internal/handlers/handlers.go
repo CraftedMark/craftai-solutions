@@ -21,14 +21,14 @@ type TemplateData struct {
 func renderTemplate(w http.ResponseWriter, templateName string, data TemplateData) {
 	templatePath := filepath.Join("internal", "templates", templateName+".html")
 	layoutPath := filepath.Join("internal", "templates", "layout.html")
-	
+
 	tmpl, err := template.ParseFiles(layoutPath, templatePath)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
-	
-	err = tmpl.Execute(w, data)
+
+	err = tmpl.ExecuteTemplate(w, "layout.html", data)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
