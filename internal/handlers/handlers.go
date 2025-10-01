@@ -260,3 +260,29 @@ func GravityDemoHandler(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "gravity", data)
 }
 
+// PrivacyHandler handles the privacy policy page
+func PrivacyHandler(w http.ResponseWriter, r *http.Request) {
+	data := TemplateData{
+		Title:       "Privacy Policy - CraftAI Solutions",
+		Description: "CraftAI Solutions privacy policy. Learn how we collect, use, and protect your personal information in compliance with GDPR and CCPA.",
+		Keywords:    "privacy policy, data protection, GDPR, CCPA, personal information",
+		OGImage:     "https://craftai.solutions/static/images/og-image.jpg",
+		PageURL:     "https://craftai.solutions/privacy",
+		PageName:    "privacy",
+	}
+	renderTemplate(w, "privacy", data)
+}
+
+// TermsHandler handles the terms of service page
+func TermsHandler(w http.ResponseWriter, r *http.Request) {
+	data := TemplateData{
+		Title:       "Terms of Service - CraftAI Solutions",
+		Description: "CraftAI Solutions terms of service. Review our terms and conditions for using our AI development and automation services.",
+		Keywords:    "terms of service, terms and conditions, legal agreement, service agreement",
+		OGImage:     "https://craftai.solutions/static/images/og-image.jpg",
+		PageURL:     "https://craftai.solutions/terms",
+		PageName:    "terms",
+	}
+	renderTemplate(w, "terms", data)
+}
+

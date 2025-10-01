@@ -16,6 +16,8 @@
 - **SSL Certificate**: Let's Encrypt via Cloudflare
 - **Platform**: Dokploy at http://72.60.28.31:3000
 - **User**: marktnashed@icloud.com
+- **Dokploy API Key**: sstKAFklVKwrGgOcHTTVEPXAeBuvMpuJDDiWFvpGoQuckFYrrBvhzCudZsvwqLwn
+- **Application ID**: F3QTs69zwKxPyfcQE7KqD
 
 ### Website Verification Methods:
 
@@ -40,6 +42,20 @@
   # Login: marktnashed@icloud.com
 
   Note: The website is accessible globally through Cloudflare tunnel, not limited to local network!
+
+### Deployment via API:
+
+  # Trigger deployment programmatically
+  curl -X POST "http://72.60.28.31:3000/api/application.deploy" \
+    -H "accept: application/json" \
+    -H "x-api-key: sstKAFklVKwrGgOcHTTVEPXAeBuvMpuJDDiWFvpGoQuckFYrrBvhzCudZsvwqLwn" \
+    -H "Content-Type: application/json" \
+    -d '{"applicationId":"F3QTs69zwKxPyfcQE7KqD"}'
+
+  # List all projects and applications
+  curl -X GET "http://72.60.28.31:3000/api/project.all" \
+    -H "accept: application/json" \
+    -H "x-api-key: sstKAFklVKwrGgOcHTTVEPXAeBuvMpuJDDiWFvpGoQuckFYrrBvhzCudZsvwqLwn"
 
 
 

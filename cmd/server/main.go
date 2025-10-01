@@ -49,6 +49,8 @@ func main() {
 	r.HandleFunc("/services/process-optimization", handlers.ProcessOptimizationHandler).Methods("GET")
 	r.HandleFunc("/services/managed-it", handlers.ManagedITHandler).Methods("GET")
 	r.HandleFunc("/about", handlers.AboutHandler).Methods("GET")
+	r.HandleFunc("/privacy", handlers.PrivacyHandler).Methods("GET")
+	r.HandleFunc("/terms", handlers.TermsHandler).Methods("GET")
 	r.HandleFunc("/contact", handlers.ContactHandler).Methods("GET")
 	r.HandleFunc("/blog", handlers.BlogHandler).Methods("GET")
 	r.HandleFunc("/case-studies", handlers.CaseStudiesHandler).Methods("GET")
