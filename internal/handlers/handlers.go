@@ -28,7 +28,7 @@ func renderTemplate(w http.ResponseWriter, templateName string, data TemplateDat
 		return
 	}
 
-	err = tmpl.ExecuteTemplate(w, "layout.html", data)
+	err = tmpl.Execute(w, data)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
