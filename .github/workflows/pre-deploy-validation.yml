@@ -1,0 +1,68 @@
+name: Pre-Deploy Validation
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21'
+
+    - name: Run pre-deployment checks
+      run: |
+        chmod +x scripts/pre-deploy-check.sh
+        ./scripts/pre-deploy-check.sh
+
+    - name: Test build
+      run: |
+        go mod download
+        go build -v ./cmd/server/main.go
+
+    - name: Validate templates exist
+      run: |
+        echo "Checking critical templates..."
+        test -f internal/templates/layout.html || exit 1
+        test -f internal/templates/home.html || exit 1
+        test -f internal/templates/about.html || exit 1
+        test -f internal/templates/privacy.html || exit 1
+        test -f internal/templates/terms.html || exit 1
+        echo "✓ All templates present"
+
+    - name: Check for closing tags
+      run: |
+        echo "Validating template structure..."
+        for file in internal/templates/*.html; do
+          if grep -q "{{define \"content\"}}" "$file"; then
+            if ! grep -q "</main>" "$file" && [ "$(basename "$file")" != "layout.html" ]; then
+              echo "ERROR: Missing </main> in $file"
+              exit 1
+            fi
+          fi
+        done
+        echo "✓ All templates have proper closing tags"
+
+    - name: Verify handlers
+      run: |
+        echo "Checking handler functions..."
+        grep -q "func PrivacyHandler" internal/handlers/handlers.go || exit 1
+        grep -q "func TermsHandler" internal/handlers/handlers.go || exit 1
+        grep -q "func AboutHandler" internal/handlers/handlers.go || exit 1
+        echo "✓ All handlers present"
+
+    - name: Verify routes
+      run: |
+        echo "Checking routes registration..."
+        grep -q '"/privacy"' cmd/server/main.go || exit 1
+        grep -q '"/terms"' cmd/server/main.go || exit 1
+        grep -q '"/about"' cmd/server/main.go || exit 1
+        echo "✓ All routes registered"
