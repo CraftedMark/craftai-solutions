@@ -1,0 +1,418 @@
+[
+  {
+    "id": "mem-MEMORY-projects",
+    "key": "projects",
+    "content": "- [Fur Real With Mia](./mia-blog.md) — Pet lifestyle blog (furrealwithmia.com, Next.js 16, VPS)\n- [AutoResearch MLX](./autoresearch.md) — Karpathy training on Mac Studio, baseline val_bpb=1.5377\n- [OpenClaw](./openclaw.md) — Agent gateway infrastructure\n- [Photos by Chenar](./photos-by-chenar.md) — Pet photography portfolio (Astro, VPS port 8085)",
+    "summary": "Projects",
+    "namespace": "core",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/MEMORY.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056637
+  },
+  {
+    "id": "mem-MEMORY-infrastructure",
+    "key": "infrastructure",
+    "content": "- [Infrastructure](./infrastructure.md) — All machines, IPs, services, Syncthing, QMD\n- [Hermes OAuth](./hermes-oauth.md) — Hermes agent auth on Mac Mini, cron token sync\n- [UniFi Inventory](./unifi_inventory.md) — 134 devices across 3 sites, API keys, follow-up tasks",
+    "summary": "Infrastructure",
+    "namespace": "core",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/MEMORY.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056637
+  },
+  {
+    "id": "mem-MEMORY-devices",
+    "key": "devices",
+    "content": "- [Rabbit R1](./rabbit-r1.md) — Pairing info",
+    "summary": "Devices",
+    "namespace": "core",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/MEMORY.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056637
+  },
+  {
+    "id": "mem-MEMORY-feedback---preferences",
+    "key": "feedback-preferences",
+    "content": "- [Obsidian features](./feedback_obsidian_features.md) — Always use wikilinks, tags, YAML properties in brain vault",
+    "summary": "Feedback / Preferences",
+    "namespace": "core",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/MEMORY.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056637
+  },
+  {
+    "id": "mem-MEMORY-quick-refs",
+    "key": "quick-refs",
+    "content": "- Mac Mini: `ssh hexnashed@100.70.202.4`\n- Mac Studio: `ssh mn@100.113.37.61`\n- VPS: `ssh root@100.74.10.96`\n- OpenClaw token: `d53dae42af32249b3b06f5bea885cdb7384f5ade2461487f`\n- Ollama: `http://100.113.37.61:11434`\n- psql: `/opt/homebrew/Cellar/libpq/18.0/bin/psql`",
+    "summary": "Quick Refs",
+    "namespace": "core",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/MEMORY.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056637
+  },
+  {
+    "id": "mem-autoresearch----",
+    "key": "-",
+    "content": "name: AutoResearch MLX\ndescription: Karpathy's AutoResearch training framework on Mac Studio — baseline val_bpb 1.5377\ntype: project\n---\n\nAutoResearch MLX (trevin-creator fork) running on Mac Studio M3 Ultra.\n\n- **Repo**: `~/projects/autoresearch/` on Mac Studio (`ssh mn@100.113.37.61`)\n- **Fork**: trevin-creator/autoresearch-mlx (native MLX, no PyTorch)\n- **Python**: 3.12.11 via uv\n- **MLX**: v0.31.0 + mlx-metal v0.31.0\n- **Data**: 11 shards, BPE tokenizer (vocab_size=8192)\n\n**Baseline (2026-03",
+    "summary": "---",
+    "namespace": "autoresearch",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/autoresearch.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056637
+  },
+  {
+    "id": "mem-feedback_obsidian_features----",
+    "key": "-",
+    "content": "name: Use Obsidian features in brain vault\ndescription: Always use wikilinks, tags, and YAML properties when writing to ~/clawd/brain/ — not plain markdown\ntype: feedback\n---\n\nWhen writing or updating files in `~/clawd/brain/`, always use Obsidian features:\n- `[[wikilinks]]` to link between related notes (e.g. `[[fur-real-with-mia]]` from daily notes)\n- `#tags` for graph clustering (e.g. `#project`, `#infrastructure`, `#autoresearch`)\n- YAML frontmatter properties (title, tags, aliases, date)\n- ",
+    "summary": "---",
+    "namespace": "feedback_obsidian_features",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/feedback_obsidian_features.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056637
+  },
+  {
+    "id": "mem-hermes-oauth----",
+    "key": "-",
+    "content": "name: Hermes OAuth and MCP setup\ndescription: Hermes agent on Mac Mini — OAuth token limits, CLI backend for Opus, MCP server, credential sync\ntype: reference\n---\n\nHermes AI agent runs on Mac Mini (`ssh hexnashed@100.70.202.4`).",
+    "summary": "---",
+    "namespace": "hermes-oauth",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/hermes-oauth.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056637
+  },
+  {
+    "id": "mem-hermes-oauth-auth",
+    "key": "auth",
+    "content": "- **OAuth token** (`sk-ant-oat01-*`): Synced from `~/.claude/credentials.json` every 10 min\n- **Cron script**: `~/.hermes/scripts/sync-oauth-token.py`\n- **Critical**: OAuth tokens only allow **Haiku** for direct API calls. Sonnet/Opus get 400 errors.\n- Sync script also updates `~/.claude/.credentials.json` (Claude CLI credentials)\n- `~/.hermes/auth.json` must have `\"active_provider\": \"anthropic\"`",
+    "summary": "Auth",
+    "namespace": "hermes-oauth",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/hermes-oauth.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056637
+  },
+  {
+    "id": "mem-hermes-oauth-model-routing--2026-03-16-",
+    "key": "model-routing-2026-03-16-",
+    "content": "- **Telegram/Discord chat**: Uses `claude -p` CLI backend → gets **Opus** access\n  - Config: `chat.backend: claude-cli`, `chat.model: claude-opus-4-6`\n  - Code: `~/.hermes/hermes-agent/hermes_mcp/claude_cli_backend.py`\n  - Loads prefill-messages.json for full brain vault context\n  - Falls back to internal agent (Haiku) if CLI fails\n- **Cron jobs**: Uses `claude -p` CLI backend → gets **Opus** access\n  - Config: `cron.backend: claude-cli`, `cron.model: claude-opus-4-6`\n  - Code: `~/.hermes/hermes",
+    "summary": "Model Routing (2026-03-16)",
+    "namespace": "hermes-oauth",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/hermes-oauth.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056637
+  },
+  {
+    "id": "mem-hermes-oauth-hermes-mcp-server",
+    "key": "hermes-mcp-server",
+    "content": "- **Location**: `~/.hermes/hermes-agent/hermes_mcp/hermes_mcp_server.py`\n- **Tools**: terminal, send_message, read_file, write_file, search_files, memory_search, memory_keyword_search, web_search, web_extract, cron_list, cron_trigger, cron_pause, cron_resume, get_session_history, hermes_status\n- **Mac Mini config**: `~/.claude.json` points to local venv python\n- **MacBook Pro config**: `~/.claude.json` uses SSH transport\n\n**Important**: The `hermes_mcp/` directory was renamed from `mcp/` to avoi",
+    "summary": "Hermes MCP Server",
+    "namespace": "hermes-oauth",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/hermes-oauth.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056637
+  },
+  {
+    "id": "mem-infrastructure----",
+    "key": "-",
+    "content": "name: Infrastructure overview\ndescription: All machines, IPs, roles, and key services across Mac Mini, MacBook Pro, Mac Studio, VPS\ntype: reference\n---\n\n| Machine | User | IP (Tailscale) | Role |\n|---------|------|----------------|------|\n| Mac Mini | hexnashed | 100.70.202.4 | Brain HQ, Hermes, Qdrant, OpenClaw gateway |\n| MacBook Pro | mn | 100.81.89.30 | Primary dev machine (M3 Ultra) |\n| Mac Studio | mn | 100.113.37.61 | Compute farm (M3 Ultra, 96GB), AutoResearch |\n| VPS | root | 100.74.10.",
+    "summary": "---",
+    "namespace": "infrastructure",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/infrastructure.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-mia-blog----",
+    "key": "-",
+    "content": "name: Fur Real With Mia Blog\ndescription: Mia Carter's standalone pet lifestyle blog at furrealwithmia.com — Next.js 16, deployed on VPS\ntype: project\n---",
+    "summary": "---",
+    "namespace": "mia-blog",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/mia-blog.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-mia-blog-fur-real-with-mia-blog",
+    "key": "fur-real-with-mia-blog",
+    "content": "**Domain:** furrealwithmia.com (SSL via Certbot, auto-renews June 11, 2026)\n**Stack:** Next.js 16 App Router, TypeScript, Tailwind CSS, Framer Motion, Lenis\n**Local path:** `/Users/mn/clawd/projects/mia-blog/`\n**VPS path:** `/opt/mia-blog/` (PM2 process \"mia-blog\" on port 3200)\n**DNS:** Namecheap, A records for @ and www -> 72.60.28.31\n**Nginx:** `/etc/nginx/sites-enabled/furrealwithmia.com` (port 80 + Certbot SSL)\n\n**Why:** Standalone blog for AI influencer Mia Carter. Completely separate from ",
+    "summary": "Fur Real With Mia Blog",
+    "namespace": "mia-blog",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/mia-blog.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-mia-blog-current-state--2026-03-12-",
+    "key": "current-state-2026-03-12-",
+    "content": "- **Coming Soon** page at root `/` — cinematic reveal, breathing logo, gradient mesh\n- **Blog content** accessible behind `/blog`, `/about`, `/categories` for team review\n- Route groups: `(site)` wraps blog pages with header/footer; root page is standalone\n- 10 blog posts seeded in `content/posts/` (markdown with gray-matter frontmatter)\n- Premium editorial design: Framer Motion animations, Lenis smooth scroll, scroll-aware header, reading progress bar, ScrollReveal components\n- Design specs at ",
+    "summary": "Current State (2026-03-12)",
+    "namespace": "mia-blog",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/mia-blog.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-mia-blog-key-architecture",
+    "key": "key-architecture",
+    "content": "- `src/lib/posts.ts` — markdown blog engine (getAllPosts, getPostBySlug, getPostSlugs, getCategories)\n- `src/components/` — Header, Footer, PostCard, ScrollReveal, SmoothScroll, ReadingProgress\n- `src/app/page.tsx` — Coming Soon (standalone, no header/footer)\n- `src/app/(site)/` — Blog pages with header/footer layout\n- Fonts: Playfair Display (serif) + Inter (sans)\n- Colors: amber-800 primary, stone tones, warm cream #fffcf9 bg",
+    "summary": "Key Architecture",
+    "namespace": "mia-blog",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/mia-blog.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-mia-blog-build-locally",
+    "key": "build-locally",
+    "content": "cd /Users/mn/clawd/projects/mia-blog && npm run build",
+    "summary": "Build locally",
+    "namespace": "mia-blog",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/mia-blog.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-mia-blog-deploy",
+    "key": "deploy",
+    "content": "rsync -az --delete --exclude node_modules --exclude .next /Users/mn/clawd/projects/mia-blog/ root@100.74.10.96:/opt/mia-blog/\nssh root@100.74.10.96 \"cd /opt/mia-blog && npm install && npm run build && pm2 restart mia-blog\"\n```",
+    "summary": "Deploy",
+    "namespace": "mia-blog",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/mia-blog.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-mia-blog-pending",
+    "key": "pending",
+    "content": "- Blog posts still title-only (not written): \"Introducing Pets to New Baby\", \"Recipes for Dog Food\", \"Overheating Dogs - Facial Structure\", \"Mia interviews Krystn\"\n- No real images yet (placeholders)\n- Newsletter signup is visual-only (no backend)\n- Launch: swap Coming Soon for full blog homepage when ready",
+    "summary": "Pending",
+    "namespace": "mia-blog",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/mia-blog.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-openclaw-architecture",
+    "key": "architecture",
+    "content": "- **Gateway**: Mac Mini (Hex) at `100.70.202.4`, port `18789`\n- **App**: `/Applications/OpenClaw.app` on Mac Mini\n- **Config**: `/Users/hexnashed/.openclaw/openclaw.json`\n- **Logs**: `/Users/hexnashed/.openclaw/logs/gateway.err.log` and `gateway.log`\n- **CLI**: `/opt/homebrew/bin/openclaw` (requires `OPENCLAW_GATEWAY_TOKEN` env var)\n- **Version**: 2026.3.8 (3caab92)",
+    "summary": "Architecture",
+    "namespace": "openclaw",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/openclaw.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-openclaw-authentication",
+    "key": "authentication",
+    "content": "- **MUST use OAuth** (`sk-ant-oat01-*`), never raw API keys (`sk-ant-api03-*`)\n- OAuth token sourced from Mac Studio keychain: `security find-generic-password -s \"Claude Code-credentials\" -w`\n- Token set in `/Users/hexnashed/.zshrc` as `ANTHROPIC_API_KEY`\n- OAuth tokens expire ~daily, have refresh tokens for auto-renewal\n- Current subscription: `claude_max_20x` tier\n- Auth profile in config: `anthropic:manual` (mode: token)",
+    "summary": "Authentication",
+    "namespace": "openclaw",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/openclaw.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-openclaw-gateway-auth",
+    "key": "gateway-auth",
+    "content": "- `gateway.auth.token`: `d53dae42af32249b3b06f5bea885cdb7384f5ade2461487f`\n- `gateway.remote.token` MUST match `gateway.auth.token` or CLI gets `token_mismatch`\n- CLI needs: `OPENCLAW_GATEWAY_TOKEN='d53dae42af32249b3b06f5bea885cdb7384f5ade2461487f'`",
+    "summary": "Gateway Auth",
+    "namespace": "openclaw",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/openclaw.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-openclaw-models",
+    "key": "models",
+    "content": "- Primary: `anthropic/claude-opus-4-6`\n- Subagents: `anthropic/claude-sonnet-4-6`\n- Compaction/local: `qwen2.5:14b` via LM Studio on Mac Studio (`http://100.113.37.61:1234/v1`)\n- Also configured: GPT-5.2 (OpenAI), qwen3.5:cloud, Gemini 3.1 Flash-Lite (alias: flash-lite)\n- Local models: qwen/qwen3-vl-8b, qwen/qwen3-4b-thinking, ibm/granite-4-h-tiny, openai/gpt-oss-20b\n- **If LM Studio is down**: compaction fails, subagents fail, agent hallucinates tool execution",
+    "summary": "Models",
+    "namespace": "openclaw",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/openclaw.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-openclaw-v3-8-features--configured-2026",
+    "key": "v3-8-features-configured-2026-03-10-",
+    "content": "- **Talk silence timeout**: `talk.silenceTimeoutMs: 3000` (3s before auto-send)\n- **Brave LLM Context**: `tools.web.search.brave.mode: \"llm-context\"` (grounding snippets)\n- **ACP Provenance**: CLI flag `openclaw acp --provenance meta+receipt`\n- **Backup system**: `openclaw backup create` / `openclaw backup verify`\n- **Compaction tuning**: `postCompactionSections: [identity, tools]`, `recentTurnsPreserve: 4`\n- **Diffs plugin**: enabled for read-only diff viewer\n- **Gemini Flash-Lite**: `google/ge",
+    "summary": "v3.8 Features (configured 2026-03-10)",
+    "namespace": "openclaw",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/openclaw.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-openclaw-tailscale-funnel--for-external",
+    "key": "tailscale-funnel-for-external-access-",
+    "content": "- Enable: `tailscale funnel --bg --yes --https=443 http://127.0.0.1:18789`\n- Disable: `tailscale funnel --https=443 off`\n- Public URL: `https://hex.halfmoon-rudd.ts.net`",
+    "summary": "Tailscale Funnel (for external access)",
+    "namespace": "openclaw",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/openclaw.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-openclaw-common-issues---fixes",
+    "key": "common-issues-fixes",
+    "content": "### Rate limit errors\n1. Check which API key is in `.zshrc` - must be valid OAuth token\n2. Copy fresh token from Mac Studio keychain\n3. Restart OpenClaw app (kill parent process, `open -a OpenClaw`)\n\n### Agent hallucinating (says it did things but didn't)\nRoot causes:\n- Ollama down on Mac Studio → subagents/compaction fail silently\n- OAuth token expired → API calls fail, agent generates without tools\n- Tool errors swallowed (path not allowed, command not found)\nFix: Start Ollama, refresh OAuth t",
+    "summary": "Common Issues & Fixes",
+    "namespace": "openclaw",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/openclaw.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-openclaw-must-kill-the-app--not-just-ga",
+    "key": "must-kill-the-app-not-just-gateway-gateway-auto-re",
+    "content": "kill $(pgrep -f 'OpenClaw.app/Contents/MacOS/OpenClaw')\nsleep 3\nopen -a OpenClaw\n```",
+    "summary": "Must kill the APP, not just gateway (gateway auto-respawns from app)",
+    "namespace": "openclaw",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/openclaw.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-openclaw-channels",
+    "key": "channels",
+    "content": "- Telegram: @CraftAiHEX_bot (polling mode)\n- Discord: @Hex\n- Slack: socket mode",
+    "summary": "Channels",
+    "namespace": "openclaw",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/openclaw.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-openclaw-qdrant-collections--at-100-70-",
+    "key": "qdrant-collections-at-100-70-202-4-6333-",
+    "content": "- `memories_tr`: 1721 points - main memory store\n- `openclaw_code`: 59 points\n- `clawd_brain`, `shared_patterns`, `ruflo_memory`\n- `claude_mem_observations`, `claude_mem_sessions`, `claude_mem_prompts`\n- `qmd_brain`",
+    "summary": "Qdrant Collections (at 100.70.202.4:6333)",
+    "namespace": "openclaw",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/openclaw.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-photos-by-chenar----",
+    "key": "-",
+    "content": "name: Photos by Chenar\ndescription: Pet photography portfolio site for Chenar — Astro, Tiffany blue palette, deployed on VPS\ntype: project\n---\n\nPet photography portfolio site for Chenar (friend/client of Mark's).\n\n**Stack:** Astro v6, static site, nginx Docker container on VPS\n**Domain:** photosbychenar.com (DNS not yet configured)\n**Repo:** github.com/CraftedMark/photos-by-chenar (private)\n**Source:** ~/clawd/projects/photos-by-chenar (on Mac Studio)\n**Deployed:** http://100.74.10.96:8085 (Dock",
+    "summary": "---",
+    "namespace": "photos-by-chenar",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/photos-by-chenar.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-unifi_inventory----",
+    "key": "-",
+    "content": "name: UniFi Hardware Inventory\ndescription: Complete UniFi hardware inventory across 3 locations (Cadillac, Skypark, Bakery) — API access details, device counts, and follow-up tasks\ntype: project\n---",
+    "summary": "---",
+    "namespace": "unifi_inventory",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/unifi_inventory.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  },
+  {
+    "id": "mem-unifi_inventory-unifi-hardware-inventory---134",
+    "key": "unifi-hardware-inventory-134-devices-across-3-loca",
+    "content": "**Generated:** 2026-03-17 from live Cloud API + Cadillac local API\n\n### Sites & Access\n\n| Site | Gateway | Devices | LAN Subnet | API Access |\n|------|---------|---------|------------|------------|\n| Cadillac | UDM Pro SE (UDMPROSE) | 74 | 10.10.1.x, 10.10.30.x, 10.10.40-60.x | Local API via Mac Mini (key: `8ABVnLablGBX2xMF2haSVPSzYtGW_CtK`) |\n| Skypark | UDM Pro (UDMPRO) | 19 | 10.10.55.x | Cloud API only (MFA blocks local) |\n| Bakery | Cloud Gateway Ultra (UDRULT) | 25 | 10.10.45.x | Cloud API",
+    "summary": "UniFi Hardware Inventory — 134 devices across 3 locations",
+    "namespace": "unifi_inventory",
+    "type": "semantic",
+    "metadata": {
+      "sourceFile": "/Users/mn/.claude/projects/-/memory/unifi_inventory.md",
+      "bootstrapped": true
+    },
+    "createdAt": 1774156056638
+  }
+]

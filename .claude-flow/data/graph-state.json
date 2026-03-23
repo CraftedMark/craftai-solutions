@@ -1,0 +1,417 @@
+{
+  "version": 1,
+  "updatedAt": 1774156056642,
+  "nodeCount": 32,
+  "nodes": {
+    "mem-MEMORY-projects": {
+      "id": "mem-MEMORY-projects",
+      "category": "core",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056637
+    },
+    "mem-MEMORY-infrastructure": {
+      "id": "mem-MEMORY-infrastructure",
+      "category": "core",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056637
+    },
+    "mem-MEMORY-devices": {
+      "id": "mem-MEMORY-devices",
+      "category": "core",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056637
+    },
+    "mem-MEMORY-feedback---preferences": {
+      "id": "mem-MEMORY-feedback---preferences",
+      "category": "core",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056637
+    },
+    "mem-MEMORY-quick-refs": {
+      "id": "mem-MEMORY-quick-refs",
+      "category": "core",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056637
+    },
+    "mem-autoresearch----": {
+      "id": "mem-autoresearch----",
+      "category": "autoresearch",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056637
+    },
+    "mem-feedback_obsidian_features----": {
+      "id": "mem-feedback_obsidian_features----",
+      "category": "feedback_obsidian_features",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056637
+    },
+    "mem-hermes-oauth----": {
+      "id": "mem-hermes-oauth----",
+      "category": "hermes-oauth",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056637
+    },
+    "mem-hermes-oauth-auth": {
+      "id": "mem-hermes-oauth-auth",
+      "category": "hermes-oauth",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056637
+    },
+    "mem-hermes-oauth-model-routing--2026-03-16-": {
+      "id": "mem-hermes-oauth-model-routing--2026-03-16-",
+      "category": "hermes-oauth",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056637
+    },
+    "mem-hermes-oauth-hermes-mcp-server": {
+      "id": "mem-hermes-oauth-hermes-mcp-server",
+      "category": "hermes-oauth",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056637
+    },
+    "mem-infrastructure----": {
+      "id": "mem-infrastructure----",
+      "category": "infrastructure",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-mia-blog----": {
+      "id": "mem-mia-blog----",
+      "category": "mia-blog",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-mia-blog-fur-real-with-mia-blog": {
+      "id": "mem-mia-blog-fur-real-with-mia-blog",
+      "category": "mia-blog",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-mia-blog-current-state--2026-03-12-": {
+      "id": "mem-mia-blog-current-state--2026-03-12-",
+      "category": "mia-blog",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-mia-blog-key-architecture": {
+      "id": "mem-mia-blog-key-architecture",
+      "category": "mia-blog",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-mia-blog-build-locally": {
+      "id": "mem-mia-blog-build-locally",
+      "category": "mia-blog",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-mia-blog-deploy": {
+      "id": "mem-mia-blog-deploy",
+      "category": "mia-blog",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-mia-blog-pending": {
+      "id": "mem-mia-blog-pending",
+      "category": "mia-blog",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-openclaw-architecture": {
+      "id": "mem-openclaw-architecture",
+      "category": "openclaw",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-openclaw-authentication": {
+      "id": "mem-openclaw-authentication",
+      "category": "openclaw",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-openclaw-gateway-auth": {
+      "id": "mem-openclaw-gateway-auth",
+      "category": "openclaw",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-openclaw-models": {
+      "id": "mem-openclaw-models",
+      "category": "openclaw",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-openclaw-v3-8-features--configured-2026": {
+      "id": "mem-openclaw-v3-8-features--configured-2026",
+      "category": "openclaw",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-openclaw-tailscale-funnel--for-external": {
+      "id": "mem-openclaw-tailscale-funnel--for-external",
+      "category": "openclaw",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-openclaw-common-issues---fixes": {
+      "id": "mem-openclaw-common-issues---fixes",
+      "category": "openclaw",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-openclaw-must-kill-the-app--not-just-ga": {
+      "id": "mem-openclaw-must-kill-the-app--not-just-ga",
+      "category": "openclaw",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-openclaw-channels": {
+      "id": "mem-openclaw-channels",
+      "category": "openclaw",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-openclaw-qdrant-collections--at-100-70-": {
+      "id": "mem-openclaw-qdrant-collections--at-100-70-",
+      "category": "openclaw",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-photos-by-chenar----": {
+      "id": "mem-photos-by-chenar----",
+      "category": "photos-by-chenar",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-unifi_inventory----": {
+      "id": "mem-unifi_inventory----",
+      "category": "unifi_inventory",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    },
+    "mem-unifi_inventory-unifi-hardware-inventory---134": {
+      "id": "mem-unifi_inventory-unifi-hardware-inventory---134",
+      "category": "unifi_inventory",
+      "confidence": 0.5,
+      "accessCount": 0,
+      "createdAt": 1774156056638
+    }
+  },
+  "edges": [
+    {
+      "sourceId": "mem-MEMORY-projects",
+      "targetId": "mem-MEMORY-infrastructure",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-MEMORY-infrastructure",
+      "targetId": "mem-MEMORY-devices",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-MEMORY-devices",
+      "targetId": "mem-MEMORY-feedback---preferences",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-MEMORY-feedback---preferences",
+      "targetId": "mem-MEMORY-quick-refs",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-hermes-oauth----",
+      "targetId": "mem-hermes-oauth-auth",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-hermes-oauth-auth",
+      "targetId": "mem-hermes-oauth-model-routing--2026-03-16-",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-hermes-oauth-model-routing--2026-03-16-",
+      "targetId": "mem-hermes-oauth-hermes-mcp-server",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-mia-blog----",
+      "targetId": "mem-mia-blog-fur-real-with-mia-blog",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-mia-blog-fur-real-with-mia-blog",
+      "targetId": "mem-mia-blog-current-state--2026-03-12-",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-mia-blog-current-state--2026-03-12-",
+      "targetId": "mem-mia-blog-key-architecture",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-mia-blog-key-architecture",
+      "targetId": "mem-mia-blog-build-locally",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-mia-blog-build-locally",
+      "targetId": "mem-mia-blog-deploy",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-mia-blog-deploy",
+      "targetId": "mem-mia-blog-pending",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-openclaw-architecture",
+      "targetId": "mem-openclaw-authentication",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-openclaw-authentication",
+      "targetId": "mem-openclaw-gateway-auth",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-openclaw-gateway-auth",
+      "targetId": "mem-openclaw-models",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-openclaw-models",
+      "targetId": "mem-openclaw-v3-8-features--configured-2026",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-openclaw-v3-8-features--configured-2026",
+      "targetId": "mem-openclaw-tailscale-funnel--for-external",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-openclaw-tailscale-funnel--for-external",
+      "targetId": "mem-openclaw-common-issues---fixes",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-openclaw-common-issues---fixes",
+      "targetId": "mem-openclaw-must-kill-the-app--not-just-ga",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-openclaw-must-kill-the-app--not-just-ga",
+      "targetId": "mem-openclaw-channels",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-openclaw-channels",
+      "targetId": "mem-openclaw-qdrant-collections--at-100-70-",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-unifi_inventory----",
+      "targetId": "mem-unifi_inventory-unifi-hardware-inventory---134",
+      "type": "temporal",
+      "weight": 0.5
+    },
+    {
+      "sourceId": "mem-mia-blog-current-state--2026-03-12-",
+      "targetId": "mem-mia-blog-key-architecture",
+      "type": "similar",
+      "weight": 0.32270916334661354
+    },
+    {
+      "sourceId": "mem-mia-blog-build-locally",
+      "targetId": "mem-mia-blog-deploy",
+      "type": "similar",
+      "weight": 0.359375
+    }
+  ],
+  "pageRanks": {
+    "mem-MEMORY-projects": 0.011750494402445312,
+    "mem-MEMORY-infrastructure": 0.02173841277265228,
+    "mem-MEMORY-devices": 0.030228142128567576,
+    "mem-MEMORY-feedback---preferences": 0.03744441305914198,
+    "mem-MEMORY-quick-refs": 0.043578223144824374,
+    "mem-autoresearch----": 0.011750494402445312,
+    "mem-feedback_obsidian_features----": 0.011750494402445312,
+    "mem-hermes-oauth----": 0.011750494402445312,
+    "mem-hermes-oauth-auth": 0.02173841277265228,
+    "mem-hermes-oauth-model-routing--2026-03-16-": 0.030228142128567576,
+    "mem-hermes-oauth-hermes-mcp-server": 0.03744441305914198,
+    "mem-infrastructure----": 0.011750494402445312,
+    "mem-mia-blog----": 0.011750494402445312,
+    "mem-mia-blog-fur-real-with-mia-blog": 0.02173841277265228,
+    "mem-mia-blog-current-state--2026-03-12-": 0.030228142128567576,
+    "mem-mia-blog-key-architecture": 0.03744441305914198,
+    "mem-mia-blog-build-locally": 0.043578223144824374,
+    "mem-mia-blog-deploy": 0.048791944461181944,
+    "mem-mia-blog-pending": 0.05322361612150052,
+    "mem-openclaw-architecture": 0.011750494402445312,
+    "mem-openclaw-authentication": 0.02173841277265228,
+    "mem-openclaw-gateway-auth": 0.030228142128567576,
+    "mem-openclaw-models": 0.03744441305914198,
+    "mem-openclaw-v3-8-features--configured-2026": 0.043578223144824374,
+    "mem-openclaw-tailscale-funnel--for-external": 0.048791944461181944,
+    "mem-openclaw-common-issues---fixes": 0.05322361612150052,
+    "mem-openclaw-must-kill-the-app--not-just-ga": 0.0569906541037373,
+    "mem-openclaw-channels": 0.06019261704827858,
+    "mem-openclaw-qdrant-collections--at-100-70-": 0.06291420401203855,
+    "mem-photos-by-chenar----": 0.011750494402445312,
+    "mem-unifi_inventory----": 0.011750494402445312,
+    "mem-unifi_inventory-unifi-hardware-inventory---134": 0.02173841277265228
+  }
+}

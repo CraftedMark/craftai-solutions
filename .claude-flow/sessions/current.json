@@ -1,0 +1,12 @@
+{
+  "id": "session-1774156056634",
+  "startedAt": "2026-03-22T05:07:36.634Z",
+  "cwd": "/Users/mn/clawd/projects/craftai-solutions",
+  "context": {},
+  "metrics": {
+    "edits": 28,
+    "commands": 0,
+    "tasks": 0,
+    "errors": 0
+  }
+}

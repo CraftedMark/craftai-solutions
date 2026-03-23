@@ -1,0 +1,751 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const services = [
+  {
+    tag: 'Networks',
+    title: 'UniFi Integrations',
+    description: 'Enterprise-grade network design, deployment, and management. From access points to security cameras — a single pane of glass for your entire infrastructure.',
+    capabilities: ['Network architecture & site surveys', 'Access point & switch deployment', 'Camera & security systems', 'VPN & remote access', 'Ongoing monitoring & support'],
+  },
+  {
+    tag: 'Automation',
+    title: 'AI Workflow Automation',
+    description: 'Stop doing repetitive work. We build intelligent automations that connect your tools, process your data, and free your team to focus on what matters.',
+    capabilities: ['Process analysis & optimization', 'Custom AI agent development', 'Tool & API integrations', 'Document processing & extraction', 'Predictive analytics & alerts'],
+  },
+  {
+    tag: 'Development',
+    title: 'Software Development',
+    description: 'Custom applications, web platforms, and integrations built to fit your business — not the other way around. From MVPs to production systems.',
+    capabilities: ['Web & mobile applications', 'API development & integrations', 'Database design & optimization', 'Cloud deployment & DevOps', 'Ongoing maintenance & iteration'],
+  },
+  {
+    tag: 'Infrastructure',
+    title: 'IT Infrastructure Management',
+    description: 'Keep your systems running, secure, and scalable. We handle the servers, backups, and monitoring so your team can focus on the business.',
+    capabilities: ['Server & cloud management', 'Backup & disaster recovery', 'Security hardening & compliance', 'Performance monitoring & alerting', 'Vendor management & procurement'],
+  },
+];
+
+const steps = [
+  { num: '01', title: 'Discovery', desc: 'We audit your current setup and understand your goals. No jargon, no upselling — just honest assessment.' },
+  { num: '02', title: 'Design', desc: 'A clear plan with scope, timeline, and cost. You approve before any work begins.' },
+  { num: '03', title: 'Deploy', desc: 'We build it, test it, and hand it over — with documentation and training so your team owns it.' },
+  { num: '04', title: 'Support', desc: "Ongoing monitoring, maintenance, and a direct line when you need it. We don't disappear after go-live." },
+];
+---
+
+<BaseLayout title="Home">
+  <!-- ═══ NAV ═══ -->
+  <nav class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="/" class="nav__logo" aria-label="CraftAI Solutions home">
+        <svg class="nav__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect x="2" y="2" width="28" height="28" rx="6" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M10 16h4l2-5 2 10 2-5h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="nav__wordmark">CraftAI</span>
+      </a>
+      <div class="nav__links">
+        <a href="#services" class="nav__link">Services</a>
+        <a href="#process" class="nav__link">Process</a>
+        <a href="#contact" class="nav__link">Contact</a>
+        <button class="nav__theme" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="nav__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="nav__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+      <button class="nav__burger" id="nav-burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+    <div class="nav__mobile" id="nav-mobile">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ═══ FULL-PAGE WEBGL BACKGROUND ═══ -->
+  <canvas id="gl-canvas" class="gl-bg"></canvas>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <div class="hero__eyebrow reveal">Smart Infrastructure for Modern Business</div>
+        <h1 class="hero__title reveal reveal-delay-1">
+          Infrastructure<br/>that <em>thinks.</em>
+        </h1>
+        <p class="hero__sub reveal reveal-delay-2">
+          We design networks and build automations so your business runs smoother, faster, and smarter — without adding headcount.
+        </p>
+        <div class="hero__actions reveal reveal-delay-3">
+          <a href="#contact" class="btn btn--primary">Start a conversation</a>
+          <a href="#services" class="btn btn--ghost">See how we work</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero__scroll reveal reveal-delay-5" aria-hidden="true"><span class="hero__scroll-line"></span></div>
+  </section>
+
+  <!-- ═══ SERVICES ═══ -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="services__header reveal">
+        <span class="tag">What We Do</span>
+        <h2 class="heading">Four disciplines.<br/>One team.</h2>
+      </div>
+      <div class="services__grid">
+        {services.map((s, i) => (
+          <div class={`svc reveal reveal-delay-${i + 1}`}>
+            <span class="svc__tag">{s.tag}</span>
+            <h3 class="svc__title">{s.title}</h3>
+            <p class="svc__desc">{s.description}</p>
+            <ul class="svc__list">
+              {s.capabilities.map(c => (
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ STATS ═══ -->
+  <section class="stats">
+    <div class="container stats__inner reveal">
+      <div class="stat"><span class="stat__num" data-count="500">0</span><span class="stat__suf">+</span><span class="stat__label">Devices deployed</span></div>
+      <div class="stat__div" aria-hidden="true"></div>
+      <div class="stat"><span class="stat__num" data-count="50">0</span><span class="stat__suf">+</span><span class="stat__label">Businesses served</span></div>
+      <div class="stat__div" aria-hidden="true"></div>
+      <div class="stat"><span class="stat__num" data-count="100">0</span><span class="stat__suf">%</span><span class="stat__label">Client retention</span></div>
+    </div>
+  </section>
+
+  <!-- ═══ PROCESS ═══ -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="process__header reveal">
+        <span class="tag">How It Works</span>
+        <h2 class="heading">Clear process.<br/>No surprises.</h2>
+      </div>
+      <div class="process__grid">
+        {steps.map((s, i) => (
+          <div class={`step reveal reveal-delay-${i + 1}`}>
+            <span class="step__num">{s.num}</span>
+            <h3 class="step__title">{s.title}</h3>
+            <p class="step__desc">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="cta" id="contact">
+    <div class="container cta__inner">
+      <div class="cta__content reveal">
+        <span class="tag">Let's Talk</span>
+        <h2 class="cta__title">Ready to stop<br/>duct-taping it together?</h2>
+        <p class="cta__sub">Tell us what you're working with. We'll tell you what's possible — no pitch deck, no pressure.</p>
+        <div class="cta__actions">
+          <a href="mailto:mark@craftai.solutions" class="btn btn--primary btn--lg">mark@craftai.solutions</a>
+          <span class="cta__or">or call directly</span>
+          <a href="tel:+1" class="btn btn--ghost">Schedule a call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="2" y="2" width="28" height="28" rx="6" stroke="currentColor" stroke-width="2.5"/><path d="M10 16h4l2-5 2 10 2-5h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>CraftAI Solutions</span>
+      </div>
+      <p class="footer__copy">&copy; {new Date().getFullYear()} CraftAI Solutions. Los Angeles, CA.</p>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  /* ── NAV ── */
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: var(--space-md) 0; transition: background .3s, backdrop-filter .3s; }
+  .nav.scrolled { background: color-mix(in srgb, var(--bg-primary) 85%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-subtle); }
+  .nav__inner { display: flex; align-items: center; justify-content: space-between; }
+  .nav__logo { display: flex; align-items: center; gap: var(--space-sm); font-family: var(--font-display); font-weight: 600; font-size: 1.125rem; letter-spacing: -.02em; }
+  .nav__mark { width: 28px; height: 28px; }
+  .nav__links { display: flex; align-items: center; gap: var(--space-xl); }
+  .nav__link { font-family: var(--font-display); font-size: .875rem; font-weight: 500; color: var(--text-secondary); letter-spacing: .02em; transition: color .2s; }
+  .nav__link:hover { color: var(--text-primary); }
+  .nav__theme { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 8px; background: transparent; cursor: pointer; color: var(--text-secondary); transition: color .2s, border-color .2s; }
+  .nav__theme:hover { color: var(--text-primary); border-color: var(--text-tertiary); }
+  .nav__sun, .nav__moon { width: 18px; height: 18px; }
+  .nav__moon { display: none; }
+  :global(.dark) .nav__sun { display: none; }
+  :global(.dark) .nav__moon { display: block; }
+  .nav__burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+  .nav__burger span { width: 22px; height: 2px; background: var(--text-primary); transition: transform .3s, opacity .3s; }
+  .nav__burger[aria-expanded="true"] span:first-child { transform: translateY(3.5px) rotate(45deg); }
+  .nav__burger[aria-expanded="true"] span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+  .nav__mobile { display: none; flex-direction: column; padding: var(--space-lg) clamp(1.25rem,4vw,2.5rem); gap: var(--space-md); }
+  .nav__mobile.open { display: flex; }
+  .nav__mobile a { font-family: var(--font-display); font-size: 1.125rem; font-weight: 500; color: var(--text-secondary); padding: var(--space-sm) 0; border-bottom: 1px solid var(--border-subtle); }
+  @media (max-width: 768px) { .nav__links { display: none; } .nav__burger { display: flex; } }
+
+  /* ── FULL-PAGE GL BACKGROUND ── */
+  .gl-bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+
+  /* ── HERO ── */
+  .hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: var(--space-4xl) 0 var(--space-3xl); overflow: hidden; background: transparent; color: var(--slate-100); z-index: 1; }
+  .hero__inner { position: relative; z-index: 1; max-width: 680px; }
+  .hero__eyebrow { font-family: var(--font-display); font-size: clamp(.75rem,1vw,.875rem); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-lg); }
+  .hero__title { font-family: var(--font-display); font-size: clamp(3rem,7vw,5.5rem); font-weight: 700; line-height: 1.02; letter-spacing: -.04em; margin-bottom: var(--space-xl); }
+  .hero__title em { font-style: italic; color: var(--accent); }
+  .hero__sub { font-size: clamp(1rem,1.5vw,1.25rem); color: var(--slate-400); max-width: 520px; line-height: 1.65; margin-bottom: var(--space-xl); }
+  .hero__actions { display: flex; gap: var(--space-md); flex-wrap: wrap; }
+  .hero__scroll { position: absolute; bottom: var(--space-xl); left: 50%; transform: translateX(-50%); }
+  .hero__scroll-line { display: block; width: 1px; height: 48px; background: linear-gradient(to bottom, var(--slate-500), transparent); animation: pulse 2s ease-in-out infinite; }
+  .hero .btn--ghost { color: var(--slate-200); border-color: var(--slate-700); }
+  .hero .btn--ghost:hover { border-color: var(--slate-500); background: rgba(255,255,255,0.05); }
+  @keyframes pulse { 0%,100% { opacity: .3; transform: scaleY(.6); } 50% { opacity: 1; transform: scaleY(1); } }
+  @media (max-width: 960px) { .hero { min-height: 90vh; } }
+
+  /* ── BUTTONS ── */
+  .btn { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: .9375rem; font-weight: 600; padding: .75rem 1.75rem; border-radius: 8px; border: none; cursor: pointer; transition: all .2s; letter-spacing: -.01em; text-decoration: none; }
+  .btn--primary { background: var(--accent); color: #fff; }
+  .btn--primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 4px 16px color-mix(in srgb, var(--accent) 30%, transparent); }
+  .btn--ghost { background: transparent; color: var(--slate-200); border: 1px solid rgba(255,255,255,0.15); }
+  .btn--ghost:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); }
+  .btn--lg { padding: 1rem 2rem; font-size: 1rem; }
+
+  /* ── SECTION COMMON ── */
+  .tag { font-family: var(--font-display); font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--blue-400); display: block; margin-bottom: var(--space-md); }
+  .heading { font-family: var(--font-display); font-size: clamp(2rem,4vw,3.25rem); font-weight: 700; line-height: 1.1; letter-spacing: -.03em; color: var(--slate-100); }
+
+  /* ── SERVICES ── */
+  .services { position: relative; z-index: 1; padding: var(--space-4xl) 0; background: transparent; }
+  .services__header { margin-bottom: var(--space-3xl); max-width: 500px; color: var(--slate-100); }
+  .services__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
+  .svc { padding: var(--space-2xl); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; transition: border-color .3s, box-shadow .3s; background: rgba(10,15,26,0.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .svc:hover { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .svc__tag { font-family: var(--font-display); font-size: .6875rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--amber-400); display: block; margin-bottom: var(--space-lg); }
+  .svc__title { font-family: var(--font-display); font-size: clamp(1.5rem,2.5vw,2rem); font-weight: 700; letter-spacing: -.02em; margin-bottom: var(--space-md); color: var(--slate-100); }
+  .svc__desc { color: var(--slate-400); line-height: 1.65; margin-bottom: var(--space-xl); }
+  .svc__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-sm); }
+  .svc__list li { display: flex; align-items: center; gap: var(--space-sm); font-size: .9375rem; color: var(--slate-400); }
+  .svc__list svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--blue-400); }
+  @media (max-width: 768px) { .services__grid { grid-template-columns: 1fr; } }
+
+  /* ── STATS ── */
+  .stats { position: relative; z-index: 1; padding: var(--space-3xl) 0; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); background: transparent; }
+  .stats__inner { display: flex; justify-content: center; align-items: center; gap: var(--space-3xl); }
+  .stat { text-align: center; }
+  .stat__num { font-family: var(--font-display); font-size: clamp(2.5rem,5vw,3.5rem); font-weight: 700; letter-spacing: -.03em; line-height: 1; color: var(--slate-100); }
+  .stat__suf { font-family: var(--font-display); font-size: clamp(1.5rem,3vw,2rem); font-weight: 700; color: var(--blue-400); }
+  .stat__label { display: block; font-size: .875rem; color: var(--slate-400); margin-top: var(--space-xs); }
+  .stat__div { width: 1px; height: 48px; background: rgba(255,255,255,0.1); }
+  @media (max-width: 640px) { .stats__inner { gap: var(--space-xl); } .stat__div { height: 32px; } }
+
+  /* ── PROCESS ── */
+  .process { position: relative; z-index: 1; padding: var(--space-4xl) 0; background: transparent; }
+  .process__header { margin-bottom: var(--space-3xl); max-width: 500px; color: var(--slate-100); }
+  .process__grid { display: grid; grid-template-columns: repeat(4,1fr); gap: var(--space-lg); }
+  .step { padding-top: var(--space-xl); border-top: 2px solid rgba(255,255,255,0.08); transition: border-color .3s; }
+  .step:hover { border-top-color: var(--blue-400); }
+  .step__num { font-family: var(--font-display); font-size: .75rem; font-weight: 600; letter-spacing: .08em; color: var(--blue-400); display: block; margin-bottom: var(--space-md); }
+  .step__title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; letter-spacing: -.01em; margin-bottom: var(--space-sm); color: var(--slate-100); }
+  .step__desc { font-size: .9375rem; color: var(--slate-400); line-height: 1.6; }
+  @media (max-width: 768px) {
+    .process__grid { grid-template-columns: 1fr; gap: 0; }
+    .step { padding: var(--space-xl) 0 var(--space-xl) var(--space-xl); border-top: none; border-left: 2px solid rgba(255,255,255,0.08); }
+    .step:hover { border-left-color: var(--blue-400); border-top-color: transparent; }
+  }
+
+  /* ── CTA ── */
+  .cta { position: relative; z-index: 1; padding: var(--space-4xl) 0; background: transparent; border-top: 1px solid rgba(255,255,255,0.06); }
+  .cta__inner { max-width: 640px; }
+  .cta__title { font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem); font-weight: 700; line-height: 1.1; letter-spacing: -.03em; margin-bottom: var(--space-lg); color: var(--slate-100); }
+  .cta__sub { font-size: 1.125rem; color: var(--slate-400); line-height: 1.6; margin-bottom: var(--space-2xl); }
+  .cta__actions { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-md); }
+  .cta__or { font-size: .8125rem; color: var(--slate-500); margin-top: var(--space-sm); }
+
+  /* ── FOOTER ── */
+  .footer { position: relative; z-index: 1; padding: var(--space-2xl) 0; border-top: 1px solid rgba(255,255,255,0.06); background: transparent; }
+  .footer__inner { display: flex; align-items: center; justify-content: space-between; }
+  .footer__brand { display: flex; align-items: center; gap: var(--space-sm); font-family: var(--font-display); font-weight: 600; font-size: .9375rem; color: var(--slate-300); }
+  .footer__brand svg { width: 24px; height: 24px; }
+  .footer__copy { font-size: .8125rem; color: var(--slate-500); }
+  @media (max-width: 640px) { .footer__inner { flex-direction: column; gap: var(--space-md); text-align: center; } }
+</style>
+
+<script>
+  import * as THREE from 'three';
+
+  // ─── THEME ───
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+
+  // ─── NAV SCROLL ───
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { nav?.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+
+  // ─── MOBILE MENU ───
+  const burger = document.getElementById('nav-burger');
+  const mobile = document.getElementById('nav-mobile');
+  burger?.addEventListener('click', () => {
+    const exp = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!exp));
+    mobile?.classList.toggle('open');
+  });
+  mobile?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger?.setAttribute('aria-expanded', 'false');
+    mobile?.classList.remove('open');
+  }));
+
+  // ─── REVEAL ───
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // ─── STAT COUNTER ───
+  const statObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target as HTMLElement;
+      const target = parseInt(el.dataset.count || '0');
+      const start = performance.now();
+      const dur = 1200;
+      function tick(now: number) {
+        const p = Math.min((now - start) / dur, 1);
+        el.textContent = String(Math.round(target * (1 - Math.pow(1 - p, 4))));
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      statObs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(el => statObs.observe(el));
+
+  // ─── THREE.JS COMBINED: NETWORK TOPOLOGY + ATMOSPHERIC STARFIELD ───
+  const canvas = document.getElementById('gl-canvas') as HTMLCanvasElement;
+  if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 300);
+    camera.position.set(0, 0, 18);
+
+    function resize() {
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // ═══════════════════════════════════════════════════════════
+    // LAYER 1: ATMOSPHERIC STARFIELD (far background, z: -40 to -80)
+    // ═══════════════════════════════════════════════════════════
+    const starCount = 2000;
+    const starPositions = new Float32Array(starCount * 3);
+    const starSizes = new Float32Array(starCount);
+
+    for (let i = 0; i < starCount; i++) {
+      starPositions[i * 3] = (Math.random() - 0.5) * 200;
+      starPositions[i * 3 + 1] = (Math.random() - 0.5) * 120;
+      starPositions[i * 3 + 2] = -40 - Math.random() * 60;
+      starSizes[i] = 0.3 + Math.random() * 1.5;
+    }
+
+    const starGeo = new THREE.BufferGeometry();
+    starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPositions, 3));
+    starGeo.setAttribute('size', new THREE.Float32BufferAttribute(starSizes, 1));
+
+    const starMat = new THREE.ShaderMaterial({
+      transparent: true,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+      uniforms: {
+        uColor: { value: new THREE.Color(0x4a90d9) },
+        uTime: { value: 0 },
+      },
+      vertexShader: `
+        attribute float size;
+        varying float vAlpha;
+        uniform float uTime;
+        void main() {
+          vec4 mvPos = modelViewMatrix * vec4(position, 1.0);
+          gl_PointSize = size * (60.0 / -mvPos.z);
+          gl_Position = projectionMatrix * mvPos;
+          float twinkle = sin(uTime * 0.4 + position.x * 0.08 + position.y * 0.12) * 0.3 + 0.7;
+          vAlpha = twinkle * (0.08 + size * 0.06);
+        }
+      `,
+      fragmentShader: `
+        uniform vec3 uColor;
+        varying float vAlpha;
+        void main() {
+          float d = length(gl_PointCoord - vec2(0.5));
+          if (d > 0.5) discard;
+          float glow = 1.0 - smoothstep(0.0, 0.5, d);
+          gl_FragColor = vec4(uColor, vAlpha * glow);
+        }
+      `,
+    });
+
+    const stars = new THREE.Points(starGeo, starMat);
+    scene.add(stars);
+
+    // Crosshair markers (deep background)
+    const crosshairGroup = new THREE.Group();
+    for (let i = 0; i < 8; i++) {
+      const x = (Math.random() - 0.5) * 120;
+      const y = (Math.random() - 0.5) * 70;
+      const z = -30 - Math.random() * 20;
+      const sz = 1.0 + Math.random() * 1.2;
+
+      const positions = new Float32Array([
+        x - sz, y, z, x + sz, y, z,
+        x, y - sz, z, x, y + sz, z,
+      ]);
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+      crosshairGroup.add(new THREE.LineSegments(geo, new THREE.LineBasicMaterial({ color: 0x4a90d9, transparent: true, opacity: 0.12 })));
+
+      const bSz = sz * 0.4;
+      const bOff = sz * 0.8;
+      const bp = new Float32Array([
+        x-bOff, y+bOff-bSz, z, x-bOff, y+bOff, z,  x-bOff, y+bOff, z, x-bOff+bSz, y+bOff, z,
+        x+bOff, y+bOff-bSz, z, x+bOff, y+bOff, z,  x+bOff, y+bOff, z, x+bOff-bSz, y+bOff, z,
+        x-bOff, y-bOff+bSz, z, x-bOff, y-bOff, z,  x-bOff, y-bOff, z, x-bOff+bSz, y-bOff, z,
+        x+bOff, y-bOff+bSz, z, x+bOff, y-bOff, z,  x+bOff, y-bOff, z, x+bOff-bSz, y-bOff, z,
+      ]);
+      const bGeo = new THREE.BufferGeometry();
+      bGeo.setAttribute('position', new THREE.Float32BufferAttribute(bp, 3));
+      crosshairGroup.add(new THREE.LineSegments(bGeo, new THREE.LineBasicMaterial({ color: 0x4a90d9, transparent: true, opacity: 0.07 })));
+    }
+    scene.add(crosshairGroup);
+
+    // ═══════════════════════════════════════════════════════════
+    // LAYER 2: NETWORK TOPOLOGY (foreground, z: -5 to +5)
+    // ═══════════════════════════════════════════════════════════
+    const networkGroup = new THREE.Group();
+
+    // Node data
+    interface NodeData {
+      originPos: THREE.Vector3;  // network topology position (scroll 0)
+      morphPos: THREE.Vector3;   // 4-cluster position (scroll ~0.4)
+      scatterPos: THREE.Vector3; // wide scatter/constellation (scroll ~1.0)
+      currentPos: THREE.Vector3; // interpolated position
+      isHub: boolean;
+      mesh: THREE.Mesh;
+    }
+
+    const nodes: NodeData[] = [];
+    const hubCount = 8;
+    const satelliteCount = 112;
+    const totalNodes = hubCount + satelliteCount;
+    const spread = 14;
+
+    // Hub node material
+    const hubMat = new THREE.MeshBasicMaterial({ color: 0xf59e0b, transparent: true, opacity: 0.9 });
+    const satMat = new THREE.MeshBasicMaterial({ color: 0x3b82f6, transparent: true, opacity: 0.65 });
+    const hubGeo = new THREE.SphereGeometry(0.18, 12, 12);
+    const satGeo = new THREE.SphereGeometry(0.08, 8, 8);
+
+    // Morphed state: 4 clusters representing the 4 services
+    const clusterCenters = [
+      new THREE.Vector3(-8, 5, 0),    // UniFi
+      new THREE.Vector3(8, 5, 0),     // AI Automation
+      new THREE.Vector3(-8, -5, 0),   // Development
+      new THREE.Vector3(8, -5, 0),    // IT Infrastructure
+    ];
+
+    // Create hub nodes — spread across the space
+    for (let i = 0; i < hubCount; i++) {
+      const angle = (i / hubCount) * Math.PI * 2;
+      const radius = 3 + Math.random() * (spread * 0.5);
+      const originPos = new THREE.Vector3(
+        Math.cos(angle) * radius + (Math.random() - 0.5) * 3,
+        Math.sin(angle) * radius + (Math.random() - 0.5) * 3,
+        (Math.random() - 0.5) * 6
+      );
+      // Morph target: hubs become cluster centers
+      const cluster = clusterCenters[i % 4];
+      const morphPos = new THREE.Vector3(
+        cluster.x + (Math.random() - 0.5) * 1.5,
+        cluster.y + (Math.random() - 0.5) * 1.5,
+        (Math.random() - 0.5) * 2
+      );
+      // Scatter target: wide constellation spread
+      const scatterAngle = Math.random() * Math.PI * 2;
+      const scatterR = 12 + Math.random() * 18;
+      const scatterPos = new THREE.Vector3(
+        Math.cos(scatterAngle) * scatterR,
+        Math.sin(scatterAngle) * scatterR * 0.6,
+        (Math.random() - 0.5) * 15
+      );
+      const currentPos = originPos.clone();
+      const mesh = new THREE.Mesh(hubGeo, hubMat);
+      mesh.position.copy(originPos);
+      networkGroup.add(mesh);
+      nodes.push({ originPos, morphPos, scatterPos, currentPos, isHub: true, mesh });
+    }
+
+    // Create satellite nodes around hubs
+    for (let i = 0; i < satelliteCount; i++) {
+      const originPos = new THREE.Vector3(
+        (Math.random() - 0.5) * spread * 2,
+        (Math.random() - 0.5) * spread * 1.5,
+        (Math.random() - 0.5) * 8
+      );
+      // Morph target: satellites scatter into 4 clusters
+      const cluster = clusterCenters[i % 4];
+      const morphPos = new THREE.Vector3(
+        cluster.x + (Math.random() - 0.5) * 5,
+        cluster.y + (Math.random() - 0.5) * 4,
+        (Math.random() - 0.5) * 3
+      );
+      // Scatter target: wide constellation
+      const sAngle = Math.random() * Math.PI * 2;
+      const sR = 8 + Math.random() * 22;
+      const scatterPos = new THREE.Vector3(
+        Math.cos(sAngle) * sR,
+        Math.sin(sAngle) * sR * 0.6,
+        (Math.random() - 0.5) * 12
+      );
+      const currentPos = originPos.clone();
+      const mesh = new THREE.Mesh(satGeo, satMat);
+      mesh.position.copy(originPos);
+      networkGroup.add(mesh);
+      nodes.push({ originPos, morphPos, scatterPos, currentPos, isHub: false, mesh });
+    }
+
+    // Connection pairs — store indices for dynamic updates
+    const connectionThreshold = 3.8;
+    interface ConnectionPair { i: number; j: number; }
+    const connectionPairs: ConnectionPair[] = [];
+
+    for (let i = 0; i < totalNodes; i++) {
+      for (let j = i + 1; j < totalNodes; j++) {
+        const d = nodes[i].originPos.distanceTo(nodes[j].originPos);
+        if (d < connectionThreshold) {
+          connectionPairs.push({ i, j });
+        }
+      }
+    }
+
+    const connectionArray = new Float32Array(connectionPairs.length * 6);
+    connectionPairs.forEach((pair, idx) => {
+      const n1 = nodes[pair.i];
+      const n2 = nodes[pair.j];
+      connectionArray[idx * 6] = n1.originPos.x;
+      connectionArray[idx * 6 + 1] = n1.originPos.y;
+      connectionArray[idx * 6 + 2] = n1.originPos.z;
+      connectionArray[idx * 6 + 3] = n2.originPos.x;
+      connectionArray[idx * 6 + 4] = n2.originPos.y;
+      connectionArray[idx * 6 + 5] = n2.originPos.z;
+    });
+
+    const connectionGeo = new THREE.BufferGeometry();
+    connectionGeo.setAttribute('position', new THREE.Float32BufferAttribute(connectionArray, 3));
+    const connectionMat = new THREE.LineBasicMaterial({ color: 0x3b82f6, transparent: true, opacity: 0.12 });
+    const connections = new THREE.LineSegments(connectionGeo, connectionMat);
+    networkGroup.add(connections);
+
+    // Data pulses — amber particles traveling between random connected nodes
+    interface PulseData {
+      mesh: THREE.Mesh;
+      fromIdx: number;
+      toIdx: number;
+      progress: number;
+      speed: number;
+    }
+
+    const pulses: PulseData[] = [];
+    const pulseGeo = new THREE.SphereGeometry(0.06, 6, 6);
+    const pulseMat = new THREE.MeshBasicMaterial({ color: 0xfbbf24, transparent: true, opacity: 0.9 });
+    const pulseCount = 35;
+
+    function getRandomPairIdx(): [number, number] {
+      const a = Math.floor(Math.random() * totalNodes);
+      let b = a;
+      let tries = 0;
+      while (b === a && tries < 20) {
+        b = Math.floor(Math.random() * totalNodes);
+        tries++;
+      }
+      return [a, b];
+    }
+
+    for (let i = 0; i < pulseCount; i++) {
+      const [fromIdx, toIdx] = getRandomPairIdx();
+      const mesh = new THREE.Mesh(pulseGeo, pulseMat.clone());
+      mesh.position.copy(nodes[fromIdx].currentPos);
+      networkGroup.add(mesh);
+      pulses.push({ mesh, fromIdx, toIdx, progress: Math.random(), speed: 0.003 + Math.random() * 0.006 });
+    }
+
+    // Hub glow rings — store refs for scroll animation
+    const rings: THREE.Mesh[] = [];
+    const ringGeo = new THREE.RingGeometry(0.25, 0.35, 24);
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0xf59e0b, transparent: true, opacity: 0.15, side: THREE.DoubleSide });
+    nodes.filter(n => n.isHub).forEach(hub => {
+      const ring = new THREE.Mesh(ringGeo, ringMat.clone());
+      ring.position.copy(hub.currentPos);
+      networkGroup.add(ring);
+      rings.push(ring);
+    });
+
+    scene.add(networkGroup);
+
+    // ═══════════════════════════════════════════════════════════
+    // SCROLL-DRIVEN MORPH (full page)
+    // ═══════════════════════════════════════════════════════════
+    let scrollProgress = 0; // 0 = network topology, 1 = fully morphed
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      scrollProgress = docHeight > 0 ? Math.max(0, Math.min(1, scrollTop / docHeight)) : 0;
+    }, { passive: true });
+
+    // ═══════════════════════════════════════════════════════════
+    // INTERACTION & ANIMATION
+    // ═══════════════════════════════════════════════════════════
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+      mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+    }, { passive: true });
+
+    // Theme-aware colors
+    function updateColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      starMat.uniforms.uColor.value.set(isDark ? 0x6ba3d6 : 0x3b6fa5);
+      connectionMat.color.set(isDark ? 0x60a5fa : 0x2563eb);
+      connectionMat.opacity = isDark ? 0.12 : 0.08;
+      satMat.color.set(isDark ? 0x60a5fa : 0x2563eb);
+    }
+
+    const themeObs = new MutationObserver(updateColors);
+    themeObs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    updateColors();
+
+    let time = 0;
+    // Smooth scroll progress (lerped for buttery animation)
+    let smoothScroll = 0;
+
+    function animate() {
+      requestAnimationFrame(animate);
+      time += 0.016;
+
+      // Smooth the scroll value for fluid morphing
+      smoothScroll += (scrollProgress - smoothScroll) * 0.08;
+      const sp = smoothScroll; // shorthand
+      // Eased scroll for more dramatic morph curve
+      const easedSp = sp < 0.5 ? 2 * sp * sp : 1 - Math.pow(-2 * sp + 2, 2) / 2;
+
+      starMat.uniforms.uTime.value = time;
+
+      // Mouse parallax — camera moves, network rotates gently
+      const tX = mouseY * 1.5;
+      const tY = mouseX * 2;
+      camera.position.x += (tY - camera.position.x) * 0.02;
+      camera.position.y += (-tX - camera.position.y) * 0.02;
+      // Camera pulls back as user scrolls to reveal morphed layout
+      const scrollZoom = 18 + easedSp * 8;
+      camera.position.z += (scrollZoom - camera.position.z) * 0.05;
+      camera.lookAt(0, 0, 0);
+
+      // Auto-rotation slows down as morph progresses
+      const rotSpeed = 1 - easedSp * 0.8;
+      networkGroup.rotation.y += 0.001 * rotSpeed;
+      networkGroup.rotation.x += 0.0003 * rotSpeed;
+      networkGroup.rotation.y += mouseX * 0.0005 * rotSpeed;
+      networkGroup.rotation.x += mouseY * 0.0003 * rotSpeed;
+
+      // Starfield slow drift
+      stars.rotation.z += 0.00004;
+      crosshairGroup.rotation.z -= 0.00002;
+
+      // ── MORPH NODE POSITIONS (multi-stage) ──
+      // 0.0–0.4: network → 4 clusters
+      // 0.4–1.0: 4 clusters → wide constellation scatter
+      for (const node of nodes) {
+        if (easedSp <= 0.4) {
+          const t = easedSp / 0.4; // 0→1 within first stage
+          node.currentPos.lerpVectors(node.originPos, node.morphPos, t);
+        } else {
+          const t = (easedSp - 0.4) / 0.6; // 0→1 within second stage
+          node.currentPos.lerpVectors(node.morphPos, node.scatterPos, t);
+        }
+        node.mesh.position.copy(node.currentPos);
+      }
+
+      // ── UPDATE CONNECTIONS dynamically ──
+      const connPos = connectionGeo.getAttribute('position') as THREE.BufferAttribute;
+      const connArr = connPos.array as Float32Array;
+      for (let idx = 0; idx < connectionPairs.length; idx++) {
+        const pair = connectionPairs[idx];
+        const n1 = nodes[pair.i];
+        const n2 = nodes[pair.j];
+        connArr[idx * 6] = n1.currentPos.x;
+        connArr[idx * 6 + 1] = n1.currentPos.y;
+        connArr[idx * 6 + 2] = n1.currentPos.z;
+        connArr[idx * 6 + 3] = n2.currentPos.x;
+        connArr[idx * 6 + 4] = n2.currentPos.y;
+        connArr[idx * 6 + 5] = n2.currentPos.z;
+      }
+      connPos.needsUpdate = true;
+
+      // Connections fade out during morph, then new shorter connections appear
+      const connBaseOpacity = document.documentElement.classList.contains('dark') ? 0.12 : 0.08;
+      connectionMat.opacity = connBaseOpacity * (1 - easedSp * 0.7);
+
+      // ── UPDATE HUB RING POSITIONS ──
+      const hubNodes = nodes.filter(n => n.isHub);
+      hubNodes.forEach((hub, i) => {
+        if (rings[i]) rings[i].position.copy(hub.currentPos);
+      });
+
+      // Animate data pulses — follow current (morphed) positions
+      for (const pulse of pulses) {
+        pulse.progress += pulse.speed;
+        if (pulse.progress >= 1) {
+          pulse.progress = 0;
+          const [a, b] = getRandomPairIdx();
+          pulse.fromIdx = a;
+          pulse.toIdx = b;
+        }
+        const t = pulse.progress;
+        const ease = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+        pulse.mesh.position.lerpVectors(nodes[pulse.fromIdx].currentPos, nodes[pulse.toIdx].currentPos, ease);
+        const fade = Math.sin(t * Math.PI);
+        (pulse.mesh.material as THREE.MeshBasicMaterial).opacity = fade * 0.85 * (1 - easedSp * 0.3);
+      }
+
+      // Hub breathing effect
+      const breathe = Math.sin(time * 1.5) * 0.15 + 1;
+      hubNodes.forEach(hub => {
+        hub.mesh.scale.setScalar(breathe);
+      });
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  }
+</script>
