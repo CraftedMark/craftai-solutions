@@ -1,43 +1,49 @@
-# Astro Starter Kit: Minimal
+# CraftAI Solutions
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Marketing site for [craftai.solutions](https://craftai.solutions) — UniFi network integrations and AI workflow automation for small businesses and enterprise teams.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Static site built with **Astro 6**, served from an **nginx (Docker)** container on a VPS.
 
-## 🚀 Project Structure
+## Prerequisites
 
-Inside of your Astro project, you'll see the following folders and files:
+- Node.js >= 22.12.0
+- npm
+
+## Commands
+
+<!-- AUTO-GENERATED: from package.json scripts — do not edit by hand -->
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start local dev server at `localhost:4321` with hot reload |
+| `npm run build` | Production build to `dist/` |
+| `npm run preview` | Preview the production build locally |
+| `npm run astro ...` | Run Astro CLI commands (e.g. `astro add`, `astro check`) |
+<!-- END AUTO-GENERATED -->
+
+## Project Structure
 
 ```text
 /
-├── public/
+├── public/               # Static assets served as-is
 ├── src/
+│   ├── layouts/
+│   │   └── BaseLayout.astro
 │   └── pages/
-│       └── index.astro
+│       └── index.astro   # File-based routing: each file = a route
+├── astro.config.mjs
+├── Dockerfile            # nginx:alpine serving dist/
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Dependencies
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- `astro` ^6 — static site generation
+- `three` — 3D visuals
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Deployment
 
-## 🧞 Commands
+Built `dist/` output is baked into an `nginx:alpine` image and run on the VPS. See [docs/RUNBOOK.md](docs/RUNBOOK.md) for deployment and rollback procedures.
 
-All commands are run from the root of the project, from a terminal:
+## Contributing
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+See [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) for setup, workflow, and design guidelines. Brand and design direction live in [CLAUDE.md](CLAUDE.md).
