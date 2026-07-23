@@ -32,3 +32,9 @@ Small business owners and enterprise decision-makers (IT directors, CTOs, ops ma
 3. Trust through craft
 4. Dark mode is first-class
 5. Speed to contact
+
+<!-- ERTH-WIKI:START -->
+## Erth platform wiki — write to it AS YOU WORK
+
+When the work touches anything Erth (the 360 console web/API/iPad app, the PG18 warehouse, syncs/ingest, deploys, or Erth VPS infra), maintain `~/Workspace/erth-platform-wiki` **in the same session** — not after: update the affected entity/concept pages, link new pages from the domain README, add a dated `LOG.md` entry, and fix any claim the change falsifies. The full ingest contract and page format (distilled, hard-to-vary, `[[linked]]`) live in that repo's `AGENTS.md` — follow it. Secrets never; Keychain refs only.
+<!-- ERTH-WIKI:END -->
