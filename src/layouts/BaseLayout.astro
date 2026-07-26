@@ -1,9 +1,37 @@
 ---
 interface Props {
   title: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = 'CraftAI Solutions — UniFi networks, AI workflow automation, and custom software for businesses that want to move faster.',
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og-image.jpg', Astro.site);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'CraftAI Solutions',
+  url: 'https://craftai.solutions',
+  email: 'mark@craftai.solutions',
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Los Angeles',
+    addressRegion: 'CA',
+    addressCountry: 'US',
+  },
+  knowsAbout: [
+    'UniFi network design and deployment',
+    'AI workflow automation',
+    'Software development',
+    'IT infrastructure management',
+  ],
+};
 ---
 
 <!doctype html>
@@ -11,18 +39,37 @@ const { title } = Astro.props;
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="CraftAI Solutions — UniFi network integrations and AI workflow automation for businesses that want to move faster." />
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CraftAI Solutions" />
+  <meta property="og:title" content={`${title} — CraftAI Solutions`} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={ogImage} />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content={`${title} — CraftAI Solutions`} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="apple-touch-icon" href="/icon-192.png" />
   <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#0a0f1a" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8fafc" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0f1a" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="CraftAI" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
   <title>{title} — CraftAI Solutions</title>
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <script is:inline>
     (function() {
       const stored = localStorage.getItem('theme');
@@ -33,6 +80,7 @@ const { title } = Astro.props;
   </script>
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to content</a>
   <slot />
   <script is:inline>
     if ('serviceWorker' in navigator) {
@@ -78,9 +126,17 @@ const { title } = Astro.props;
     --text-inverse: var(--slate-50);
     --accent: var(--blue-600);
     --accent-hover: var(--blue-500);
-    --accent-warm: var(--amber-500);
+    --accent-warm: #b45309;
     --border: var(--slate-200);
     --border-subtle: var(--slate-100);
+
+    /* Theme-aware surfaces & hairlines (over the WebGL background) */
+    --line: rgba(15, 23, 42, 0.08);
+    --line-strong: rgba(15, 23, 42, 0.16);
+    --card-bg: rgba(255, 255, 255, 0.72);
+    --input-bg: rgba(255, 255, 255, 0.6);
+    --ghost-border: rgba(15, 23, 42, 0.18);
+    --ghost-hover-bg: rgba(15, 23, 42, 0.05);
 
     /* Typography */
     --font-display: 'Space Grotesk', system-ui, sans-serif;
@@ -117,6 +173,13 @@ const { title } = Astro.props;
     --accent-warm: var(--amber-400);
     --border: var(--slate-800);
     --border-subtle: var(--slate-800);
+
+    --line: rgba(255, 255, 255, 0.08);
+    --line-strong: rgba(255, 255, 255, 0.16);
+    --card-bg: rgba(10, 15, 26, 0.55);
+    --input-bg: rgba(255, 255, 255, 0.04);
+    --ghost-border: rgba(255, 255, 255, 0.15);
+    --ghost-hover-bg: rgba(255, 255, 255, 0.05);
   }
 
   html {
@@ -127,11 +190,11 @@ const { title } = Astro.props;
 
   body {
     font-family: var(--font-body);
-    background: #0a0f1a;
+    background: var(--bg-primary);
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
-    transition: color 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease;
   }
 
   img { max-width: 100%; display: block; }
@@ -141,6 +204,30 @@ const { title } = Astro.props;
     background: var(--accent);
     color: #fff;
   }
+
+  /* Visible keyboard focus everywhere */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* ─── SKIP LINK ─── */
+  .skip-link {
+    position: fixed;
+    top: -100%;
+    left: var(--space-md);
+    z-index: 200;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus-visible { top: var(--space-md); }
 
   /* ─── UTILITIES ─── */
   .container {
@@ -174,6 +261,7 @@ const { title } = Astro.props;
   .reveal-delay-5 { transition-delay: 500ms; }
 
   @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
     .reveal {
       opacity: 1;
       transform: none;
