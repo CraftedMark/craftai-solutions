@@ -77,20 +77,20 @@ const steps = [
     <section class="hero">
       <div class="container hero__inner">
         <div class="hero__content" id="hero-content">
-          <div class="hero__eyebrow reveal">Smart Infrastructure for Modern Business</div>
+          <div class="hero__eyebrow reveal" data-hero>Smart Infrastructure for Modern Business</div>
           <h1 class="hero__title" id="hero-title">
             Infrastructure<br/>that <em><span id="hero-word">thinks</span><span class="hero__word-cursor">.</span></em>
           </h1>
-          <p class="hero__sub reveal reveal-delay-2">
+          <p class="hero__sub reveal" data-hero>
             We design networks, build automations, and ship software — so your business runs smoother, faster, and smarter, without adding headcount.
           </p>
-          <div class="hero__actions reveal reveal-delay-3">
+          <div class="hero__actions reveal" data-hero>
             <a href="#contact" class="btn btn--primary">Start a conversation</a>
             <a href="#services" class="btn btn--ghost">See how we work</a>
           </div>
         </div>
       </div>
-      <div class="hero__scroll reveal reveal-delay-5" aria-hidden="true"><span class="hero__scroll-line"></span></div>
+      <div class="hero__scroll reveal" data-hero aria-hidden="true"><span class="hero__scroll-line"></span></div>
     </section>
 
     <!-- ═══ PINNED CHAPTER (scroll-scrubbed) ═══ -->
@@ -112,8 +112,8 @@ const steps = [
           <h2 class="heading"><span class="hline"><span>Three disciplines.</span></span><span class="hline"><span>One team.</span></span></h2>
         </div>
         <div class="services__grid">
-          {pillars.map((s, i) => (
-            <div class={`svc reveal reveal-delay-${i + 1}`}>
+          {pillars.map((s) => (
+            <div class="svc reveal">
               <span class="svc__tag">{s.tag}</span>
               <h3 class="svc__title">{s.title}</h3>
               <p class="svc__desc">{s.description}</p>
@@ -161,8 +161,8 @@ const steps = [
           <h2 class="heading"><span class="hline"><span>Clear process.</span></span><span class="hline"><span>No surprises.</span></span></h2>
         </div>
         <div class="process__grid">
-          {steps.map((s, i) => (
-            <div class={`step reveal reveal-delay-${i + 1}`}>
+          {steps.map((s) => (
+            <div class="step reveal">
               <span class="step__num">{s.num}</span>
               <h3 class="step__title">{s.title}</h3>
               <p class="step__desc">{s.desc}</p>
@@ -188,7 +188,7 @@ const steps = [
             infrastructure without enterprise-grade overhead.
           </p>
         </div>
-        <div class="about__card reveal reveal-delay-2">
+        <div class="about__card reveal">
           <div class="about__avatar" aria-hidden="true">M</div>
           <h3 class="about__name">Mark</h3>
           <p class="about__role">Founder & Lead Engineer</p>
@@ -319,11 +319,18 @@ const steps = [
   @media (max-width: 960px) { .hero { min-height: 90vh; } }
   @media (prefers-reduced-motion: reduce) { .hero__scroll-line { animation: none; } }
 
-  /* Char-split entrance (JS wraps chars; static text is the no-JS/reduced-motion fallback) */
-  .chm { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .08em; margin-bottom: -.08em; }
-  .chr { display: inline-block; transform: translateY(115%); transition: transform 800ms var(--ease-out-expo); transition-delay: calc(var(--i) * 28ms); will-change: transform; }
-  .hero__title.in .chr { transform: translateY(0); }
-  @media (prefers-reduced-motion: reduce) { .chr { transform: none; transition: none; } }
+  /* Char-split entrance — JS wraps each char in .chr inside a .chm overflow mask,
+     then anime.js animates translateY. The 115% start state lives in CSS so chars
+     are masked the instant they exist (no flash of unmasked text). Static text is
+     the no-JS / reduced-motion fallback.
+
+     :global() is required — these spans are created at runtime, so they never
+     carry Astro's data-astro-cid attribute and scoped selectors would not match
+     them (which silently left .chr as display:inline, where transforms are a
+     no-op, and .chm unmasked). */
+  :global(.chm) { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .08em; margin-bottom: -.08em; }
+  :global(.chr) { display: inline-block; transform: translateY(115%); will-change: transform; }
+  @media (prefers-reduced-motion: reduce) { :global(.chr) { transform: none; } }
 
   /* ── PINNED CHAPTER ── */
   .chapter { position: relative; z-index: 1; height: 320vh; }
@@ -471,21 +478,8 @@ const steps = [
   .cta__title { font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem); font-weight: 700; line-height: 1.1; letter-spacing: -.03em; margin-bottom: var(--space-lg); color: var(--text-primary); }
   .cta__sub { font-size: 1.125rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-2xl); }
 
-  /* ── HERO WORD SWAP (blur-flip) ── */
-  #hero-word {
-    display: inline-block;
-    transition: opacity 0.32s ease, transform 0.32s ease, filter 0.32s ease;
-  }
-  #hero-word.fading {
-    opacity: 0;
-    transform: translateY(-10px);
-    filter: blur(6px);
-  }
-  #hero-word.entering {
-    opacity: 0;
-    transform: translateY(10px);
-    filter: blur(6px);
-  }
+  /* ── HERO WORD SWAP (blur-flip) — driven by an anime.js loop timeline ── */
+  #hero-word { display: inline-block; }
   .hero__word-cursor {
     display: inline-block;
     color: var(--accent);
@@ -562,6 +556,11 @@ const steps = [
 
 <script>
   import * as THREE from 'three';
+  import { animate, createTimeline, stagger, utils } from 'animejs';
+
+  // The <head> script hid every .reveal behind html.anime and armed a failsafe in
+  // case this module never runs (bundle 404, parse error). We're running — disarm it.
+  clearTimeout((window as any).__animeFailsafe);
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
@@ -697,54 +696,119 @@ const steps = [
     }
   });
 
-  // ─── HERO TITLE CHAR-SPLIT ENTRANCE ───
-  const heroTitle = document.getElementById('hero-title');
-  if (heroTitle && !reducedMotion) {
-    let charIdx = 0;
+  // ─── HERO TITLE CHAR SPLIT ───
+  // Hand-rolled rather than anime.js splitText() because it must split ONLY the
+  // plain text nodes ("Infrastructure", "that ") and leave the <em> word-swap
+  // span untouched. Returns the .chr elements for the entrance timeline.
+  function splitHeroTitle(title: HTMLElement): HTMLElement[] {
+    const chars: HTMLElement[] = [];
     const splitNode = (node: ChildNode) => {
-      if (node.nodeType === Node.TEXT_NODE && node.textContent) {
-        const frag = document.createDocumentFragment();
-        for (const ch of node.textContent) {
-          if (ch === ' ') { frag.appendChild(document.createTextNode(' ')); continue; }
-          const mask = document.createElement('span');
-          mask.className = 'chm';
-          const inner = document.createElement('span');
-          inner.className = 'chr';
-          inner.style.setProperty('--i', String(charIdx++));
-          inner.textContent = ch;
-          mask.appendChild(inner);
-          frag.appendChild(mask);
-        }
-        node.replaceWith(frag);
+      if (node.nodeType !== Node.TEXT_NODE || !node.textContent) return;
+      const frag = document.createDocumentFragment();
+      for (const ch of node.textContent) {
+        // All whitespace passes through untouched — wrapping the source
+        // newlines/indentation produced empty animated spans.
+        if (/\s/.test(ch)) { frag.appendChild(document.createTextNode(ch)); continue; }
+        const mask = document.createElement('span');
+        mask.className = 'chm';
+        const inner = document.createElement('span');
+        inner.className = 'chr';
+        inner.textContent = ch;
+        mask.appendChild(inner);
+        frag.appendChild(mask);
+        chars.push(inner);
       }
+      node.replaceWith(frag);
     };
-    // Split only the plain text ("Infrastructure", "that ") — leave the em word-swap intact
-    Array.from(heroTitle.childNodes).forEach(splitNode);
-    setTimeout(() => heroTitle.classList.add('in'), 250);
+    Array.from(title.childNodes).forEach(splitNode);
+    return chars;
   }
 
-  // ─── REVEAL ───
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  // ─── HERO ENTRANCE (one anime.js timeline: title chars → eyebrow/sub/actions/cue) ───
+  const heroTitle = document.getElementById('hero-title');
+  const heroEls = Array.from(document.querySelectorAll<HTMLElement>('[data-hero]'));
 
-  // ─── STAT COUNTER ───
+  if (reducedMotion) {
+    heroEls.forEach(el => el.classList.add('visible'));
+  } else {
+    const heroChars = heroTitle ? splitHeroTitle(heroTitle) : [];
+    const heroTl = createTimeline({ defaults: { ease: 'outExpo' } });
+    if (heroChars.length) {
+      heroTl.add(heroChars, {
+        translateY: ['115%', '0%'],
+        duration: 900,
+        delay: stagger(26),
+      }, 200);
+    }
+    heroTl.add(heroEls, {
+      opacity: [0, 1],
+      translateY: [24, 0],
+      duration: 800,
+      delay: stagger(90),
+      onBegin: () => heroEls.forEach(el => el.classList.add('visible')),
+    }, 340);
+  }
+
+  // ─── SCROLL REVEALS ───
+  // IntersectionObserver still owns the one-shot trigger; anime.js owns the motion
+  // so sibling groups (card grids) cascade with a real stagger instead of the old
+  // fixed reveal-delay-N CSS steps.
+  const revealEls = Array.from(document.querySelectorAll<HTMLElement>('.reveal:not([data-hero])'));
+
+  if (reducedMotion) {
+    revealEls.forEach(el => el.classList.add('visible'));
+  } else {
+    // A parent's reveals stagger together only when EVERY element child is a
+    // .reveal — that's true for the service/step grids and the about pair, but
+    // not for a section .container holding a header and a distant block.
+    const byParent = new Map<Element, HTMLElement[]>();
+    revealEls.forEach(el => {
+      const parent = el.parentElement;
+      if (!parent) return;
+      const siblings = byParent.get(parent);
+      if (siblings) siblings.push(el); else byParent.set(parent, [el]);
+    });
+
+    const groupOf = new Map<HTMLElement, HTMLElement[]>();
+    byParent.forEach((group, parent) => {
+      const cohesive = group.length === parent.children.length;
+      group.forEach(el => groupOf.set(el, cohesive ? group : [el]));
+    });
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const group = groupOf.get(e.target as HTMLElement) ?? [e.target as HTMLElement];
+        group.forEach(el => {
+          obs.unobserve(el);
+          el.classList.add('visible');
+        });
+        animate(group, {
+          opacity: [0, 1],
+          translateY: [24, 0],
+          duration: 850,
+          ease: 'outExpo',
+          delay: stagger(110),
+        });
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => obs.observe(el));
+  }
+
+  // ─── STAT COUNTERS ───
   const statObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
       const el = e.target as HTMLElement;
-      const target = parseInt(el.dataset.count || '0');
-      if (reducedMotion) { el.textContent = String(target); statObs.unobserve(el); return; }
-      const start = performance.now();
-      const dur = 1200;
-      function tick(now: number) {
-        const p = Math.min((now - start) / dur, 1);
-        el.textContent = String(Math.round(target * (1 - Math.pow(1 - p, 4))));
-        if (p < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
       statObs.unobserve(el);
+      const target = parseInt(el.dataset.count || '0', 10);
+      if (reducedMotion) { el.textContent = String(target); return; }
+      animate(el, {
+        innerHTML: [0, target],
+        duration: 1600,
+        ease: 'outQuart',
+        modifier: utils.round(0),
+      });
     });
   }, { threshold: 0.5 });
   document.querySelectorAll('[data-count]').forEach(el => statObs.observe(el));
@@ -1254,23 +1318,28 @@ const steps = [
     canvas.remove();
   }
 
-  // ─── HERO WORD SWAP ───
+  // ─── HERO WORD SWAP (blur-flip loop) ───
   const heroWord = document.getElementById('hero-word') as HTMLElement | null;
   if (heroWord && !reducedMotion) {
     const words = ['thinks', 'scales', 'adapts', 'evolves'];
     let idx = 0;
-    setInterval(() => {
-      heroWord.classList.add('fading');
-      setTimeout(() => {
-        idx = (idx + 1) % words.length;
-        heroWord.textContent = words[idx];
-        heroWord.classList.remove('fading');
-        heroWord.classList.add('entering');
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-          heroWord.classList.remove('entering');
-        }));
-      }, 320);
-    }, 2800);
+    // Explicit from→to pairs keep every loop identical regardless of the inline
+    // styles left behind by the previous pass.
+    createTimeline({ loop: true, defaults: { duration: 340, ease: 'inOutQuad' } })
+      .add(heroWord, {
+        opacity: [1, 0],
+        translateY: [0, -10],
+        filter: ['blur(0px)', 'blur(6px)'],
+        onComplete: () => {
+          idx = (idx + 1) % words.length;
+          heroWord.textContent = words[idx];
+        },
+      }, 2500)
+      .add(heroWord, {
+        opacity: [0, 1],
+        translateY: [10, 0],
+        filter: ['blur(6px)', 'blur(0px)'],
+      });
   }
 
   // ─── CONTACT FORM ───
@@ -1278,6 +1347,13 @@ const steps = [
   const submitBtn = document.getElementById('cf-submit') as HTMLButtonElement | null;
   const successEl = document.getElementById('cf-success') as HTMLElement | null;
   const errorEl = document.getElementById('cf-error') as HTMLElement | null;
+
+  // Unhide a form notice and ease it in (reduced motion just unhides it).
+  function showNotice(el: HTMLElement) {
+    el.hidden = false;
+    if (reducedMotion) return;
+    animate(el, { opacity: [0, 1], translateY: [12, 0], duration: 600, ease: 'outExpo' });
+  }
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -1298,13 +1374,13 @@ const steps = [
 
       if (res.ok) {
         form.reset();
-        successEl.hidden = false;
+        showNotice(successEl);
         successEl.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'nearest' });
       } else {
-        errorEl.hidden = false;
+        showNotice(errorEl);
       }
     } catch {
-      errorEl.hidden = false;
+      showNotice(errorEl);
     } finally {
       submitBtn.classList.remove('loading');
       submitBtn.disabled = false;
