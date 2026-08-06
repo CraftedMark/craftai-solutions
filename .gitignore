@@ -23,3 +23,7 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 scroll-world-work/
+
+# per-project agent state — not source code
+.a5c/
+.omc/
